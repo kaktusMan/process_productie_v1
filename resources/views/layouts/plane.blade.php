@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <meta name="_token" content="{{ csrf_token() }}" />
 
-    <title>Code Corner</title>
+    <title>Proces de productie</title>
 
     <link rel="stylesheet" href="{{ asset("assets/css/bootstrap.min.css") }}" />
     <link rel="stylesheet" href="{{ asset("assets/css/plugins/metisMenu/metisMenu.min.css") }}" />

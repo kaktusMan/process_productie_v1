@@ -91,7 +91,9 @@ class ModuriFolosintaController extends Controller
 
     protected function validateRequest($request, $aplicatie = null) 
     {   
-        $rules = [];
+        $rules  = array(
+            'nume' => 'required|max:150',
+        ); 
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 
