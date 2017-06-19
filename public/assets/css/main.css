@@ -1,0 +1,42 @@
+/*#wrapper {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    padding-left: 0px;
+}
+
+#wrapper.active {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    padding-left: 0px;
+}*/
+
+.navbar-default.sidebar { visibility: hidden; }
+
+.navbar-default.sidebar.active { visibility: visible; }
+
+.sidebar_collapsed #page-wrapper { margin: 0; }
+
+.red-color-notification {
+    color: red;
+}
+
+
+
+.fc-event .fc-title {
+    text-align: left;
+    float: left;
+    color: #fff;
+    font-size: 13px !important;
+    font-weight: bold;
+}
+
+.fc-event .fc-time {
+    float: left;
+    text-align: left;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 300;
+    margin-right: 10px;
+}
