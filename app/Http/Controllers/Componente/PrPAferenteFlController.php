@@ -99,7 +99,12 @@ class PrPAferenteFlController extends Controller
 
     protected function validateRequest($request, $proces = null) 
     {	
-    	$rules = [];
+    	$rules = [
+            'nume' => 'required',
+            'cod' => 'required',
+            'detalii' => 'required',
+            'id_fl' => 'required'
+];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

@@ -94,7 +94,12 @@ class InstalatiiProductieController extends Controller
 
     protected function validateRequest($request, $instalatie = null) 
     {	
-    	$rules = [];
+    	$rules = [
+            'nume' => 'required',
+            'cod' => 'required',
+            'detalii' => 'required'
+
+        ];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

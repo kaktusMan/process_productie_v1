@@ -100,7 +100,10 @@ class OpSimultanNecesariController extends Controller
 
     protected function validateRequest($request, $operator_necesar = null) 
     {	
-    	$rules = [];
+    	$rules = [
+            'id_il' => 'required',
+            'operatori' => 'required'
+        ];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

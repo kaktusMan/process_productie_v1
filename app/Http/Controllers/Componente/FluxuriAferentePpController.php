@@ -99,7 +99,12 @@ public function index(){
 
     protected function validateRequest($request, $flux = null) 
     {	
-    	$rules = [];
+    	$rules = [
+            'nume' => 'required',
+            'cod' => 'required',
+            'detalii' => 'required',
+            'id_pp' => 'required'
+        ];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 
