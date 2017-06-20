@@ -96,11 +96,7 @@ class CaracteristiciTehniceController extends Controller
     protected function validateRequest($request, $caracteristica = null) 
     {   
         $rules = [ 
-            'lungime_maxima' => 'numeric',
-            'latime_maxima' => 'numeric',
-            'inaltime_maxima' => 'numeric',
-            'volum' => 'numeric',
-            'greutate' => 'numeric' 
+            'nume' => 'required' 
         ];
         $validator = Validator::make($request->all(),$rules);
 

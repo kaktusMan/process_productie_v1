@@ -90,7 +90,7 @@ class TipuriOperatoriController extends Controller
 
     protected function validateRequest($request, $tip_operator = null) 
     {	
-    	$rules = [];
+    	$rules = ['nume' => 'required'];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

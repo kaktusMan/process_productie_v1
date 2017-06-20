@@ -99,7 +99,12 @@ class ToateIlPosibileController extends Controller
 
     protected function validateRequest($request, $il_posibil = null) 
     {   
-        $rules = [];
+        $rules = [
+            'nume' => 'required',
+            'furnizor' => 'required',
+            'marca' => 'required',
+            'id_tip_il' => 'required'
+        ];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

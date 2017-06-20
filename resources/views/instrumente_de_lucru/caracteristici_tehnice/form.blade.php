@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group {{ $errors->has('nume') ? ' has-error' : '' }}">
-                <label>Lista caracteristici tehnice relevante</label>
+                <label class="form-group {{ $errors->has('nume') ? 'help-block' : '' }}">Lista caracteristici tehnice relevante</label>
                 <select name="nume" id="nume"  class="form-control required" data-search="5">
                     <option value="">Setare caracteristica tehnice relevante</option>
                     @foreach ($caracteristici_relevante as $index => $value)

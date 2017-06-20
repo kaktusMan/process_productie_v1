@@ -99,7 +99,11 @@ class IlPtAnalizaFlController extends Controller
 
     protected function validateRequest($request, $optimizare_fl = null) 
     {   
-        $rules = [];
+        $rules = [
+            'nume' => 'required',
+            'detalii' => 'required',
+            'id_fl' => 'required'
+        ];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

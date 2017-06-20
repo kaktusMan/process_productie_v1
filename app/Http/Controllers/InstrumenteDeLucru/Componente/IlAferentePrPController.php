@@ -103,7 +103,13 @@ class IlAferentePrPController extends Controller
 
     protected function validateRequest($request, $il_aferent = null) 
     {   
-        $rules = [];
+        $rules = [
+            'nume' => 'required',
+            'cod' => 'required',
+            'detalii' => 'required',
+            'nr_inventar' => 'required|numeric',
+            'id_prp' => 'required'
+        ];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

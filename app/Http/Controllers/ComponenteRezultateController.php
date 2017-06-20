@@ -92,7 +92,9 @@ class ComponenteRezultateController extends Controller
 
     protected function validateRequest($request, $componenta = null) 
     {	
-    	$rules = [];
+    	$rules  = array(
+            'nume' => 'required|max:150',
+        );
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

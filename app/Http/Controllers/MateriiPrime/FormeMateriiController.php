@@ -89,7 +89,9 @@ class FormeMateriiController extends Controller
 
     protected function validateRequest($request, $forma = null) 
     {   
-        $rules = [];
+        $rules = [ 
+            'nume' => 'required'
+        ];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

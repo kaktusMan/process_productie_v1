@@ -1,17 +1,19 @@
 <div class="row">
-    @if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    <div class="col-md-12">
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul style="list-style-type: none; padding: 0;">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        {{ csrf_field() }}
     </div>
-    @endif
-    {{ csrf_field() }}
 </div>
 <div class="row">
-    <div class="tab-content clearfix"> 
+    <div class="col-md-12">
         <div class="form-center">
             <div class="form-group {{ $errors->has('nume') ? ' has-error' : '' }}">
                 <label>Tip operator</label>
@@ -22,11 +24,13 @@
                 </span>
                 @endif              
             </div>
-             
-            {{-- <br/> --}}
-            <button type="submit" class="btn btn-purple submit has-icon pull-right">
-                <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Salvare  
-            </button>
-        </div>
-    </div>
+    </div> 
 </div>
+<div>
+    <div class="row col-lg-12 text-center">
+        <button type="submit" class="btn btn-primary btn-lg button-width">
+            <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Salveaza
+        </button> 
+        <a href="{{route('tip-operatori::list') }}" class="btn btn-warning btn-lg button-widtht"><i class="fa fa-angle-left"></i> &nbsp;Înapoi</a>
+    </div>
+</div> 
