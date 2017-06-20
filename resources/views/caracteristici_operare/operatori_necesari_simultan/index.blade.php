@@ -33,7 +33,7 @@
             </div>        
             <div class="panel panel-default">
               <div class="panel-heading">
-                  Lista numar operatori necesari pentru functionare I.L.
+                  Lista numar operatori necesari pentru functionare a instrumentelor de lucru
                   <div class="pull-right">   
                     <a href="{{ route('operatori-necesari::create') }}"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare</a>                   
                   </div>
@@ -43,24 +43,23 @@
                       <table class="table table-striped table-bordered table-hover" id="dataTables-operatori-necesari">
                         <thead>
                           <tr>                                   
-                            <th class="text-center">Numar operatori</th>
                             <th class="text-center">Instrument de lucru</th>
+                            <th class="text-center">Numar operatori</th>
                             <th class="text-center">Actiuni</th>
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>                                   
-                            <th class="text-center">Numar operatori</th>
                             <th class="text-center">Instrument de lucru</th>
+                            <th class="text-center">Numar operatori</th>
                             <th class="text-center">Actiuni</th>
                           </tr>
                         </tfoot>
                         <tbody>                             
                           @foreach ($operatori_necesari as $operator)
                             <tr data-id="{{ $operator->id }}">         
-                              <td class="text-center">{{ $operator->nume }}</td>
-                              <td class="text-center">{{ $operator->cod}}</td>
-                              <td class="text-center">{{ $operator->tipuriFl->nume  }}</td>
+                              <td class="text-center">{{ $operator->Il->nume  }}</td>
+                              <td class="text-center">{{ $operator->nr_op }}</td>
                               <td class="center action-buttons">
                                 <a href="{{ route('operatori-necesari::edit',['id' =>$operator->id]) }}" alt="Editează" title="Editează"><i class="fa fa-pencil-square-o" title="Editeaza"></i></a>
                                 <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $operator->id }}"><i class="fa fa-trash-o"></i></a>                           

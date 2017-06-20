@@ -26,9 +26,9 @@
             </div>
 
             <div class="form-group {{ $errors->has('id_op') ? ' has-error' : '' }}">
-                <label>Proces de productie</label>
+                <label>Operator</label>
                 <select name="id_op" id="id_op"  class="custom-select validate[required]" data-search="5">
-                    <option value="">Setare proces de productie</option>
+                    <option value="">Setare operator</option>
                     @foreach ($operatori as $key => $option)
                     <option <?php echo $key == $grad->id_op ? 'selected="selected"' : ''; ?> value="{{ $key }}">{{ $option }}</option>
                     @endforeach

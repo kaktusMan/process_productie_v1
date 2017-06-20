@@ -100,7 +100,10 @@ class NrSchimburiPePrPController extends Controller
 
     protected function validateRequest($request, $nr_schimb = null) 
     {	
-    	$rules = [];
+    	$rules = [
+            'id_prp' => 'required',  
+            'val' => 'required'
+        ];
         $validator = Validator::make($request->all(),$rules);
 
         if ($validator->fails()) 

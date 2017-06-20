@@ -6,18 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Validator;
 use DB;
-use App\Models\CaracteristiciOperare\OperatorActual;
 use App\Models\CaracteristiciOperare\OperatorNecesar;
 use App\Models\InstrumenteDeLucru\Componente\IlPosibil;
 
 class OpSimultanNecesariController extends Controller
 {
     
-	public function index(){ 
+	public function index(){  
         return view('caracteristici_operare.operatori_necesari_simultan.index', [
-            'operatori_necesari' => OperatorNecesar::with('Il')->get(),
-            'lista_operatori' => OperatorActual::getOptionsArray(),
-            'test' => new OpSimultanNecesariController
+            'operatori_necesari' => OperatorNecesar::with('Il')->get()
         ]);
     }
 
@@ -25,7 +22,6 @@ class OpSimultanNecesariController extends Controller
     {        
         return view('caracteristici_operare.operatori_necesari_simultan.add_edit', [
             'operator_necesar' => new OperatorNecesar(),
-            'operatori' => OperatorActual::getOptionsArray(),
             'lista_il' => IlPosibil::getOptionsArray(),
             'form_title' => 'Creare număr operatori necesari simultan pentru i.l',
             'form_route' => route('operatori-necesari::store')
@@ -39,7 +35,7 @@ class OpSimultanNecesariController extends Controller
 
         $operator_necesar = new OperatorNecesar();
         $operator_necesar->Il()->associate($request->input('id_il'));
-        $operator_necesar->id_op = implode('', $request->input('operatori'));
+        $operator_necesar->nr_op = $request->input('nr_op');
 	        
         if ($operator_necesar->save()) 
         {   
@@ -57,7 +53,6 @@ class OpSimultanNecesariController extends Controller
         if (is_null($operator_necesar)) { return redirect(route('operatori-necesari::list'))->with('alert-danger', 'Tip nu exista'); }
         return view('caracteristici_operare.operatori_necesari_simultan.add_edit', [
             'operator_necesar' => $operator_necesar,
-            'operatori' => OperatorActual::getOptionsArray(), 
             'lista_il' => IlPosibil::getOptionsArray(), 
             'form_title' => 'Editare număr operatori necesari simultan pentru i.l',
             'form_route' => route('operatori-necesari::update', ['id' => $operator_necesar->id])
@@ -72,7 +67,7 @@ class OpSimultanNecesariController extends Controller
         if (is_null($operator_necesar)) { return redirect(route('operatori-necesari::list'))->with('alert-danger', 'Tipul nu exista'); }
 
         $operator_necesar->Il()->associate($request->input('id_il'));
-        $operator_necesar->id_op = implode('', $request->input('operatori'));
+        $operator_necesar->nr_op = $request->input('nr_op');
 
         if ($operator_necesar->save()) 
         {   
@@ -102,7 +97,7 @@ class OpSimultanNecesariController extends Controller
     {	
     	$rules = [
             'id_il' => 'required',
-            'operatori' => 'required'
+            'nr_op' => 'required|numeric'
         ];
         $validator = Validator::make($request->all(),$rules);
 
@@ -121,21 +116,7 @@ class OpSimultanNecesariController extends Controller
                         ->withInput();
             }
         }
-    }
-
-    public static function opName($op_ids){
-        //preluarea numelor operatorilor asignati pr il
-        $op_ids = str_split($op_ids);
-        $nume_op = '';
-        foreach ($op_ids as $key => $value) {
-            foreach (OperatorActual::getOptionsArray() as $key => $option) {
-                if ($key == $value) {
-                    $nume_op.= $option.', ';  
-                }
-            } 
-        }
-        return substr($nume_op, 0, -2);
-    }
+    } 
 }
 
 

@@ -14,20 +14,15 @@
 </div>
 <div class="row">
         <div class="col-md-12">
-            <div class="form-group {{ $errors->has('operatori') ? ' has-error' : '' }}">
-               <label class="form-group {{ $errors->has('operatori') ? 'help-block' : '' }}">Selectare operatori</label>
-                <select class="form-control" name="operatori[]" multiple>
-                    @foreach ($operatori as $key1 => $option)
-                    <option <?php echo in_array($key1, str_split($operator_necesar->id_op)) ? 'selected="selected"' : "" ?> value="{{ $key1 }}">{{ $option }}</option>
-                    @endforeach 
-                </select>
-                @if ($errors->has('operatori'))
+            <div class="form-group {{ $errors->has('nr_op') ? ' has-error' : '' }}">
+                <label class="form-group {{ $errors->has('nr_op') ? 'help-block' : '' }}">Numar operatori </label>
+                <input type="text" class="form-control validate[required]" name="nr_op" id="nr_op" value="{{ old('nr_op') ? old('nr_op') : $operator_necesar->nr_op }}" placeholder="Numar operatori necesari">
+                @if ($errors->has('nr_op'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('operatori') }}</strong>
+                    <strong>{{ $errors->first('nr_op') }}</strong>
                 </span>
-                @endif  
-            </div>
-            
+                @endif
+            </div> 
             <div class="form-group {{ $errors->has('id_il') ? ' has-error' : '' }}">
                <label class="form-group {{ $errors->has('id_il') ? 'help-block' : '' }}">Instrumente de lucru</label>
                 <select name="id_il" id="id_il"  class="form-control validate[required]" data-search="5">
