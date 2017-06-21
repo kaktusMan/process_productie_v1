@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.plane')
 @section('content')
 
 <div class="master-wrapper">

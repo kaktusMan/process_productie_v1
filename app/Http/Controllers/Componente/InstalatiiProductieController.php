@@ -6,13 +6,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Validator;
 use App\Models\Componente\Instalatie;
+use App\Models\Componente\FluxAferentPp;
+use App\Models\Componente\ProcesProductie;
+
 
 class InstalatiiProductieController extends Controller
 {
     
-	public function index(){ 
+	public function index(){   
+
+        // return ProcesProductie::with('tipuriFl')->get();
+
+
         return view('instalatii_productie.instalatii.index', [
-            'instalatii' => Instalatie::all()
+            'instalatii' => Instalatie::all(),
+            'fluxuri' => FluxAferentPp::all(),
+            'procese' => ProcesProductie::all()
+
         ]);
     }
 

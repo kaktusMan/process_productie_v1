@@ -58,6 +58,8 @@
                 </span>
                 @endif
             </div>
+        </div>
+    </div>
 <div>
     <div class="row col-lg-12 text-center">
         <button type="submit" class="btn btn-primary btn-lg button-width">
@@ -65,7 +67,7 @@
         </button> 
         <a href="{{route('fluxuri-pp::list') }}" class="btn btn-warning btn-lg button-widtht"><i class="fa fa-angle-left"></i> &nbsp;Înapoi</a>
     </div>
-</div> >
+</div> 
 
 
 

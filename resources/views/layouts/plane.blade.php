@@ -48,10 +48,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
-            <div class="navbar-brand"> 
-                <a href="/"> 
-                    Salut  
-                <a id="menu-toggle" href="#"><i class="fa fa-chevron-circle-left"></i></a>
+            <div class="navbar-brand" >  
+                <a id="menu-toggle" href="#"><i class="fa fa-chevron-circle-left" style="margin-left: 11.3em !important;"></i></a>
             </div>
                 <a class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" href="#">
                     <i class="fa fa-bars"></i>
@@ -59,17 +57,17 @@
         </div>
          
     </nav>
-    <div id="wrapper" class="active"> 
+    <div id="wrapper" class="active">  
         <div class="navbar-default sidebar active" role="navigation">
             <div class="sidebar-nav navbar-collapse">
 	           <ul class="nav" id="side-menu">
-                        <li><a href="{{ url('/') }}"  <?php echo Route::getCurrentRoute()->getPrefix() == '' ? 'class="active"' : ''; ?>><i class="fa fa-tachometer" aria-hidden="true"></i>  Panou de bord</a></li>
+                        <li <?php echo Route::getCurrentRoute()->getPrefix() == '' ? 'class="active"' : ''; ?>><a href="{{ url('/') }}"  ><i class="fa fa-tachometer" aria-hidden="true"></i>  Panou de bord</a></li>
 
                         <li class="has-sub">
                             <a href=""><i class="fa fa fa-cubes" aria-hidden="true"></i> Nomenclator<span class="fa arrow"></a>
                             <ul class="nav nav-second-level">
                             <li class="has-sub">
-                                <a href=""><i class="fa fa-th-list" aria-hidden="true"></i> Actiuni de productie<span class="fa arrow"></a>
+                                <a href="" <?php echo Route::currentRouteName() == 'actiuni::list' || Route::currentRouteName() == 'modalitati::list' || Route::currentRouteName() == 'nivele::list'? 'class="active"' : ''; ?>><i class="fa fa-th-list" aria-hidden="true"></i> Actiuni de productie<span class="fa arrow"></a>
                                  <ul class="nav nav-third-level">
                                     <li><a href="{{ route('actiuni::list') }}"  <?php echo Route::currentRouteName() == 'actiuni::list' ? 'class="active"' : ''; ?>><i class="fa fa-th" aria-hidden="true"></i> Actiuni de productie</a></li>
                                      <li><a href="{{ route('modalitati::list') }}" <?php echo Route::currentRouteName() == 'modalitati::list' ? 'class="active"' : ''; ?> ><i class="fa fa-gavel" aria-hidden="true"></i> Modalitati de realizare</a></li>

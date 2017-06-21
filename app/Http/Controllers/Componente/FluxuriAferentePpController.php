@@ -21,7 +21,7 @@ public function index(){
     {        
         return view('instalatii_productie.fluxuri_aferente.add_edit', [
             'flux' => new FluxAferentPp(),
-            'form_title' => 'Creare flux de lucru a pp',
+            'form_title' => 'Creare flux de lucru a pp existente',
             'tipuri_instalatii' => Instalatie::getOptionsArray(),
             'form_route' => route('fluxuri-pp::store')
         ]);
@@ -55,7 +55,7 @@ public function index(){
 
         return view('instalatii_productie.fluxuri_aferente.add_edit', [
             'flux' => $flux, 
-            'form_title' => 'Editare flux de lucru a pp',
+            'form_title' => 'Editare flux de lucru a pp existente',
             'tipuri_instalatii' => Instalatie::getOptionsArray(),
             'form_route' => route('fluxuri-pp::update', ['id' => $flux->id])
         ]);
