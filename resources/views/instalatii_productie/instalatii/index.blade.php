@@ -8,7 +8,7 @@
     
     <div class="row">
         <div class="col-lg-12">
-              <div class="panel panel-primary">
+            {{--   <div class="panel panel-primary">
                 <div class="panel-heading">Zona de cautare
                     <a href="#" class="pull-right btn-primary" id="btn_show_hide" title="Afiseaza / Ascunde caracteristica_operator de cautare">
                         <i class="fa fa-list"></i>
@@ -23,7 +23,7 @@
                         </tr>
                     </table>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
               <div class="col-lg-12">
                 <!-- begin .flash-message -->
@@ -43,7 +43,7 @@
                       <table class="table table-striped table-bordered table-hover" id="dataTables-instalatii">
                         <thead>
                           <tr>  
-                            <th class="text-center">324234234</th>                                 
+                            <th class="text-center"></th>                                 
                             <th class="text-center">Nume</th>
                             <th class="text-center">Cod</th>
                             <th class="text-center">Detalii</th>
@@ -52,7 +52,7 @@
                         </thead>
                         <tfoot>
                           <tr>   
-                            <th class="text-center">324234234</th>                                 
+                            <th class="text-center"></th>                                 
                             <th class="text-center">Nume</th>
                             <th class="text-center">Cod</th>
                             <th class="text-center">Detalii</th>
@@ -63,45 +63,108 @@
                           {{-- Fabrici de productie --}}
                           @foreach ($instalatii as $instalatie)
                             <tr data-id="{{ $instalatie->id }}"> 
-                              <td class="text-center details-control">
+                              <td class="text-left details-control">
                                   <i class="fa fa-plus-square"></i>
-                              </td>        
-                              <td class="text-center">{{ $instalatie->nume }}</td>
-                              <td class="text-center">{{ $instalatie->cod}}</td>
-                              <td class="text-center">{{ $instalatie->detalii }}</td>
+                              </td>   
+                              <td class="text-left">
+                                  <span class="xedit-nume"
+                                      id="nume"
+                                      data-pk="{{ $instalatie->id }}"
+                                      data-name="nume"
+                                      data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->nume }}                                      
+                                  </span>
+                              </td>
+                               <td class="text-left">
+                                  <span class="xedit-cod"
+                                      id="cod"
+                                      data-pk="{{ $instalatie->id }}"
+                                      data-name="cod"
+                                      data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->cod }}                                      
+                                  </span>
+                              </td>
+                               <td class="text-left">
+                                  <span class="xedit-detalii"
+                                      id="detalii"
+                                      data-pk="{{ $instalatie->id }}"
+                                      data-name="detalii"
+                                      data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->detalii }}                                      
+                                  </span>
+                              </td>     
                               <td class="center action-buttons">
-                               {{ $instalatie->id }}
+                                <a href="{{ route('instalatii::edit',['id' =>$instalatie->id]) }}" alt="Editează" title="Editează"><i class="fa fa-pencil-square-o" title="Editeaza PrP"></i></a>
+                                <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $instalatie->id }}"><i class="fa fa-trash-o"></i></a>                           
+                                  @include('partials.delete_modal', ['id' => $instalatie->id, 'item' => $instalatie->nume, 'form_route'=> 'instalatii::delete']) 
                               </td>  
                             </tr>
                             {{-- Fluxuri de lucru --}}
-                            @foreach($fluxuri as $flux)
-                            <tr> 
-                              @if($flux->id_pp == $instalatie->id)
-                                <td class="text-center details-control">
-                                  <i class="fa fa-minus-square"></i>
-                                </td>
-                                <td class="text-center" style="background-color: red">{{$flux->nume}}</td>
-                                <td class="text-center" style="background-color: red">{{$flux->cod}}</td>
-                                <td class="text-center" style="background-color: red">{{$flux->detalii}}</td>
-                                <td class="center action-buttons" style="background-color: red">{{$flux->id_pp}}</td>
-                              @else
-                              <td style="display: none;">{{ $flux->id = 0}}</td>
-                              @endif
-                              </tr>
-                                {{-- Prp aferente --}}
-                                @foreach($procese as $proces)
-                                  <tr class="test123"> 
-                                  @if($proces->id_fl == $flux->id)
-
-                                    <td></td>
-                                    <td class="text-center" style="background-color: green">{{$proces->nume}}</td>
-                                    <td class="text-center" style="background-color: green">{{$proces->cod}}</td>
-                                    <td class="text-center" style="background-color: green">{{$proces->detalii}}</td>
-                                    <td class="text-center" style="background-color: green">{{$proces->id_fl}}</td>
-                                  @endif
-                                  </tr>
-                                @endforeach
-                            @endforeach
+                            @foreach(@$instalatie->fl_aferente as $flux) 
+                                <tr>
+                                  <td class="text-center details-control">
+                                    <i class="fa fa-minus-square"></i>
+                                  </td>  
+                                  <td class="text-center">
+                                  <span class="xedit-nume"
+                                          id="nume"
+                                          data-pk="{{ $flux->id }}"
+                                          data-name="nume"
+                                          data-url="{{ route('instalatii::x_editable_fl') }}">{{ $flux->nume }}                                      
+                                      </span>
+                                  </td>
+                                   <td class="text-center">
+                                      <span class="xedit-cod"
+                                          id="cod"
+                                          data-pk="{{ $flux->id }}"
+                                          data-name="cod"
+                                          data-url="{{ route('instalatii::x_editable_fl') }}">{{ $flux->cod }}                                      
+                                      </span>
+                                  </td>
+                                   <td class="text-center">
+                                      <span class="xedit-detalii"
+                                          id="detalii"
+                                          data-pk="{{ $flux->id }}"
+                                          data-name="detalii"
+                                          data-url="{{ route('instalatii::x_editable_fl') }}">{{ $flux->detalii }}                                      
+                                      </span>
+                                  </td>       
+                                  <td class="center action-buttons">
+                                   {{ 'flux' }}
+                                  </td>
+                                </tr>
+                              @foreach(@$flux->fl_prp as $proces)  
+                                <tr>
+                                  <td>
+                                    <i style="display: none;" class="fa fa-minus-square"></i>
+                                  </td> 
+                                  <td class="text-right">
+                                  <span class="xedit-nume"
+                                          id="nume"
+                                          data-pk="{{ $proces->id }}"
+                                          data-name="nume"
+                                          data-url="{{ route('instalatii::x_editable_pp') }}">{{ $proces->nume }}                                      
+                                      </span>
+                                  </td>
+                                   <td class="text-right">
+                                      <span class="xedit-cod"
+                                          id="cod"
+                                          data-pk="{{ $proces->id }}"
+                                          data-name="cod"
+                                          data-url="{{ route('instalatii::x_editable_pp') }}">{{ $proces->cod }}                                      
+                                      </span>
+                                  </td>
+                                   <td class="text-right">
+                                      <span class="xedit-detalii"
+                                          id="detalii"
+                                          data-pk="{{ $proces->id }}"
+                                          data-name="detalii"
+                                          data-url="{{ route('instalatii::x_editable_pp') }}">{{ $proces->detalii }}                                      
+                                      </span>
+                                  </td>        
+                                  <td class="center action-buttons">
+                                   {{ 'process' }}
+                                  </td>
+                                </tr>
+                              @endforeach
+                            @endforeach    
                           @endforeach     
                         </tbody>
                       </table>
@@ -113,6 +176,7 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
+    <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
     <!-- /.row --> 
   @stop
 
@@ -127,7 +191,15 @@
                 "language": {                
                     "url": '{{ URL::to("assets/js/plugins/dataTables/lang_json/romanian.json") }}'
                 }
-            });            
+            });      
+             $.fn.editable.defaults.params = function (params) {
+                  params._token = $("#_token").data("token");
+                  return params;
+              };
+
+              $('span.xedit-nume,span.xedit-cod,span.xedit-detalii').css('cursor','pointer').editable({              
+                placement: 'left'
+              });       
               
             // $("#btn_show_hide").click(function(){
             //     $("#div_cautare").toggle();             

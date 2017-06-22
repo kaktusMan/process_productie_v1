@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Componente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Validator;
+use Input;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Componente\Instalatie;
 use App\Models\Componente\FluxAferentPp;
 use App\Models\Componente\ProcesProductie;
@@ -15,16 +17,44 @@ class InstalatiiProductieController extends Controller
     
 	public function index(){   
 
-        // return ProcesProductie::with('tipuriFl')->get();
-
-
         return view('instalatii_productie.instalatii.index', [
-            'instalatii' => Instalatie::all(),
-            'fluxuri' => FluxAferentPp::all(),
-            'procese' => ProcesProductie::all()
+            'instalatii' => Instalatie::with(['fl_aferente', 'fl_aferente.fl_prp'])->get()
 
-        ]);
+        ]);  //tipuriFl
+
     }
+
+
+    public function ActualizeazaInstalatiiProductie()
+    {
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        $table = Input::get('table');
+        
+        Instalatie::where('id', $pk)->update([$name => $value]);
+    }
+
+    public function ActualizeazaFluxAferent()
+    {
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        $table = Input::get('table'); 
+
+        FluxAferentPp::where('id', $pk)->update([$name => $value]);
+    }
+
+    public function ActualizeazaProcesProductie()
+    {
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        $table = Input::get('table');
+ 
+        ProcesProductie::where('id', $pk)->update([$name => $value]);
+    }
+
 
     public function create() 
     {        

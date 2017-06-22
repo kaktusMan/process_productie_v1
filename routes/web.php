@@ -369,12 +369,19 @@ Route::group([
 		'as' => 'instalatii::',
 
 		], function () {
+	        Route::post('x_editable_inst', 'InstalatiiProductieController@ActualizeazaInstalatiiProductie')->name('x_editable_inst');
+	        Route::post('x_editable_fl', 'InstalatiiProductieController@ActualizeazaFluxAferent')->name('x_editable_fl');
+	        Route::post('x_editable_pp', 'InstalatiiProductieController@ActualizeazaProcesProductie')->name('x_editable_pp');
+
+			
 			Route::get('/', 'InstalatiiProductieController@index')->name('list');
 	        Route::get('creare', 'InstalatiiProductieController@create')->name('create');
 	        Route::post('/', 'InstalatiiProductieController@store')->name('store');
 	        Route::get('{instalatie}', 'InstalatiiProductieController@edit')->name('edit');
 	        Route::post('{instalatie}', 'InstalatiiProductieController@update')->name('update');
 	        Route::post('{instalatie}/stergere', 'InstalatiiProductieController@delete')->name('delete');
+
+
 
 	});
 
