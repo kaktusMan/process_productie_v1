@@ -1,7 +1,7 @@
 @extends('layouts.plane')
 
 @section('title')
-  Instrumente de lucru
+  Centralizatorul tuturor I.L. care sunt in patrimoniu sau custodie
 @stop
 
 @section('content')
@@ -46,6 +46,7 @@
                             <th class="text-center">Nume</th>
                             <th class="text-center">Furnizor</th>
                             <th class="text-center">Marca</th>
+                            <th class="text-center">Mod folosinta</th>
                             <th class="text-center">Actiuni</th>
                           </tr>
                         </thead>
@@ -54,6 +55,7 @@
                             <th class="text-center">Nume</th>
                             <th class="text-center">Furnizor</th>
                             <th class="text-center">Marca</th>
+                            <th class="text-center">Mod folosinta</th>
                             <th class="text-center">Actiuni</th>
                           </tr>
                         </tfoot>
@@ -61,6 +63,10 @@
                           @foreach ($il_posibile as $il_posibil)
                             <tr data-id="{{ $il_posibil->id }}">         
                               <td class="text-center">{{ $il_posibil->nume }}</td>
+                              <td class="text-center">{{ $il_posibil->furnizor }}</td>
+                              <td class="text-center">{{ $il_posibil->marca }}</td>
+                              <td class="text-center">{{ $il_posibil->modFolosinta->nume }}</td>
+
                               <td class="center action-buttons">
                                 <a href="{{ route('il-posibile::edit',['id' =>$il_posibil->id]) }}" alt="Editează" title="Editează"><i class="fa fa-pencil-square-o" title="Editeaza"></i></a>
                                 <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $il_posibil->id }}"><i class="fa fa-trash-o"></i></a>                           
@@ -98,6 +104,8 @@
             });   
             var table = $('#dataTables-il-posibile').dataTable().columnFilter({
               aoColumns: [ 
+                  { sSelector: "#_col_nume", type: "text" },
+                  { sSelector: "#_col_nume", type: "text" },
                   { sSelector: "#_col_nume", type: "text" },
                 ]
             });

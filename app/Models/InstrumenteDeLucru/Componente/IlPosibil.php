@@ -13,9 +13,9 @@ class IlPosibil extends Model
 
 	protected $table = 'lista_instrumente_de_lucru_posibile';
 
-    public function tipuriIl()
+    public function modFolosinta()
     {
-        return $this->belongsTo('App\Models\InstrumenteDeLucru\TipIl', 'id_tip_il');
+        return $this->belongsTo('App\Models\InstrumenteDeLucru\Componente\ModFolosinta', 'id_mod_folosinta');
     }
 
     public function opNecesari()

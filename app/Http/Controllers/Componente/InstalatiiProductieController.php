@@ -16,7 +16,7 @@ class InstalatiiProductieController extends Controller
 {
     
 	public function index(){   
-
+        
         return view('instalatii_productie.instalatii.index', [
             'instalatii' => Instalatie::with(['fl_aferente', 'fl_aferente.fl_prp'])->get()
 

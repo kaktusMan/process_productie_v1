@@ -97,9 +97,8 @@
                             <a href="#"><i class="fa fa-th" aria-hidden="true"></i> Date generale<span class="fa arrow"></a>   
                             <ul class="nav nav-second-level">  
                                 <li><a href="{{ route('instalatii::list') }}"  <?php echo Route::currentRouteName() == 'instalatii::list' ? 'class="active"' : ''; ?>><i class="fa fa-building-o" aria-hidden="true"></i> Centralizatorul fabriciilor de productie</a></li>
-                                <li><a href="{{ route('fluxuri-pp::list') }}"  <?php echo Route::currentRouteName() == 'fluxuri-pp::list' ? 'class="active"' : ''; ?>><i class="fa fa-arrows-alt" aria-hidden="true"></i> Centralizatorul fluxurilor de lucru</a></li>   
-                                <li><a href="{{ route('procese-productie::list') }}"  <?php echo Route::currentRouteName() == 'procese-productie::list' ? 'class="active"' : ''; ?>><i class="fa fa-users" aria-hidden="true"></i> Centralizatorul proceselor de productie</a></li>
 
+                                
                                 <li><a href="{{ route('operatori-necesari::list') }}"  <?php echo Route::currentRouteName() == 'operatori-necesari::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Numar operatori simultan necesari pentru functionare I.L.</a></li>   
                                  <li><a href="{{ route('schimburi-de-lucru::list') }}"  <?php echo Route::currentRouteName() == 'schimburi-de-lucru::list' ? 'class="active"' : ''; ?>><i class="fa fa-retweet" aria-hidden="true"></i> Numar de schimburi de lucru pe procesele de productie</a></li> 
                                  <li><a href="{{ route('ore-functionale::list') }}"  <?php echo Route::currentRouteName() == 'ore-functionale::list' ? 'class="active"' : ''; ?>><i class="fa fa-hourglass-start" aria-hidden="true"></i> Numar de ore nete functionale pe schimbul de lucru</a></li>

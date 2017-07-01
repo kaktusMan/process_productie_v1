@@ -16,7 +16,7 @@ class FluxAferentPp extends Model
 
     public function tipuriPp()
     {
-        return $this->belongsTo('App\Models\Componente\Instalatie', 'id_pp');
+        return $this->belongsTo('App\Models\Componente\Instalatie', 'instalatie_id');
     }
 
     public function fl_prp()

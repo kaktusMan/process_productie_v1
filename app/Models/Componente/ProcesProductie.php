@@ -15,7 +15,7 @@ class ProcesProductie extends Model
 
 	public function tipuriFl()
     {
-        return $this->belongsTo('App\Models\Componente\FluxAferentPp', 'id_fl');
+        return $this->belongsTo('App\Models\Componente\FluxAferentPp', 'flux_aferent_pp_id');
     }
 
     public function ilAferent()

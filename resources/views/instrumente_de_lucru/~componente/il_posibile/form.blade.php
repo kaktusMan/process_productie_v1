@@ -46,17 +46,17 @@
             @endif              
         </div>
         
-        <div class="form-group {{ $errors->has('id_tip_il') ? ' has-error' : '' }}">
-            <label class="form-group {{ $errors->has('id_tip_il') ? 'help-block' : '' }}">Tip proces de productie</label>
-            <select name="id_tip_il" id="id_tip_il"  class="form-control" data-search="5">
+        <div class="form-group {{ $errors->has('id_mod_folosinta') ? ' has-error' : '' }}">
+            <label class="form-group {{ $errors->has('id_mod_folosinta') ? 'help-block' : '' }}">Tip proces de productie</label>
+            <select name="id_mod_folosinta" id="id_mod_folosinta"  class="form-control" data-search="5">
                 <option value="">Setare tip proces de porductie</option>
-                @foreach ($tipuri_il as $index => $value)
-                <option <?php echo $index == $il_posibil->id_tip_il ? 'selected="selected"' : ''; ?> value="{{ $index }}">{{ $value }}</option>
+                @foreach ($moduri_folosinta as $index => $value)
+                <option <?php echo $index == $il_posibil->id_mod_folosinta ? 'selected="selected"' : ''; ?> value="{{ $index }}">{{ $value }}</option>
                 @endforeach
             </select>
-            @if ($errors->has('id_tip_il'))
+            @if ($errors->has('id_mod_folosinta'))
             <span class="help-block">
-                <strong>{{ $errors->first('id_tip_il') }}</strong>
+                <strong>{{ $errors->first('id_mod_folosinta') }}</strong>
             </span>
             @endif
         </div> 

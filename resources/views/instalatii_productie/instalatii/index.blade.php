@@ -1,7 +1,7 @@
 @extends('layouts.plane')
 
 @section('title')
-  Fabrici de productie
+  Centralizatorul Fabricilor de Productie
 @stop
 
 @section('content')
@@ -33,7 +33,7 @@
             </div>        
             <div class="panel panel-default">
               <div class="panel-heading">
-                  Lista fabricilor de productie(production plants)
+                  Fabricile de prodictie: Fluxurile de lucru/Procesele de productie aferente
                   <div class="pull-right">   
                     <a href="{{ route('instalatii::create') }}"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare</a>                   
                   </div>
@@ -63,10 +63,10 @@
                           {{-- Fabrici de productie --}}
                           @foreach ($instalatii as $instalatie)
                             <tr data-id="{{ $instalatie->id }}"> 
-                              <td class="text-left details-control">
-                                  <i class="fa fa-plus-square"></i>
+                              <td class="text-left details-control-instalatie">
+                                  <i class="fa fa-minus-square" style="cursor: pointer;" title="Arată fluxurile de lucru."></i>
                               </td>   
-                              <td class="text-left">
+                              <td class="text-center">
                                   <span class="xedit-nume"
                                       id="nume"
                                       data-pk="{{ $instalatie->id }}"
@@ -74,7 +74,7 @@
                                       data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->nume }}                                      
                                   </span>
                               </td>
-                               <td class="text-left">
+                               <td class="text-center">
                                   <span class="xedit-cod"
                                       id="cod"
                                       data-pk="{{ $instalatie->id }}"
@@ -82,7 +82,7 @@
                                       data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->cod }}                                      
                                   </span>
                               </td>
-                               <td class="text-left">
+                               <td class="text-center">
                                   <span class="xedit-detalii"
                                       id="detalii"
                                       data-pk="{{ $instalatie->id }}"
@@ -90,17 +90,17 @@
                                       data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->detalii }}                                      
                                   </span>
                               </td>     
-                              <td class="center action-buttons">
-                                <a href="{{ route('instalatii::edit',['id' =>$instalatie->id]) }}" alt="Editează" title="Editează"><i class="fa fa-pencil-square-o" title="Editeaza PrP"></i></a>
+                              <td class="text-center action-buttons">
+                                <a href="#"><i class="glyphicon glyphicon-plus" title="Creare flux de lucru"></i></a>
                                 <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $instalatie->id }}"><i class="fa fa-trash-o"></i></a>                           
                                   @include('partials.delete_modal', ['id' => $instalatie->id, 'item' => $instalatie->nume, 'form_route'=> 'instalatii::delete']) 
                               </td>  
                             </tr>
                             {{-- Fluxuri de lucru --}}
                             @foreach(@$instalatie->fl_aferente as $flux) 
-                                <tr>
-                                  <td class="text-center details-control">
-                                    <i class="fa fa-minus-square"></i>
+                                <tr data-id="{{$flux->id}}" class="flux">
+                                  <td class="text-center details-control-flux">
+                                    <i class="fa fa-minus-square" style="cursor: pointer;" title="Ascunde procesele de productie."></i>
                                   </td>  
                                   <td class="text-center">
                                   <span class="xedit-nume"
@@ -126,16 +126,18 @@
                                           data-url="{{ route('instalatii::x_editable_fl') }}">{{ $flux->detalii }}                                      
                                       </span>
                                   </td>       
-                                  <td class="center action-buttons">
-                                   {{ 'flux' }}
+                                  <td class="text-center action-buttons">
+                                    <a href="{{ route('instalatii::edit',['id' =>$instalatie->id]) }}" alt="Editează" title="Editează"><i class="glyphicon glyphicon-plus" title="Creare proces de productie"></i></a>
+                                    <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $instalatie->id }}"><i class="fa fa-trash-o"></i></a>                           
+                                      @include('partials.delete_modal', ['id' => $instalatie->id, 'item' => $instalatie->nume, 'form_route'=> 'instalatii::delete']) 
                                   </td>
                                 </tr>
                               @foreach(@$flux->fl_prp as $proces)  
-                                <tr>
-                                  <td>
+                                <tr data-id="{{$proces->id}}" class="proces">
+                                  <td class="text-center details-control">
                                     <i style="display: none;" class="fa fa-minus-square"></i>
                                   </td> 
-                                  <td class="text-right">
+                                  <td class="text-center">
                                   <span class="xedit-nume"
                                           id="nume"
                                           data-pk="{{ $proces->id }}"
@@ -143,7 +145,7 @@
                                           data-url="{{ route('instalatii::x_editable_pp') }}">{{ $proces->nume }}                                      
                                       </span>
                                   </td>
-                                   <td class="text-right">
+                                   <td class="text-center">
                                       <span class="xedit-cod"
                                           id="cod"
                                           data-pk="{{ $proces->id }}"
@@ -151,7 +153,7 @@
                                           data-url="{{ route('instalatii::x_editable_pp') }}">{{ $proces->cod }}                                      
                                       </span>
                                   </td>
-                                   <td class="text-right">
+                                   <td class="text-center">
                                       <span class="xedit-detalii"
                                           id="detalii"
                                           data-pk="{{ $proces->id }}"
@@ -159,8 +161,10 @@
                                           data-url="{{ route('instalatii::x_editable_pp') }}">{{ $proces->detalii }}                                      
                                       </span>
                                   </td>        
-                                  <td class="center action-buttons">
-                                   {{ 'process' }}
+                                  <td class="text-center action-buttons">
+                                    <a href="{{ route('instalatii::edit',['id' =>$instalatie->id]) }}" alt="Editează" title="Editează"><i class="glyphicon glyphicon-plus" title="Creaza PrP"></i></a>
+                                    <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $instalatie->id }}"><i class="fa fa-trash-o"></i></a>                           
+                                      @include('partials.delete_modal', ['id' => $instalatie->id, 'item' => $instalatie->nume, 'form_route'=> 'instalatii::delete']) 
                                   </td>
                                 </tr>
                               @endforeach
@@ -184,32 +188,36 @@
     <script>
         $(document).ready(function() {          
 
-             $('#dataTables-instalatii').dataTable({
-                "aoColumnDefs": [
-                    { 'bSortable': false, 'aTargets': [0,4] }
-                ],
-                "language": {                
-                    "url": '{{ URL::to("assets/js/plugins/dataTables/lang_json/romanian.json") }}'
-                }
-            });      
-             $.fn.editable.defaults.params = function (params) {
+              $('#dataTables-instalatii').dataTable({
+                  "aoColumnDefs": [
+                      { 'bSortable': false, 'aTargets': [0,1,2,3,4] }
+                  ],
+                  "language": {                
+                      "url": '{{ URL::to("assets/js/plugins/dataTables/lang_json/romanian.json") }}'
+                  }
+              });   
+
+              $.fn.editable.defaults.params = function (params) {
                   params._token = $("#_token").data("token");
                   return params;
               };
 
               $('span.xedit-nume,span.xedit-cod,span.xedit-detalii').css('cursor','pointer').editable({              
-                placement: 'left'
+                placement: 'top'
               });       
               
-            // $("#btn_show_hide").click(function(){
-            //     $("#div_cautare").toggle();             
-            // });   
+            $("#btn_show_hide").click(function(){
+                $("#div_cautare").toggle();             
+            });   
+
+// Bottom search ------------------------------------------------------------------------
+
             // var table = $('#dataTables-instalatii').dataTable().columnFilter({
             //   aoColumns: [ 
             //       { sSelector: "#_col_nume", type: "text" },
             //     ]
             // });  
-
+// -------------------------------------------------------------------------------------
 
 
               // $(".test123").find(".text-center").hide();
@@ -218,23 +226,95 @@
               // $("#dataTables-instalatii").on('click', '.details-control1', function(event) {
 
 
-// ;              $('#dataTables-instalatii tr[data-id="'+2+'"]').slideToggle();
-                    // No bubbling up
-                  // event.stopPropagation();
+              // $('#dataTables-instalatii tr[data-id="'+2+'"]').slideToggle();
+              //       No bubbling up
+              //     event.stopPropagation();
 
-                  // var $target = $(event.target);
-                  // console.log($target.closest('[data-id]').data('id'));
+              //     var $target = $(event.target);
+              //     console.log($target.closest('[data-id]').data('id'));
                    
 
-                  //   // Open and close the appropriate thing
-                  // if ( $target.closest("td").attr("colspan") > 2 ) {
-                  //     $target.slideUp();
-                  // } else {
-                  //     $target.closest("tr").next().find(".kkt").slideToggle();
-                  // }                    
+              //       // Open and close the appropriate thing
+              //     if ( $target.closest("td").attr("colspan") > 2 ) {
+              //         $target.slideUp();
+              //     } else {
+              //         $target.closest("tr").next().find(".kkt").slideToggle();
+              //     }                    
               // });
 
+              // $("#dataTables-instalatii").on('click', 'tbody tr #addRow', function() {
 
+
+
+
+
+              // var table = $('#dataTables-instalatii').DataTable();
+              //       var count = 1;
+              //       var currentPage = table.page();
+    
+              //       //insert a test row
+              //       count++;
+              //       table.row.add([count, count, count, count, count]).draw();
+                    
+              //       //move added row to desired index (here the row we clicked on)
+              //       var index = table.row(this).index(),
+              //           rowCount = table.data().length-1,
+              //           insertedRow = table.row(rowCount).data(),
+              //           tempRow;
+
+              //       for (var i=rowCount;i>index;i--) {
+              //           tempRow = table.row(i-1).data();
+              //           table.row(i).data(tempRow);
+              //           table.row(i-1).data(insertedRow);
+              //       }     
+              //       //refresh the page
+              //       table.page(currentPage).draw(false);
+
+              // $(".flux").find(".text-center").hide();
+              // $(".proces").find(".text-center").hide();
+
+              $("#dataTables-instalatii").on('click', ".details-control-instalatie i", function(){
+
+                // $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].flux").find(".text-center").show();
+                $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].flux").css('color', 'red').slideToggle();
+
+
+                $(this).toggleClass('fa-plus-square fa-minus-square');
+              });
+
+              $("#dataTables-instalatii").on('click', ".details-control-flux i", function(){ 
+                  $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].proces").css('color', 'green').slideToggle();
+                
+                $(this).toggleClass('fa-plus-square fa-minus-square');
+                // $(this).toggleAttr('title', 'Arată procesele de productie.', 'Ascunde procesele de productie.');
+              });
+
+              $("#dataTables-instalatii").on('click', '.action-buttons a i', function(){
+                $row_id = $(this).closest('[data-id]').data('id'); 
+
+                  var table = $('#dataTables-instalatii').DataTable();
+                    var count = 1;
+                    var currentPage = table.page();
+    
+                    //insert a test row
+                    count++;
+                    table.row.add([count, count, count, count, count]).draw();
+                    console.log(table.row(this));
+                    //move added row to desired index (here the row we clicked on)
+                    var index = table.row(this).index(),
+                        rowCount = table.data().length-1,
+                        insertedRow = table.row(rowCount).data(),
+                        tempRow;
+
+                    for (var i=rowCount;i>index;i--) {
+                        tempRow = table.row(i-1).data();
+                        table.row(i).data(tempRow);
+                        table.row(i-1).data(insertedRow);
+                    }     
+                    //refresh the page
+                    table.page(currentPage).draw(false);
+
+              });
 
         });
     </script>

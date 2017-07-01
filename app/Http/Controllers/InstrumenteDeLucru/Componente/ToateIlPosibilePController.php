@@ -5,7 +5,7 @@ namespace App\Http\Controllers\InstrumenteDeLucru\Componente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Validator;
-use App\Models\InstrumenteDeLucru\TipIl;
+use App\Models\InstrumenteDeLucru\Componente\ModFolosinta;
 use App\Models\InstrumenteDeLucru\Componente\IlPosibil;
 
 class ToateIlPosibileController extends Controller
@@ -13,7 +13,7 @@ class ToateIlPosibileController extends Controller
      
     public function index(){ 
         return view('instrumente_de_lucru.~componente.il_posibile.index', [
-            'il_posibile' => IlPosibil::with('tipuriIl')->get()
+            'il_posibile' => IlPosibil::with('modFolosinta')->get()
         ]);
     }
 
@@ -22,7 +22,7 @@ class ToateIlPosibileController extends Controller
         return view('instrumente_de_lucru.~componente.il_posibile.add_edit', [
             'il_posibil' => new IlPosibil(),
             'form_title' => 'Creare instrument de lucru',
-            'tipuri_il' => TipIl::getOptionsArray(),
+            'moduri_folosinta' => ModFolosinta::getOptionsArray(),
             'form_route' => route('il-posibile::store')
         ]);
     } 
@@ -37,7 +37,7 @@ class ToateIlPosibileController extends Controller
         $il_posibil->nume = $request->input('nume');
         $il_posibil->furnizor = $request->input('furnizor');
         $il_posibil->marca = $request->input('marca');
-        $il_posibil->tipuriIl()->associate($request->input('id_tip_il'));
+        $il_posibil->modFolosinta()->associate($request->input('id_mod_folosinta'));
 
         if ($il_posibil->save()) 
         {   
@@ -56,7 +56,7 @@ class ToateIlPosibileController extends Controller
         return view('instrumente_de_lucru.~componente.il_posibile.add_edit', [
             'il_posibil' => $il_posibil, 
             'form_title' => 'Editare instrument de lucru',
-            'tipuri_il' => TipIl::getOptionsArray(),
+            'moduri_folosinta' => ModFolosinta::getOptionsArray(),
             'form_route' => route('il-posibile::update', ['id' => $il_posibil->id])
         ]);
     }
@@ -71,7 +71,7 @@ class ToateIlPosibileController extends Controller
         $il_posibil->nume = $request->input('nume');
         $il_posibil->furnizor = $request->input('furnizor');
         $il_posibil->marca = $request->input('marca');
-        $il_posibil->tipuriIl()->associate($request->input('id_tip_il'));
+        $il_posibil->modFolosinta()->associate($request->input('id_mod_folosinta'));
 
         if ($il_posibil->save()) 
         {   
@@ -103,7 +103,7 @@ class ToateIlPosibileController extends Controller
             'nume' => 'required',
             'furnizor' => 'required',
             'marca' => 'required',
-            'id_tip_il' => 'required'
+            'id_mod_folosinta' => 'required'
         ];
         $validator = Validator::make($request->all(),$rules);
 

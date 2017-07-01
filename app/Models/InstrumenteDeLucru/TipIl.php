@@ -14,10 +14,6 @@ class TipIl extends Model
 
 	protected $table = 'tipuri_il';
 
-	public function il_posibile()
-    {
-        return $this->hasMany('App\Models\InstrumenteDeLucru\Componente\IlPosibil');
-    }
     
     public function nivele_grupare()
     {

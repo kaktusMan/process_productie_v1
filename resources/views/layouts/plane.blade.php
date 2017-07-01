@@ -48,8 +48,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
-            <div class="navbar-brand" >  
-                <a id="menu-toggle" href="#"><i class="fa fa-chevron-circle-left" style="margin-left: 11.3em !important;"></i></a>
+            <div class="navbar-brand" >Structura PrP
+                <a id="menu-toggle" href="#"><i class="fa fa-chevron-circle-left" style="margin-left: 5.3em !important;"></i></a>
             </div>
                 <a class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" href="#">
                     <i class="fa fa-bars"></i>
@@ -72,9 +72,9 @@
                                     <li><a href="{{ route('actiuni::list') }}"  <?php echo Route::currentRouteName() == 'actiuni::list' ? 'class="active"' : ''; ?>><i class="fa fa-th" aria-hidden="true"></i> Actiuni de productie</a></li>
                                      <li><a href="{{ route('modalitati::list') }}" <?php echo Route::currentRouteName() == 'modalitati::list' ? 'class="active"' : ''; ?> ><i class="fa fa-gavel" aria-hidden="true"></i> Modalitati de realizare</a></li>
                                     <li><a href="{{ route('nivele::list') }}" <?php echo Route::currentRouteName() == 'nivele::list' ? 'class="active"' : ''; ?> ><i class="fa fa-bar-chart" aria-hidden="true"></i> Nivele de grupare</a></li>
-                                    <li><a href="{{ route('fluxuri::list') }}" <?php echo Route::currentRouteName() == 'fluxuri::list' ? 'class="active"' : ''; ?> ><i class="fa fa-arrows-h" aria-hidden="true"></i> Tipuri procese productie</a></li>
-                                    <li><a href="{{ route('operatii::list') }}" <?php echo Route::currentRouteName() == 'operatii::list' ? 'class="active"' : ''; ?> ><i class="fa fa-align-left" aria-hidden="true"></i> Tipuri de operatii necesare</a></li>
-                                    <li><a href="{{ route('categorii::list') }}"  <?php echo Route::currentRouteName() == 'categorii::list' ? 'class="active"' : ''; ?>><i class="fa fa-cubes" aria-hidden="true"></i> Categorii intrumente de lucru</a></li>
+                                    <li><a href="{{ route('fluxuri::list') }}" <?php echo Route::currentRouteName() == 'fluxuri::list' ? 'class="active"' : ''; ?> ><i class="fa fa-arrows-h" aria-hidden="true"></i> Tipuri de procese</a></li>
+                                    <li><a href="{{ route('operatii::list') }}" <?php echo Route::currentRouteName() == 'operatii::list' ? 'class="active"' : ''; ?> ><i class="fa fa-align-left" aria-hidden="true"></i> Tipuri de operatii</a></li>
+                                    <li><a href="{{ route('categorii::list') }}"  <?php echo Route::currentRouteName() == 'categorii::list' ? 'class="active"' : ''; ?>><i class="fa fa-cubes" aria-hidden="true"></i> Categorii i.l.</a></li>
                                 </ul>
                             </li>
                             {{-- 3, 9, 10,11, 12, 13, 14, 15, 21, 25, 26,32                                 --}}
@@ -84,14 +84,14 @@
                                     <li><a href="{{ route('tipuri::list') }}"  <?php echo Route::currentRouteName() == 'tipuri::list' ? 'class="active"' : ''; ?>><i class="fa fa-industry" aria-hidden="true"></i> Tipuri</a></li>
                                     <li><a href="{{ route('moduri::list') }}"  <?php echo Route::currentRouteName() == 'moduri::list' ? 'class="active"' : ''; ?>><i class="fa fa-tasks" aria-hidden="true"></i> Moduri de realizare</a></li>
                                      <li><a href="{{ route('grade::list') }}"  <?php echo Route::currentRouteName() == 'grade::list' ? 'class="active"' : ''; ?>><i class="fa fa-percent" aria-hidden="true"></i> Grade de libetate</a></li>
-                                    <li><a href="{{ route('nr_grade::list') }}"  <?php echo Route::currentRouteName() == 'nr_grade::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Numar grade de libertate</a></li>
+                                    <li><a href="{{ route('nr_grade::list') }}"  <?php echo Route::currentRouteName() == 'nr_grade::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Numar de grade </a></li>
                                     <li><a href="{{ route('materiale::list') }}"  <?php echo Route::currentRouteName() == 'materiale::list' ? 'class="active"' : ''; ?>><i class="fa fa-diamond" aria-hidden="true"></i> Tipuri materiale</a></li>
-                                    <li><a href="{{ route('categorii-complexe::list') }}"  <?php echo Route::currentRouteName() == 'categorii-complexe::list' ? 'class="active"' : ''; ?>><i class="fa fa-align-left" aria-hidden="true"></i> Categorii intrumente de lucru complexe</a></li>
-                                    <li><a href="{{ route('alimentare::list') }}"  <?php echo Route::currentRouteName() == 'alimentare::list' ? 'class="active"' : ''; ?>><i class="fa fa-cutlery" aria-hidden="true"></i> Moduri alimentare il complexe</a></li>
-                                    <li><a href="{{ route('evacuare::list') }}"  <?php echo Route::currentRouteName() == 'evacuare::list' ? 'class="active"' : ''; ?>><i class="fa fa-truck" aria-hidden="true"></i> Moduri evacuare componente rezultate</a></li>
-                                    <li><a href="{{ route('consumabile::list') }}"  <?php echo Route::currentRouteName() == 'consumabile::list' ? 'class="active"' : ''; ?>><i class="fa fa-tint" aria-hidden="true"></i> Tipuri consumabile pentru il</a></li>
+                                    <li><a href="{{ route('categorii-complexe::list') }}"  <?php echo Route::currentRouteName() == 'categorii-complexe::list' ? 'class="active"' : ''; ?>><i class="fa fa-align-left" aria-hidden="true"></i> Categorii i.l. complexe</a></li>
+                                    <li><a href="{{ route('alimentare::list') }}"  <?php echo Route::currentRouteName() == 'alimentare::list' ? 'class="active"' : ''; ?>><i class="fa fa-cutlery" aria-hidden="true"></i> Moduri alimentare</a></li>
+                                    <li><a href="{{ route('evacuare::list') }}"  <?php echo Route::currentRouteName() == 'evacuare::list' ? 'class="active"' : ''; ?>><i class="fa fa-truck" aria-hidden="true"></i> Moduri evacuare </a></li>
+                                    <li><a href="{{ route('consumabile::list') }}"  <?php echo Route::currentRouteName() == 'consumabile::list' ? 'class="active"' : ''; ?>><i class="fa fa-tint" aria-hidden="true"></i> Tipuri consumabile</a></li>
 
-                                    <li><a href="{{ route('caracteristici::list') }}"  <?php echo Route::currentRouteName() == 'caracteristici::list' ? 'class="active"' : ''; ?>><i class="fa fa-server" aria-hidden="true"></i> Caracteristici tehnice relevante</a></li>
+                                    <li><a href="{{ route('caracteristici::list') }}"  <?php echo Route::currentRouteName() == 'caracteristici::list' ? 'class="active"' : ''; ?>><i class="fa fa-server" aria-hidden="true"></i> Caracteristici tehnice</a></li>
                                      <li><a href="{{ route('mod-aplicare::list') }}"  <?php echo Route::currentRouteName() == 'mod-aplicare::list' ? 'class="active"' : ''; ?>><i class="fa fa-sign-language" aria-hidden="true"></i> Moduri folosinta I.L.</a></li>
                                 </ul>
                             </li>
@@ -100,11 +100,11 @@
 
                             {{-- 18,19,20 --}}
                              <li class="has-sub" >
-                                <a href="#"><i class="fa fa-list-ol" aria-hidden="true"></i> Materii prime cu care se aliumenteaza il<span class="fa arrow"></a>
+                                <a href="#"><i class="fa fa-list-ol" aria-hidden="true"></i> Materii prime<span class="fa arrow"></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ route('tipuri_materii::list') }}"  <?php echo Route::currentRouteName() == 'tipuri_materii::list' ? 'class="active"' : ''; ?>><i class="fa fa-align-center" aria-hidden="true"></i> Tipuri de materie</a></li>
                                      <li><a href="{{ route('forme_materii::list') }}"  <?php echo Route::currentRouteName() == 'forme_materii::list' ? 'class="active"' : ''; ?>><i class="fa fa-plus-square" aria-hidden="true"></i> Forma materiei</a></li>
-                                    <li><a href="{{ route('caract_materii::list') }}"  <?php echo Route::currentRouteName() == 'caract_materii::list' ? 'class="active"' : ''; ?>><i class="fa fa-level-up" aria-hidden="true"></i> Caracteristici tehnice relevante</a></li>
+                                    <li><a href="{{ route('caract_materii::list') }}"  <?php echo Route::currentRouteName() == 'caract_materii::list' ? 'class="active"' : ''; ?>><i class="fa fa-level-up" aria-hidden="true"></i> Caracteristici tehnice</a></li>
                                 </ul>
                             </li>
 
@@ -117,15 +117,18 @@
                         <li class="has-sub">
                             <a href="#"><i class="fa fa-th" aria-hidden="true"></i> Date generale<span class="fa arrow"></a>   
                             <ul class="nav nav-second-level">  
-                                <li><a href="{{ route('instalatii::list') }}"  <?php echo Route::currentRouteName() == 'instalatii::list' ? 'class="active"' : ''; ?>><i class="fa fa-building-o" aria-hidden="true"></i> Centralizatorul fabriciilor de productie</a></li>
+                                <li><a href="{{ route('instalatii::list') }}"  <?php echo Route::currentRouteName() == 'instalatii::list' ? 'class="active"' : ''; ?>><i class="fa fa-building-o" aria-hidden="true"></i> Fabrici de productie</a></li>
+                                
+                                
                                 <li><a href="{{ route('fluxuri-pp::list') }}"  <?php echo Route::currentRouteName() == 'fluxuri-pp::list' ? 'class="active"' : ''; ?>><i class="fa fa-arrows-alt" aria-hidden="true"></i> Centralizatorul fluxurilor de lucru</a></li>   
-                                <li><a href="{{ route('procese-productie::list') }}"  <?php echo Route::currentRouteName() == 'procese-productie::list' ? 'class="active"' : ''; ?>><i class="fa fa-users" aria-hidden="true"></i> Centralizatorul proceselor de productie</a></li>
+                                <li><a href="{{ route('procese-productie::list') }}"  <?php echo Route::currentRouteName() == 'procese-productie::list' ? 'class="active"' : ''; ?>><i class="fa fa-users" aria-hidden="true"></i> Centralizatorul proceselor de productie</a></li>                                
 
-                                <li><a href="{{ route('operatori-necesari::list') }}"  <?php echo Route::currentRouteName() == 'operatori-necesari::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Numar operatori simultan necesari pentru functionare I.L.</a></li>   
-                                 <li><a href="{{ route('schimburi-de-lucru::list') }}"  <?php echo Route::currentRouteName() == 'schimburi-de-lucru::list' ? 'class="active"' : ''; ?>><i class="fa fa-retweet" aria-hidden="true"></i> Numar de schimburi de lucru pe procesele de productie</a></li> 
-                                 <li><a href="{{ route('ore-functionale::list') }}"  <?php echo Route::currentRouteName() == 'ore-functionale::list' ? 'class="active"' : ''; ?>><i class="fa fa-hourglass-start" aria-hidden="true"></i> Numar de ore nete functionale pe schimbul de lucru</a></li>
-                                 <li><a href="{{ route('grad-incarcare::list') }}"  <?php echo Route::currentRouteName() == 'grad-incarcare::list' ? 'class="active"' : ''; ?>><i class="fa fa-percent" aria-hidden="true"></i> Gradul de incarcare orara a operatorilor de pe I.L. cand acesta functioneaza la capacitate maxima</a></li>
-                                 <li><a href="{{ route('operatori-actuali::list') }}"  <?php echo Route::currentRouteName() == 'operatori-actuali::list' ? 'class="active"' : ''; ?>><i class="fa fa-mortar-board" aria-hidden="true"></i> Centralizatorul tipurilor de operatori actuali</a></li>
+                                                    
+                                <li><a href="{{ route('operatori-necesari::list') }}"  <?php echo Route::currentRouteName() == 'operatori-necesari::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Operatori.</a></li>   
+                                 <li><a href="{{ route('schimburi-de-lucru::list') }}"  <?php echo Route::currentRouteName() == 'schimburi-de-lucru::list' ? 'class="active"' : ''; ?>><i class="fa fa-retweet" aria-hidden="true"></i> Schimburi de lucru</a></li> 
+                                 <li><a href="{{ route('ore-functionale::list') }}"  <?php echo Route::currentRouteName() == 'ore-functionale::list' ? 'class="active"' : ''; ?>><i class="fa fa-hourglass-start" aria-hidden="true"></i> Ore nete functionale</a></li>
+                                 <li><a href="{{ route('grad-incarcare::list') }}"  <?php echo Route::currentRouteName() == 'grad-incarcare::list' ? 'class="active"' : ''; ?>><i class="fa fa-percent" aria-hidden="true"></i> Incarcarea orara</a></li>
+                                 <li><a href="{{ route('operatori-actuali::list') }}"  <?php echo Route::currentRouteName() == 'operatori-actuali::list' ? 'class="active"' : ''; ?>><i class="fa fa-mortar-board" aria-hidden="true"></i>Tipuri de operatori</a></li>
                             </ul>
                         </li>
 
@@ -139,7 +142,7 @@
                         <li class="has-sub">
                             <a href="#"><i class="fa fa-align-right" aria-hidden="true"></i> Date pentru analiza<span class="fa arrow"></a>   
                             <ul class="nav nav-second-level"> 
-                                <li><a href="{{ route('il-posibile::list') }}"  <?php echo Route::currentRouteName() == 'il-posibile::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort" aria-hidden="true"></i> Centralizatorul tuturor I.L. care sunt in patrimoniu sau custodie</a></li>        
+                                <li><a href="{{ route('il-posibile::list') }}"  <?php echo Route::currentRouteName() == 'il-posibile::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort" aria-hidden="true"></i> Centralizatorul  I.L. </a></li>        
                             </ul>
                         </li>
                 </ul>
