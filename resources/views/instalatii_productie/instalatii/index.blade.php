@@ -8,22 +8,6 @@
     
     <div class="row">
         <div class="col-lg-12">
-            {{--   <div class="panel panel-primary">
-                <div class="panel-heading">Zona de cautare
-                    <a href="#" class="pull-right btn-primary" id="btn_show_hide" title="Afiseaza / Ascunde caracteristica_operator de cautare">
-                        <i class="fa fa-list"></i>
-                    </a>  
-                </div>
-                <div id="div_cautare" class="panel-body" style="display:none">
-                    <table width="100%">
-                        <tr>
-                            <td width="25%">
-                                <label class="control-label">Instrument de lucru</label></td>
-                            <td width="75%"><p id="_col_nume"></p></td>
-                        </tr>
-                    </table>
-                </div>
-            </div> --}}
             <div class="row">
               <div class="col-lg-12">
                 <!-- begin .flash-message -->
@@ -35,7 +19,7 @@
               <div class="panel-heading">
                   Fabricile de prodictie: Fluxurile de lucru/Procesele de productie aferente
                   <div class="pull-right">   
-                    <a href="{{ route('instalatii::create') }}"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare</a>                   
+                    <a href="{{ route('instalatii::create') }}" title="Creare fabrica de productie"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare</a>                   
                   </div>
                </div>
                <div class="panel-body">
@@ -64,7 +48,7 @@
                           @foreach ($instalatii as $instalatie)
                             <tr data-id="{{ $instalatie->id }}"> 
                               <td class="text-left details-control-instalatie">
-                                  <i class="fa fa-minus-square" style="cursor: pointer;" title="Arată fluxurile de lucru."></i>
+                                  <i class="fa fa-chevron-circle-up" style="cursor: pointer;" title="Vizualizare fluxurile de lucru."></i>
                               </td>   
                               <td class="text-center">
                                   <span class="xedit-nume"
@@ -91,16 +75,26 @@
                                   </span>
                               </td>     
                               <td class="text-center action-buttons">
+                                
+                               <div class="dropdown"> 
+
+
+
+
                                 <a href="#"><i class="glyphicon glyphicon-plus" title="Creare flux de lucru"></i></a>
+                                
                                 <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $instalatie->id }}"><i class="fa fa-trash-o"></i></a>                           
                                   @include('partials.delete_modal', ['id' => $instalatie->id, 'item' => $instalatie->nume, 'form_route'=> 'instalatii::delete']) 
+
+
+
                               </td>  
                             </tr>
                             {{-- Fluxuri de lucru --}}
                             @foreach(@$instalatie->fl_aferente as $flux) 
                                 <tr data-id="{{$flux->id}}" class="flux">
                                   <td class="text-center details-control-flux">
-                                    <i class="fa fa-minus-square" style="cursor: pointer;" title="Ascunde procesele de productie."></i>
+                                    <i class="fa fa-chevron-circle-down" style="cursor: pointer;" title="Ascunde procesele de productie."></i>
                                   </td>  
                                   <td class="text-center">
                                   <span class="xedit-nume"
@@ -219,103 +213,38 @@
             // });  
 // -------------------------------------------------------------------------------------
 
+            $("#dataTables-instalatii").on('click', ".details-control-instalatie i", function(){
+              $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].flux").css('color', 'red').slideToggle();
+              $(this).toggleClass('fa-chevron-circle-down fa-chevron-circle-up');
+            });
 
-              // $(".test123").find(".text-center").hide();
+            $("#dataTables-instalatii").on('click', ".details-control-flux i", function(){ 
+              $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].proces").css('color', 'green').slideToggle();
+              $(this).toggleClass('fa-chevron-circle-down fa-chevron-circle-up');
+            });
 
-              // Click handler on entire table
-              // $("#dataTables-instalatii").on('click', '.details-control1', function(event) {
+            $count = 0;
+            $count1 = 0;
 
+            $("#dataTables-instalatii").on('click', '.action-buttons a i', function(){
 
-              // $('#dataTables-instalatii tr[data-id="'+2+'"]').slideToggle();
-              //       No bubbling up
-              //     event.stopPropagation();
+              $count = {{$instalatie->id}};
+              $count++;
+              $count1 = $count + $count1;
 
-              //     var $target = $(event.target);
-              //     console.log($target.closest('[data-id]').data('id'));
-                   
+              var row_id = $(this).closest('[data-id]').data('id'); 
+              var row_number = $(this).closest('tr').index();
 
-              //       // Open and close the appropriate thing
-              //     if ( $target.closest("td").attr("colspan") > 2 ) {
-              //         $target.slideUp();
-              //     } else {
-              //         $target.closest("tr").next().find(".kkt").slideToggle();
-              //     }                    
-              // });
+              console.log($count1);
 
-              // $("#dataTables-instalatii").on('click', 'tbody tr #addRow', function() {
+              $('<tr data-id='+row_id+'><td class="text-center details-control-instalatie"><i class="fa fa-chevron-circle-down" style="cursor: pointer;" title="Vizualizare fluxurile de lucru."></i></td> <td class="text-center"><a class="instalatie" href="#" data-name="nume" data-pk="'+$count1+'"></a></td><td class="text-center"><a class="instalatie" href="#" data-name="cod" data-pk="'+$count1+'"></a></td><td class="text-center"><a class="instalatie" href="#" data-name="detalii" data-pk="'+$count1+'"></a></td><td></td> </tr>').insertAfter($(this).closest('tr'));
 
+              $('#dataTables-instalatii a.instalatie').editable({
+              type: 'text',
+              url: '{{ route('instalatii::x_editable_fl') }}' }); 
 
-
-
-
-              // var table = $('#dataTables-instalatii').DataTable();
-              //       var count = 1;
-              //       var currentPage = table.page();
-    
-              //       //insert a test row
-              //       count++;
-              //       table.row.add([count, count, count, count, count]).draw();
-                    
-              //       //move added row to desired index (here the row we clicked on)
-              //       var index = table.row(this).index(),
-              //           rowCount = table.data().length-1,
-              //           insertedRow = table.row(rowCount).data(),
-              //           tempRow;
-
-              //       for (var i=rowCount;i>index;i--) {
-              //           tempRow = table.row(i-1).data();
-              //           table.row(i).data(tempRow);
-              //           table.row(i-1).data(insertedRow);
-              //       }     
-              //       //refresh the page
-              //       table.page(currentPage).draw(false);
-
-              // $(".flux").find(".text-center").hide();
-              // $(".proces").find(".text-center").hide();
-
-              $("#dataTables-instalatii").on('click', ".details-control-instalatie i", function(){
-
-                // $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].flux").find(".text-center").show();
-                $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].flux").css('color', 'red').slideToggle();
-
-
-                $(this).toggleClass('fa-plus-square fa-minus-square');
-              });
-
-              $("#dataTables-instalatii").on('click', ".details-control-flux i", function(){ 
-                  $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].proces").css('color', 'green').slideToggle();
-                
-                $(this).toggleClass('fa-plus-square fa-minus-square');
-                // $(this).toggleAttr('title', 'Arată procesele de productie.', 'Ascunde procesele de productie.');
-              });
-
-              $("#dataTables-instalatii").on('click', '.action-buttons a i', function(){
-                $row_id = $(this).closest('[data-id]').data('id'); 
-
-                  var table = $('#dataTables-instalatii').DataTable();
-                    var count = 1;
-                    var currentPage = table.page();
-    
-                    //insert a test row
-                    count++;
-                    table.row.add([count, count, count, count, count]).draw();
-                    console.log(table.row(this));
-                    //move added row to desired index (here the row we clicked on)
-                    var index = table.row(this).index(),
-                        rowCount = table.data().length-1,
-                        insertedRow = table.row(rowCount).data(),
-                        tempRow;
-
-                    for (var i=rowCount;i>index;i--) {
-                        tempRow = table.row(i-1).data();
-                        table.row(i).data(tempRow);
-                        table.row(i-1).data(insertedRow);
-                    }     
-                    //refresh the page
-                    table.page(currentPage).draw(false);
-
-              });
+            });
 
         });
     </script>
-@stop
+@stop 

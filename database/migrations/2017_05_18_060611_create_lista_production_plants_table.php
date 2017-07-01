@@ -15,9 +15,9 @@ class CreateListaProductionPlantsTable extends Migration
     {
         Schema::create('lista_production_plants', function (Blueprint $t) {
             $t->increments('id')->unsigned();
-            $t->string('nume');
-            $t->string('cod');
-            $t->string('detalii');
+            $t->string('nume')->nullable();
+            $t->string('cod')->nullable();
+            $t->string('detalii')->nullable();
             $t->timestamps();
             $t->softDeletes();   
         });

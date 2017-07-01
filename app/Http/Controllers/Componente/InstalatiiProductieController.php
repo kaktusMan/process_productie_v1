@@ -25,14 +25,35 @@ class InstalatiiProductieController extends Controller
     }
 
 
+
+
+    // public function AdaugaInstalatiiProductie()
+    // {
+    //     $pk = Input::get('pk');
+    //     $name = Input::get('name');
+    //     $value = Input::get('value');
+    //     $table = Input::get('table');
+        
+    //     // return $name;
+
+    //     $instalatie = new Instalatie;
+    //     $instalatie->$name = $value;
+    //     $instalatie->save(); 
+    // }
+
+
+
+
+
+
+
+
     public function ActualizeazaInstalatiiProductie()
     {
         $pk = Input::get('pk');
         $name = Input::get('name');
         $value = Input::get('value');
         $table = Input::get('table');
-        
-        Instalatie::where('id', $pk)->update([$name => $value]);
     }
 
     public function ActualizeazaFluxAferent()
@@ -43,6 +64,14 @@ class InstalatiiProductieController extends Controller
         $table = Input::get('table'); 
 
         FluxAferentPp::where('id', $pk)->update([$name => $value]);
+
+        if (FluxAferentPp::where('id', $pk)->first()) {
+            FluxAferentPp::where('id', $pk)->update([$name => $value]);
+        }else{
+            $instalatie = new FluxAferentPp;
+            $instalatie->$name = $value;
+            $instalatie->save(); 
+        }
     }
 
     public function ActualizeazaProcesProductie()
