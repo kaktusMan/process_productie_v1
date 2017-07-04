@@ -93,7 +93,7 @@
 
              $('#dataTables-il-posibile').dataTable({
                 "aoColumnDefs": [
-                    { 'bSortable': false, 'aTargets': [ 3 ] }
+                    { 'bSortable': false, 'aTargets': [ 4 ] }
                 ],
                 "language": {                
                     "url": '{{ URL::to("assets/js/plugins/dataTables/lang_json/romanian.json") }}'}
@@ -104,9 +104,7 @@
             });   
             var table = $('#dataTables-il-posibile').dataTable().columnFilter({
               aoColumns: [ 
-                  { sSelector: "#_col_nume", type: "text" },
-                  { sSelector: "#_col_nume", type: "text" },
-                  { sSelector: "#_col_nume", type: "text" },
+                  { sSelector: "#_col_nume", type: "text" }, 
                 ]
             });
         });
