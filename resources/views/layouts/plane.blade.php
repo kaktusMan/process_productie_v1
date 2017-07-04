@@ -11,6 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="_token" content="{!! csrf_token() !!}" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     
 
     <title>Proces de productie</title>
