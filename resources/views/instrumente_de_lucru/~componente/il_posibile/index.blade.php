@@ -65,7 +65,7 @@
                               <td class="text-center">{{ $il_posibil->nume }}</td>
                               <td class="text-center">{{ $il_posibil->furnizor }}</td>
                               <td class="text-center">{{ $il_posibil->marca }}</td>
-                              <td class="text-center">{{ $il_posibil->modFolosinta->nume }}</td>
+                              <td class="text-center">{{ @$il_posibil->modFolosinta->nume }}</td>
 
                               <td class="center action-buttons">
                                 <a href="{{ route('il-posibile::edit',['id' =>$il_posibil->id]) }}" alt="Editează" title="Editează"><i class="fa fa-pencil-square-o" title="Editeaza"></i></a>
