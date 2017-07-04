@@ -47,9 +47,9 @@
         </div>
         
         <div class="form-group {{ $errors->has('id_mod_folosinta') ? ' has-error' : '' }}">
-            <label class="form-group {{ $errors->has('id_mod_folosinta') ? 'help-block' : '' }}">Tip proces de productie</label>
+            <label class="form-group {{ $errors->has('id_mod_folosinta') ? 'help-block' : '' }}">Tip mod de folosinta</label>
             <select name="id_mod_folosinta" id="id_mod_folosinta"  class="form-control" data-search="5">
-                <option value="">Setare tip proces de porductie</option>
+                <option value="">Setare tip mod de folosinta</option>
                 @foreach ($moduri_folosinta as $index => $value)
                 <option <?php echo $index == $il_posibil->id_mod_folosinta ? 'selected="selected"' : ''; ?> value="{{ $index }}">{{ $value }}</option>
                 @endforeach

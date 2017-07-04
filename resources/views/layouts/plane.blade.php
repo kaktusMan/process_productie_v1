@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset("assets/css/bootstrap.min.css") }}" />
     <link rel="stylesheet" href="{{ asset("assets/css/plugins/metisMenu/metisMenu.min.css") }}" />
     <link rel="stylesheet" href="{{ asset("assets/css/plugins/timeline.css") }}" />
-    <link rel="stylesheet" href="{{ asset("assets/css/sb-admin-2.css") }}" />
+    {{-- <link rel="stylesheet" href="{{ asset("assets/css/sb-admin-2.css") }}" /> --}}
     <link rel="stylesheet" href="{{ asset("assets/css/sb-admin-3.css") }}" />
     <link rel="stylesheet" href="{{ asset("assets/css/plugins/morris.css") }}" />
     <link rel="stylesheet" href="{{ asset("assets/css/plugins/toastr.min.css") }}" />
