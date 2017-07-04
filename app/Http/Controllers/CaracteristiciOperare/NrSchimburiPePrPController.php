@@ -12,9 +12,9 @@ use App\Models\Componente\Instalatie;
 class NrSchimburiPePrPController extends Controller
 {
 	public function index(){ 
-
+        // return NrSchimb::with('orePeSchimb')->get();
         return view('caracteristici_operare.nr_schimburi_pe_prp.index', [
-            'nr_schimburi' => NrSchimb::with('Prp')->get()
+            'nr_schimburi' => NrSchimb::with('orePeSchimb')->get()
         ]);
     }
 

@@ -380,11 +380,16 @@ Route::group([
 	        Route::post('/', 'InstalatiiProductieController@store')->name('store');
 	        Route::get('{instalatie}', 'InstalatiiProductieController@edit')->name('edit');
 	        Route::post('{instalatie}', 'InstalatiiProductieController@update')->name('update');
-	        Route::post('{instalatie}/stergere', 'InstalatiiProductieController@delete')->name('delete');
+	        // Route::post('{instalatie}/stergere', 'InstalatiiProductieController@delete')->name('delete');
 
 
 
 	});
+
+	Route::post('/stergere-instalatie', [
+		'as' => 'instalatii::delete',
+		'uses' => 'InstalatiiProductieController@delete'
+	]);
 
 	Route::group([
 		'prefix' => 'fluxuri-de-lucru',
@@ -396,9 +401,13 @@ Route::group([
 	        Route::post('/', 'FluxuriAferentePpController@store')->name('store');
 	        Route::get('{flux}', 'FluxuriAferentePpController@edit')->name('edit');
 	        Route::post('{flux}', 'FluxuriAferentePpController@update')->name('update');
-	        Route::post('{flux}/stergere', 'FluxuriAferentePpController@delete')->name('delete');
-
+	        // Route::post('{flux}/stergere', 'FluxuriAferentePpController@delete')->name('delete');
 	});
+
+	Route::post('/stergere-flux', [
+		'as' => 'fluxuri-pp::delete',
+		'uses' => 'FluxuriAferentePpController@delete'
+	]);
 
 	Route::group([
 		'prefix' => 'procese-de-productie',
@@ -410,14 +419,14 @@ Route::group([
 	        Route::post('/', 'PrPAferenteFlController@store')->name('store');
 	        Route::get('{proces}', 'PrPAferenteFlController@edit')->name('edit');
 	        Route::post('{proces}', 'PrPAferenteFlController@update')->name('update');
-	        Route::post('{proces}/stergere', 'PrPAferenteFlController@delete')->name('delete');
+	        // Route::post('/stergere', 'PrPAferenteFlController@delete')->name('delete');
 
 	});
-
+	 Route::post('/stergere-proces', [
+		'as' => 'procese-productie::delete',
+		'uses' => 'PrPAferenteFlController@delete'
+	]);
 });
-
-
-
 
 
 Route::group([

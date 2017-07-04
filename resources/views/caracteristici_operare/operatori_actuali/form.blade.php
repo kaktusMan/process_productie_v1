@@ -13,8 +13,6 @@
     </div>
 </div>
 <div class="row">
-    {{-- <div class="form-center"> --}}
-        <div class="tab-content clearfix">
     <div class="col-md-4">
         <div class="form-group {{ $errors->has('nume') ? ' has-error' : '' }}">
             <label>Nume</label>
@@ -27,7 +25,7 @@
         </div>
         <div class="form-group {{ $errors->has('id_tip_op') ? ' has-error' : '' }}">
             <label>Tip</label>
-            <select name="id_tip_op" id="id_tip_op"  class="custom-select validate[required]" data-search="5">
+            <select name="id_tip_op" id="id_tip_op"  class="form-control validate[required]" data-search="5">
                 <option value="">Setare tip operator</option>
                 @foreach ($tipuri_operatori as $key => $option)
                 <option <?php echo $key == $operator->id_tip_op ? 'selected="selected"' : ''; ?> value="{{ $key }}">{{ $option }}</option>
@@ -50,7 +48,7 @@
         </div>
         <div class="form-group {{ $errors->has('id_pp') ? ' has-error' : '' }}">
             <label>Instalatia de productie</label>
-            <select name="id_pp" id="id_pp"  class="custom-select validate[required]" data-search="5">
+            <select name="id_pp" id="id_pp"  class="form-control validate[required]" data-search="5">
                 <option value="">Setare instalatie</option>
                 @foreach ($instalatii as $key => $option)
                 <option <?php echo $key == $operator->id_pp ? 'selected="selected"' : ''; ?> value="{{ $key }}">{{ $option }}</option>
@@ -66,7 +64,7 @@
     <div class="col-md-4">
         <div class="form-group {{ $errors->has('sex') ? ' has-error' : '' }}">
             <label>Sex</label>
-            <select name="sex" id="sex"  class="custom-select validate[required]" data-search="5">
+            <select name="sex" id="sex"  class="form-control validate[required]" data-search="5">
                 <option value="">Setare sex</option>
                 @foreach ($sex_optiuni as $key1 => $val)
                 <option <?php echo $val == $operator->sex ? 'selected="selected"' : ''; ?> value="{{ $val }}">{{ $key1 }}</option>
@@ -80,7 +78,7 @@
         </div>
         <div class="form-group {{ $errors->has('stare_civila') ? ' has-error' : '' }}">
             <label>Starea civila</label>
-            <select name="stare_civila" id="stare_civila"  class="custom-select validate[required]" data-search="5">
+            <select name="stare_civila" id="stare_civila"  class="form-control validate[required]" data-search="5">
                 <option value="">Setare stare civila</option>
                 @foreach ($starea_civila_optiuni as $index => $value)
                 <option <?php echo $value == $operator->stare_civila ? 'selected="selected"' : ''; ?> value="{{ $value }}">{{ $index }}</option>
@@ -135,11 +133,14 @@
         </div>
 
 
-        <br/>  
-        <button type="submit" class="btn btn-purple submit has-icon pull-right">
-            <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Salvare  
-        </button>
+    
+</div>
+</div>
+<div>
+    <div class="row col-lg-12 text-center">
+        <button type="submit" class="btn btn-primary btn-lg button-width">
+            <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Salveaza
+        </button> 
+        <a href="{{route('operatori-actuali::list') }}" class="btn btn-warning btn-lg button-widtht"><i class="fa fa-angle-left"></i> &nbsp;Înapoi</a>
     </div>
-        
-</div>
-</div>
+</div> 

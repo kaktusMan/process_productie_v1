@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Componente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Validator;
+use Input;
 use App\Models\Componente\ProcesProductie;
 use App\Models\Componente\FluxAferentPp;
 
@@ -83,18 +84,11 @@ class PrPAferenteFlController extends Controller
         }
     }
 
-    public function delete(ProcesProductie $proces) 
-    {       
-        if (is_null($proces)) { return redirect()->route('procese-productie::list')->with('alert-danger', 'Procesul nu exista'); }
-
-        if ($proces->delete()) 
-        {
-            return redirect()->route('procese-productie::list')->with('alert-success', 'Proces eliminat cu succes');
-        } 
-        else
-        {
-            return redirect()->route('procese-productie::list')->with('alert-danger', 'Eroare eliminare proces');
-        }
+    public function delete()
+    {      
+        $id = Input::get('id'); 
+        ProcesProductie::where('id', $id)->delete();
+        return "OK";
     }
 
     protected function validateRequest($request, $proces = null) 

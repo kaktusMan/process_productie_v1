@@ -15,6 +15,6 @@ class NrOre extends Model
 
 	public function nrSchimb()
     {
-        return $this->belongsTo('App\Models\CaracteristiciOperare\NrSchimb', 'id_nr_schimb');
+        return $this->belongsTo('App\Models\CaracteristiciOperare\NrSchimb', 'nr_schimb_id');
     }
 }

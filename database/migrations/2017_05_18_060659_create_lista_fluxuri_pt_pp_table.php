@@ -16,9 +16,9 @@ class CreateListaFluxuriPtPpTable extends Migration
         Schema::create('lista_fluxuri_pp', function (Blueprint $t) {
             $t->increments('id')->unsigned();
             $t->integer('instalatie_id')->unsigned()->default(0)->nullable();
-            $t->string('nume');
-            $t->string('cod');
-            $t->string('detalii');
+            $t->string('nume')->nullable();
+            $t->string('cod')->nullable();
+            $t->string('detalii')->nullable();
             $t->timestamps();
             $t->softDeletes();   
         });

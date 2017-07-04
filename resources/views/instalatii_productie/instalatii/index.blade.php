@@ -19,7 +19,7 @@
               <div class="panel-heading">
                   Fabricile de prodictie: Fluxurile de lucru/Procesele de productie aferente
                   <div class="pull-right">   
-                    <a href="{{ route('instalatii::create') }}" title="Creare fabrica de productie"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare</a>                   
+                    <a href="{{ route('instalatii::create') }}" title="Creare fabrica de productie"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare Fabrica</a>                   
                   </div>
                </div>
                <div class="panel-body">
@@ -46,21 +46,21 @@
                         <tbody>   
                           {{-- Fabrici de productie --}}
                           @foreach ($instalatii as $instalatie)
-                            <tr data-id="{{ $instalatie->id }}"> 
+                            <tr data-id="{{ $instalatie->id }}" class="instalatie" data-instalatie="{{ $instalatie->id }}"> 
                               <td class="text-left details-control-instalatie">
-                                  <i class="fa fa-chevron-circle-up" style="cursor: pointer;" title="Vizualizare fluxurile de lucru."></i>
+                                  <i class="fa fa-chevron-circle-down" style="cursor: pointer;" title="Vizualizare fluxurile de lucru."></i>
                               </td>   
                               <td class="text-center">
                                   <span class="xedit-nume"
-                                      id="nume"
+                                      data-id="nume"
                                       data-pk="{{ $instalatie->id }}"
                                       data-name="nume"
-                                      data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->nume }}                                      
+                                      data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->nume }}         
                                   </span>
                               </td>
                                <td class="text-center">
                                   <span class="xedit-cod"
-                                      id="cod"
+                                      data-id="cod"
                                       data-pk="{{ $instalatie->id }}"
                                       data-name="cod"
                                       data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->cod }}                                      
@@ -74,25 +74,15 @@
                                       data-url="{{ route('instalatii::x_editable_inst') }}">{{ $instalatie->detalii }}                                      
                                   </span>
                               </td>     
-                              <td class="text-center action-buttons">
-                                
-                               <div class="dropdown"> 
+                              <td class="text-center action-buttons"> 
 
-
-
-
-                                <a href="#"><i class="glyphicon glyphicon-plus" title="Creare flux de lucru"></i></a>
-                                
-                                <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $instalatie->id }}"><i class="fa fa-trash-o"></i></a>                           
-                                  @include('partials.delete_modal', ['id' => $instalatie->id, 'item' => $instalatie->nume, 'form_route'=> 'instalatii::delete']) 
-
-
-
+                                <a href="#"><i class="glyphicon glyphicon-plus instalatii" title="Creare flux de lucru"></i></a>
+                                <a href="#"><i class="fa fa-trash-o delete-instalatie" title="Sterge"></i></a>                             
                               </td>  
                             </tr>
                             {{-- Fluxuri de lucru --}}
                             @foreach(@$instalatie->fl_aferente as $flux) 
-                                <tr data-id="{{$flux->id}}" class="flux">
+                                <tr data-id="{{$instalatie->id}}" class="flux" data-flux={{$flux->id}}>
                                   <td class="text-center details-control-flux">
                                     <i class="fa fa-chevron-circle-down" style="cursor: pointer;" title="Ascunde procesele de productie."></i>
                                   </td>  
@@ -121,13 +111,12 @@
                                       </span>
                                   </td>       
                                   <td class="text-center action-buttons">
-                                    <a href="{{ route('instalatii::edit',['id' =>$instalatie->id]) }}" alt="Editează" title="Editează"><i class="glyphicon glyphicon-plus" title="Creare proces de productie"></i></a>
-                                    <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $instalatie->id }}"><i class="fa fa-trash-o"></i></a>                           
-                                      @include('partials.delete_modal', ['id' => $instalatie->id, 'item' => $instalatie->nume, 'form_route'=> 'instalatii::delete']) 
+                                        <a href="#"><i class="glyphicon glyphicon-plus flux" title="Create proces de productie."></i></a>
+                                        <a href="#"><i class="fa fa-trash-o delete-flux" title="Sterge"></i></a>                             
                                   </td>
                                 </tr>
                               @foreach(@$flux->fl_prp as $proces)  
-                                <tr data-id="{{$proces->id}}" class="proces">
+                                <tr data-id="{{$flux->id}}" class="proces" data-proces={{$proces->id}}>
                                   <td class="text-center details-control">
                                     <i style="display: none;" class="fa fa-minus-square"></i>
                                   </td> 
@@ -155,10 +144,8 @@
                                           data-url="{{ route('instalatii::x_editable_pp') }}">{{ $proces->detalii }}                                      
                                       </span>
                                   </td>        
-                                  <td class="text-center action-buttons">
-                                    <a href="{{ route('instalatii::edit',['id' =>$instalatie->id]) }}" alt="Editează" title="Editează"><i class="glyphicon glyphicon-plus" title="Creaza PrP"></i></a>
-                                    <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $instalatie->id }}"><i class="fa fa-trash-o"></i></a>                           
-                                      @include('partials.delete_modal', ['id' => $instalatie->id, 'item' => $instalatie->nume, 'form_route'=> 'instalatii::delete']) 
+                                  <td class="text-center action-buttons"> 
+                                      <a href="#"><i class="fa fa-trash-o delete-proces" title="Sterge"></i></a>                             
                                   </td>
                                 </tr>
                               @endforeach
@@ -174,7 +161,7 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
-    <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
+    <div id="_token" class="hidden" data-token="{!! csrf_token() !!}"></div>
     <!-- /.row --> 
   @stop
 
@@ -212,39 +199,207 @@
             //     ]
             // });  
 // -------------------------------------------------------------------------------------
+            deleteProces();
+            deleteFlux();
 
             $("#dataTables-instalatii").on('click', ".details-control-instalatie i", function(){
-              $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].flux").css('color', 'red').slideToggle();
+              // alert(1);
+              $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].flux").slideToggle();
+              // $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].proces").slideToggle();
+
               $(this).toggleClass('fa-chevron-circle-down fa-chevron-circle-up');
             });
 
             $("#dataTables-instalatii").on('click', ".details-control-flux i", function(){ 
-              $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].proces").css('color', 'green').slideToggle();
+              // alert(2);
+              $("tr[data-id='" + $(this).closest('[data-test]').data('test') + "'].proces").slideToggle();
+
+              // $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].proces").slideToggle();
               $(this).toggleClass('fa-chevron-circle-down fa-chevron-circle-up');
             });
 
             $count = 0;
             $count1 = 0;
 
-            $("#dataTables-instalatii").on('click', '.action-buttons a i', function(){
-
+            $("#dataTables-instalatii").on('click', '.action-buttons a i.instalatii', function(){
+             // alert(1230);
               $count = {{$instalatie->id}};
-              $count++;
               $count1 = $count + $count1;
 
-              var row_id = $(this).closest('[data-id]').data('id'); 
+              var row_id = $(this).closest('[data-id]').data('id');
               var row_number = $(this).closest('tr').index();
 
-              console.log($count1);
+              $('<tr data-id='+row_id+' class="flux" data-flux="'+$count1+'"><td class="text-center details-control-flux"><i class="fa fa-chevron-circle-down" style="cursor: pointer;" title="Vizualizare fluxurile de lucru."></i></td> <td class="text-center"><a class="instalatie" href="#" data-name="nume" data-pk="'+$count1+'" data-id="'+row_id+'"></a></td><td class="text-center"><a class="instalatie" href="#" data-name="cod" data-pk="'+$count1+'" data-id="'+row_id+'"></a></td><td class="text-center"><a class="instalatie" href="#" data-name="detalii" data-pk="'+$count1+'" data-id="'+row_id+'"></a></td><td class="text-center action-buttons"> <a href="#"><i class="glyphicon glyphicon-plus flux" title="Create proces de productie."></i></a> <a href="#"><i class="fa fa-trash-o delete-flux" title="Sterge"></i></a>  </tr>').insertAfter($(this).closest('tr'));
 
-              $('<tr data-id='+row_id+'><td class="text-center details-control-instalatie"><i class="fa fa-chevron-circle-down" style="cursor: pointer;" title="Vizualizare fluxurile de lucru."></i></td> <td class="text-center"><a class="instalatie" href="#" data-name="nume" data-pk="'+$count1+'"></a></td><td class="text-center"><a class="instalatie" href="#" data-name="cod" data-pk="'+$count1+'"></a></td><td class="text-center"><a class="instalatie" href="#" data-name="detalii" data-pk="'+$count1+'"></a></td><td></td> </tr>').insertAfter($(this).closest('tr'));
+              $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                  }
+              });
 
               $('#dataTables-instalatii a.instalatie').editable({
-              type: 'text',
-              url: '{{ route('instalatii::x_editable_fl') }}' }); 
+                type: 'text',
+                id: row_id, 
+                url: '{{ route('instalatii::x_editable_fl') }}',
+                params: function(params) {   
+                  // date[]
+                  params['instalatie_id'] = row_id;
+
+                  return params;                  
+                }
+              });  
+              deleteFlux();
 
             });
 
-        });
+
+             $("#dataTables-instalatii").on('click', '.action-buttons a i.flux', function(){
+
+              $count = {{$flux->id}};
+              $count1 = $count + $count1;
+
+              var row_id = $(this).closest('[data-id]').data('id');
+              var row_number = $(this).closest('tr').index();
+
+              $('<tr data-id='+row_id+' class="proces" data-proces="'+$count1+'" ><td></td> <td class="text-center"><a class="flux" href="#" data-name="nume" data-pk="'+$count1+'" data-id="'+row_id+'"></a></td><td class="text-center"><a class="flux" href="#" data-name="cod" data-pk="'+$count1+'" data-id="'+row_id+'"></a></td><td class="text-center"><a class="flux" href="#" data-name="detalii" data-pk="'+$count1+'" data-id="'+row_id+'"></a></td><td class="text-center action-buttons"><a href="#"><i class="fa fa-trash-o delete-proces" title="Sterge"></i></a></td> </tr>').insertAfter($(this).closest('tr'));
+
+              $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                  }
+              });
+
+              $('#dataTables-instalatii a.flux').editable({
+                type: 'text',
+                id: row_id, 
+                url: '{{ route('instalatii::x_editable_pp') }}',
+                params: function(params) {   
+                  // date[]
+                  params['flux_id'] = row_id;
+
+                  return params;                  
+                }
+              });  
+              deleteProces();
+
+            });
+
+            function deleteProces(){
+
+                $('.delete-proces').click(function(){
+                  var url_delete = '{{ route('procese-productie::delete') }}'; 
+                  var id = $(this).closest('tr').data('proces'); 
+                  bootbox.confirm({
+                      title: "Sunteti sigur de stergerea inregistrarii?",
+                      message: ' ',
+                      buttons: {
+                          'confirm': {
+                              label: "Da, sterge!",
+                              className: "btn-success"
+                          },
+                          'cancel': {
+                              label: "Nu, renunta!",
+                              className: "btn-danger"
+                          }
+                      },
+                      callback: function(result){
+                          if(result) {
+                              $.ajax({
+                                  type: "POST",
+                                  url : url_delete,
+                                  data : {
+                                     "_token": $('meta[name="_token"]').attr('content'),
+                                      "id": id
+                                  },
+                                  success : function(data){     
+                                     if (data == "OK")
+                                        $('tr[data-proces='+id+']').fadeOut();
+                                      else
+                                        MessageBox("ERROR", "Stergere...", "Nu s-a putut sterge inregistrarea selectata!")
+                                  }
+                              });
+                          }
+                      }
+                  });
+                });
+              }
+
+              function deleteFlux(){
+
+                  $('.delete-flux').click(function(){
+                  var url_delete = '{{ route('fluxuri-pp::delete') }}'; 
+                  var id = $(this).closest('tr').data('flux');   
+                  bootbox.confirm({
+                      title: "Sunteti sigur de stergerea inregistrarii?",
+                      message: ' ',
+                      buttons: {
+                          'confirm': {
+                              label: "Da, sterge!",
+                              className: "btn-success"
+                          },
+                          'cancel': {
+                              label: "Nu, renunta!",
+                              className: "btn-danger"
+                          }
+                      },
+                      callback: function(result){
+                          if(result) {
+                              $.ajax({
+                                  type: "POST",
+                                  url : url_delete,
+                                  data : {
+                                     "_token": $('meta[name="_token"]').attr('content'),
+                                      "id": id
+                                  },
+                                  success : function(data){     
+                                     if (data == "OK")
+                                        $('tr[data-flux='+id+']').fadeOut();
+                                      else
+                                        MessageBox("ERROR", "Stergere...", "Nu s-a putut sterge inregistrarea selectata!")
+                                  }
+                              });
+                          }
+                      }
+                  });
+                });
+              }
+
+              $('.delete-instalatie').click(function(){
+                var url_delete = '{{ route('instalatii::delete') }}'; 
+                var id = $(this).closest('tr').data('instalatie');     
+                bootbox.confirm({
+                    title: "Sunteti sigur de stergerea inregistrarii?",
+                    message: ' ',
+                    buttons: {
+                        'confirm': {
+                            label: "Da, sterge!",
+                            className: "btn-success"
+                        },
+                        'cancel': {
+                            label: "Nu, renunta!",
+                            className: "btn-danger"
+                        }
+                    },
+                    callback: function(result){
+                        if(result) {
+                            $.ajax({
+                                type: "POST",
+                                url : url_delete,
+                                data : {
+                                   "_token": $('meta[name="_token"]').attr('content'),
+                                    "id": id
+                                },
+                                success : function(data){     
+                                   if (data == "OK")
+                                      $('tr[data-instalatie='+id+']').fadeOut();
+                                    else
+                                      MessageBox("ERROR", "Stergere...", "Nu s-a putut sterge inregistrarea selectata!")
+                              }
+                            });
+                        }
+                    }
+                });
+            });
+      });
     </script>
 @stop 

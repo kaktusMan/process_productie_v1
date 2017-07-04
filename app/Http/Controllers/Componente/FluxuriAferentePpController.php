@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Componente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Validator;
+use Input;
 use App\Models\Componente\FluxAferentPp;
 use App\Models\Componente\Instalatie;
 
@@ -83,18 +84,11 @@ public function index(){
         }
     }
 
-    public function delete(FluxAferentPp $flux) 
-    {       
-        if (is_null($flux)) { return redirect()->route('fluxuri-pp::list')->with('alert-danger', 'Fluxul nu exista'); }
-
-        if ($flux->delete()) 
-        {
-            return redirect()->route('fluxuri-pp::list')->with('alert-success', 'Flux eliminat cu succes');
-        } 
-        else
-        {
-            return redirect()->route('fluxuri-pp::list')->with('alert-danger', 'Eroare eliminare flux');
-        }
+    public function delete()
+    {      
+        $id = Input::get('id'); 
+        FluxAferentPp::where('id', $id)->delete();
+        return "OK";
     }
 
     protected function validateRequest($request, $flux = null) 

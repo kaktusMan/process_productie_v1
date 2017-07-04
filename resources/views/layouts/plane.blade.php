@@ -10,7 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="_token" content="{{ csrf_token() }}" />
+    <meta name="_token" content="{!! csrf_token() !!}" />
+    
 
     <title>Proces de productie</title>
 
@@ -118,10 +119,7 @@
                             <a href="#"><i class="fa fa-th" aria-hidden="true"></i> Date generale<span class="fa arrow"></a>   
                             <ul class="nav nav-second-level">  
                                 <li><a href="{{ route('instalatii::list') }}"  <?php echo Route::currentRouteName() == 'instalatii::list' ? 'class="active"' : ''; ?>><i class="fa fa-building-o" aria-hidden="true"></i> Fabrici de productie</a></li>
-                                
-                                
-                                <li><a href="{{ route('fluxuri-pp::list') }}"  <?php echo Route::currentRouteName() == 'fluxuri-pp::list' ? 'class="active"' : ''; ?>><i class="fa fa-arrows-alt" aria-hidden="true"></i> Centralizatorul fluxurilor de lucru</a></li>   
-                                <li><a href="{{ route('procese-productie::list') }}"  <?php echo Route::currentRouteName() == 'procese-productie::list' ? 'class="active"' : ''; ?>><i class="fa fa-users" aria-hidden="true"></i> Centralizatorul proceselor de productie</a></li>                                
+                                                                
 
                                                     
                                 <li><a href="{{ route('operatori-necesari::list') }}"  <?php echo Route::currentRouteName() == 'operatori-necesari::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i> Operatori.</a></li>   

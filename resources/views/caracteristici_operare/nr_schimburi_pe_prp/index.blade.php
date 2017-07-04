@@ -44,14 +44,14 @@
                         <thead>
                           <tr>                                   
                             <th class="text-center">Proces de productie</th>
-                            <th class="text-center">Numar schimuri</th>
+                            <th class="text-center">Numar schimburi</th>
                             <th class="text-center">Actiuni</th>
                           </tr>
                         </thead>
                         <tfoot>
                           <tr>                                   
                             <th class="text-center">Proces de productie</th>
-                            <th class="text-center">Numar schimuri</th>
+                            <th class="text-center">Numar schimburi</th>
                             <th class="text-center">Actiuni</th>
                           </tr>
                         </tfoot>
@@ -63,9 +63,8 @@
                               <td class="center action-buttons">
                                 <a href="{{ route('schimburi-de-lucru::edit',['id' =>$operatie->id]) }}" alt="Editează" title="Editează"><i class="fa fa-pencil-square-o" title="Editeaza"></i></a>
                                 <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $operatie->id }}"><i class="fa fa-trash-o"></i></a>                           
-                                        @include('partials.delete_modal', ['id' => $operatie->id, 'item' => $operatie->nume, 'form_route'=> 'schimburi-de-lucru::delete']) 
                               </td>                             
-                            </tr>
+                            </tr>                             
                           @endforeach                             
                         </tbody>
                       </table>

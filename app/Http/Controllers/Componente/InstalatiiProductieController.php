@@ -41,27 +41,27 @@ class InstalatiiProductieController extends Controller
     //     $instalatie->save(); 
     // }
 
-
-
-
-
-
-
-
     public function ActualizeazaInstalatiiProductie()
-    {
+    {   
+        // return  32;
+
         $pk = Input::get('pk');
         $name = Input::get('name');
         $value = Input::get('value');
-        $table = Input::get('table');
+
+        Instalatie::where('id', $pk)->update([$name => $value]);
+
     }
 
     public function ActualizeazaFluxAferent()
-    {
+    {       
+
         $pk = Input::get('pk');
         $name = Input::get('name');
         $value = Input::get('value');
-        $table = Input::get('table'); 
+        $id = Input::get('instalatie_id');
+
+
 
         FluxAferentPp::where('id', $pk)->update([$name => $value]);
 
@@ -70,18 +70,31 @@ class InstalatiiProductieController extends Controller
         }else{
             $instalatie = new FluxAferentPp;
             $instalatie->$name = $value;
+            $instalatie->instalatie_id = $id;
             $instalatie->save(); 
         }
     }
 
     public function ActualizeazaProcesProductie()
     {
+
         $pk = Input::get('pk');
         $name = Input::get('name');
         $value = Input::get('value');
-        $table = Input::get('table');
- 
+        $id = Input::get('flux_id');
+
+
+
         ProcesProductie::where('id', $pk)->update([$name => $value]);
+
+        if (ProcesProductie::where('id', $pk)->first()) {
+            ProcesProductie::where('id', $pk)->update([$name => $value]);
+        }else{
+            $proces = new ProcesProductie;
+            $proces->$name = $value;
+            $proces->flux_aferent_pp_id = $id;
+            $proces->save(); 
+        } 
     }
 
 
@@ -107,17 +120,17 @@ class InstalatiiProductieController extends Controller
 
         if ($instalatie->save()) 
         {   
-            return redirect()->route('instalatii::list')->with('alert-success', 'Instalatie salvata cu succes');
+            return redirect()->route('instalatii::list')->with('alert-success', 'Fabrica de productie salvata cu succes');
         } 
         else
         {
-            return redirect()->route('instalatii::list')->with('alert-danger', 'Eroare salvare instalatie');
+            return redirect()->route('instalatii::list')->with('alert-danger', 'Eroare salvare fabrica');
         }
     }
  
     public function edit(Instalatie $instalatie) 
     {   
-        if (is_null($instalatie)) { return redirect(route('instalatii::list'))->with('alert-danger', 'instalatie nu exista'); }
+        if (is_null($instalatie)) { return redirect(route('instalatii::list'))->with('alert-danger', 'Fabrica de productie nu exista'); }
 
         return view('instalatii_productie.instalatii.add_edit', [
             'instalatie' => $instalatie, 
@@ -131,7 +144,7 @@ class InstalatiiProductieController extends Controller
     	$validation = $this->validateRequest($request, $instalatie);
         if ($validation) { return $validation; }
 
-        if (is_null($instalatie)) { return redirect(route('instalatii::list'))->with('alert-danger', 'Instalatia nu exista'); }
+        if (is_null($instalatie)) { return redirect(route('instalatii::list'))->with('alert-danger', 'Fabrica de productie nu exista'); }
 
         $instalatie->nume = $request->input('nume');
         $instalatie->cod = $request->input('cod');
@@ -147,18 +160,11 @@ class InstalatiiProductieController extends Controller
         }
     }
 
-    public function delete(Instalatie $instalatie) 
-    {       
-        if (is_null($instalatie)) { return redirect()->route('instalatii::list')->with('alert-danger', 'instalatie nu exista'); }
-
-        if ($instalatie->delete()) 
-        {
-            return redirect()->route('instalatii::list')->with('alert-success', 'Instalatie eliminata cu succes');
-        } 
-        else
-        {
-            return redirect()->route('instalatii::list')->with('alert-danger', 'Eroare eliminare instalatie');
-        }
+    public function delete()
+    {      
+        $id = Input::get('id'); 
+        FluxAferentPp::where('id', $id)->delete();
+        return "OK";
     }
 
     protected function validateRequest($request, $instalatie = null) 
