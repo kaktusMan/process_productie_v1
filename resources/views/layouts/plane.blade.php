@@ -163,27 +163,27 @@
     </div>
     <!-- /#page-wrapper -->
 
-    <script src="{{ asset('assets/js/jquery-1.12.3.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/plugins/metisMenu/metisMenu.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/sb-admin-2.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/bootstrap-checkbox.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/autoNumeric.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/plugins/jquery-ui.min.js') }}" type="text/javascript"></script>   
-    <script src="{{ asset('assets/js/plugins/bootbox.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/plugins/toastr.min.js') }}" type="text/javascript"></script>   
-    <script src="{{ asset('assets/js/util.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/plugins/x-editable/bootstrap-editable.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/brain-socket.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/main.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/jquery-1.12.3.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/plugins/metisMenu/metisMenu.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/sb-admin-2.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/bootstrap-checkbox.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/autoNumeric.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/plugins/jquery-ui.min.js') }}" type="text/javascript"></script>   
+    <script src="{{ asset('public/assets/js/plugins/bootbox.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/plugins/toastr.min.js') }}" type="text/javascript"></script>   
+    <script src="{{ asset('public/assets/js/util.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/plugins/x-editable/bootstrap-editable.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/brain-socket.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/main.js') }}" type="text/javascript"></script>
 
-    <script src="{{ asset('assets/js/metronic.js') }}" type="text/javascript"></script> 
-    <script src="{{ asset('assets/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/plugins/dataTables/jquery.dataTables.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/plugins/dataTables/dataTables.bootstrap.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/plugins/dataTables/dataTables.fixedColumns.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/plugins/dataTables/jquery.dataTables.columnFilter.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/plugins/dataTables/dataTables.keyTable.min.js') }}" type="text/javascript"></script>    
+    <script src="{{ asset('public/assets/js/metronic.js') }}" type="text/javascript"></script> 
+    <script src="{{ asset('public/assets/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/plugins/dataTables/jquery.dataTables.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/plugins/dataTables/dataTables.bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/plugins/dataTables/dataTables.fixedColumns.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/plugins/dataTables/jquery.dataTables.columnFilter.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/assets/js/plugins/dataTables/dataTables.keyTable.min.js') }}" type="text/javascript"></script>    
  
 
     @yield('footer_scripts')
