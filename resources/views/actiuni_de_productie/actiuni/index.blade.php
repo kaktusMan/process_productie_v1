@@ -57,7 +57,7 @@
                           @foreach ($operatii as $actiune)
                             <tr data-id="{{ $actiune->id }}">         
                               <td class="text-center">{{ $actiune->nume }}</td>
-                              <td class="center action-buttons">
+                              <td class="text-center action-buttons">
                                 <a href="{{ route('actiuni::edit',['id' =>$actiune->id]) }}" alt="Editează" title="Editează"><i class="fa fa-pencil-square-o" title="Editeaza"></i></a>
                                 <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $actiune->id }}"><i class="fa fa-trash-o"></i></a>                           
                                         @include('partials.delete_modal', ['id' => $actiune->id, 'item' => $actiune->nume, 'form_route'=> 'actiuni::delete']) 
