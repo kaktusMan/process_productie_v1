@@ -16,32 +16,32 @@
     <title>Proces de productie</title>
     
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/metisMenu/metisMenu.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/timeline.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/sb-admin-2.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/sb-admin-3.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/morris.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/toastr.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/font-awesome-4.5.0/css/font-awesome.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/awesome-bootstrap-checkbox.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery-ui.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/x-editable/bootstrap-editable.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/jquery.dataTables.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/fixedColumns.bootstrap.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/dataTables.bootstrap.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/keyTable.dataTables.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/metisMenu/metisMenu.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/timeline.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/sb-admin-2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/sb-admin-3.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/morris.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/toastr.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/font-awesome-4.5.0/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/awesome-bootstrap-checkbox.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/jquery-ui.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/x-editable/bootstrap-editable.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/jquery.dataTables.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/fixedColumns.bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/dataTables.bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/keyTable.dataTables.min.css') }}" />
 
 
     @yield('head_scripts')
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/quick-sidebar.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/layout-chat.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/darkblue.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-switch.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/css/simple-line-icons.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/quick-sidebar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/layout-chat.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/darkblue.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap-switch.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('public/assets/css/simple-line-icons.min.css') }}" />
      
 </head>
 
