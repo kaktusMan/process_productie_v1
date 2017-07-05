@@ -212,7 +212,7 @@
 
             $("#dataTables-instalatii").on('click', ".details-control-flux i", function(){ 
               // alert(2);
-              $("tr[data-id='" + $(this).closest('[data-test]').data('test') + "'].proces").slideToggle();
+              $("tr[data-id='" + $(this).closest('[data-flux]').data('flux') + "'].proces").slideToggle();
 
               // $("tr[data-id='" + $(this).closest('[data-id]').data('id') + "'].proces").slideToggle();
               $(this).toggleClass('fa-chevron-circle-down fa-chevron-circle-up');
