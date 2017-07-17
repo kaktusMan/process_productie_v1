@@ -515,8 +515,14 @@ Route::group([
 	        Route::post('{grad}', 'GradeIncarcareOraraOpController@update')->name('update');
 	        Route::post('{grad}/stergere', 'GradeIncarcareOraraOpController@delete')->name('delete');
 	});
-	 
+});
 
+Route::group([
+	'prefix' => 'registrul_general',
+	'as' => 'registrul-general::',
+
+	], function () {
+		Route::get('/', 'RegistrulGeneralController@index')->name('list'); 
 });
 
 

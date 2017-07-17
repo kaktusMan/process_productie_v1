@@ -143,6 +143,8 @@
                                 <li><a href="{{ route('il-posibile::list') }}"  <?php echo Route::currentRouteName() == 'il-posibile::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort" aria-hidden="true"></i> Centralizatorul  I.L. </a></li>        
                             </ul>
                         </li>
+                        <li><a href="{{route('registrul-general::list')}}"  ><i class="fa fa-database" aria-hidden="true"></i> Registrul general</a></li>
+
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

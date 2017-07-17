@@ -66,10 +66,10 @@
                         <li <?php echo Route::getCurrentRoute()->getPrefix() == '' ? 'class="active"' : ''; ?>><a href="{{ url('/') }}"  ><i class="fa fa-tachometer" aria-hidden="true"></i>  Panou de bord</a></li>
 
                         <li class="has-sub">
-                            <a href=""><i class="fa fa fa-cubes" aria-hidden="true"></i> Nomenclator<span class="fa arrow"></a>
-                            <ul class="nav nav-second-level">
+                            <a href="" <?php echo Route::currentRouteName() == 'actiuni::list' || Route::currentRouteName() == 'modalitati::list' || Route::currentRouteName() == 'fluxuri::list' || Route::currentRouteName() == 'operatii::list' || Route::currentRouteName() == 'categorii::list' || Route::currentRouteName() == 'nivele::list'? 'class="active"' : ''; ?>><i class="fa fa fa-cubes" aria-hidden="true"></i> Nomenclator<span class="fa arrow"></a>
+                            <ul   <?php echo Route::currentRouteName() == 'actiuni::list' || Route::currentRouteName() == 'modalitati::list' || Route::currentRouteName() == 'fluxuri::list' || Route::currentRouteName() == 'operatii::list' || Route::currentRouteName() == 'categorii::list' || Route::currentRouteName() == 'nivele::list'? 'class="nav nav-second-level collapse in"' : 'class="nav nav-second-level"'; ?>>
                             <li class="has-sub">
-                                <a href="" <?php echo Route::currentRouteName() == 'actiuni::list' || Route::currentRouteName() == 'modalitati::list' || Route::currentRouteName() == 'nivele::list'? 'class="active"' : ''; ?>><i class="fa fa-th-list" aria-hidden="true"></i> Actiuni de productie<span class="fa arrow"></a>
+                                <a href="" <?php echo Route::currentRouteName() == 'actiuni::list' || Route::currentRouteName() == 'modalitati::list' || Route::currentRouteName() == 'fluxuri::list' || Route::currentRouteName() == 'operatii::list' || Route::currentRouteName() == 'categorii::list' || Route::currentRouteName() == 'nivele::list'? 'class="active"' : ''; ?>><i class="fa fa-th-list" aria-hidden="true"></i> Actiuni de productie<span class="fa arrow"></a>
                                  <ul class="nav nav-third-level">
                                     <li><a href="{{ route('actiuni::list') }}"  <?php echo Route::currentRouteName() == 'actiuni::list' ? 'class="active"' : ''; ?>><i class="fa fa-th" aria-hidden="true"></i> Actiuni de productie</a></li>
                                      <li><a href="{{ route('modalitati::list') }}" <?php echo Route::currentRouteName() == 'modalitati::list' ? 'class="active"' : ''; ?> ><i class="fa fa-gavel" aria-hidden="true"></i> Modalitati de realizare</a></li>
@@ -144,6 +144,7 @@
                                 <li><a href="{{ route('il-posibile::list') }}"  <?php echo Route::currentRouteName() == 'il-posibile::list' ? 'class="active"' : ''; ?>><i class="fa fa-sort" aria-hidden="true"></i> Centralizatorul  I.L. </a></li>        
                             </ul>
                         </li>
+                        <li><a href="{{route('registrul-general::list')}}"  ><i class="fa fa-database" aria-hidden="true"></i> Registrul general</a></li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
