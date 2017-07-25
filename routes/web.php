@@ -525,6 +525,45 @@ Route::group([
 		Route::get('/', 'RegistrulGeneralController@index')->name('list'); 
 });
 
+Route::group([
+	'prefix' => 'registrul_idei',
+	'as' => 'registrul-idei::',
+
+	], function () {
+		Route::get('/', 'RegistrulIdeiController@index')->name('list'); 
+        Route::get('creare', 'RegistrulIdeiController@create')->name('create');
+        Route::post('/', 'RegistrulIdeiController@store')->name('store');
+        Route::get('{ideie}', 'RegistrulIdeiController@edit')->name('edit');
+        Route::post('{ideie}', 'RegistrulIdeiController@update')->name('update');
+        Route::post('{ideie}/stergere', 'RegistrulIdeiController@delete')->name('delete');
+});
+
+Route::group([
+	'prefix' => 'registrul_concepte',
+	'as' => 'registrul-concepte::',
+
+	], function () {
+		Route::get('/', 'RegistrulConcepteController@index')->name('list'); 
+		Route::get('creare', 'RegistrulConcepteController@create')->name('create');
+        Route::post('/', 'RegistrulConcepteController@store')->name('store');
+        Route::get('{concept}', 'RegistrulConcepteController@edit')->name('edit');
+        Route::post('{concept}', 'RegistrulConcepteController@update')->name('update');
+        Route::post('{concept}/stergere', 'RegistrulConcepteController@delete')->name('delete');
+});
+
+Route::group([
+	'prefix' => 'registrul_proiecte',
+	'as' => 'registrul-proiecte::',
+
+	], function () {
+		Route::get('/', 'RegistrulProiecteController@index')->name('list'); 
+		Route::get('creare', 'RegistrulProiecteController@create')->name('create');
+        Route::post('/', 'RegistrulProiecteController@store')->name('store');
+        Route::get('{proiect}', 'RegistrulProiecteController@edit')->name('edit');
+        Route::post('{proiect}', 'RegistrulProiecteController@update')->name('update');
+        Route::post('{proiect}/stergere', 'RegistrulProiecteController@delete')->name('delete');
+});
+
 
 
 

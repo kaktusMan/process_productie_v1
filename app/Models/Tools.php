@@ -84,6 +84,57 @@ class Tools extends Model
         ]);
     }
 
+    //modului registre
+
+    public static function segmente_de_asociere(){
+        return collect([
+             'Home & Garden'  => 'Home & Garden',
+             'Mobilitate'  => 'Mobilitate ',
+             'Real Estate'  => 'Real Estate ',
+             'Educatie'  => 'Educatie ',
+             'Energie'  => 'Energie ',
+             'Reciclare'  => 'Reciclare ',
+             'Agricultura'  => 'Agricultura ',
+             'TIC'  => 'TIC ',
+             'Sanatate'  => 'Sanatate ',
+             'Financiar'  => 'Financiar ',
+             'CDI'  => 'CDI ',
+
+        ]);
+    }
+    public static function tipuri_inovare(){
+         return collect([
+             'Produs'  => 'Produs',
+             'Proces'  => 'Proces',
+             'Serviciu'  => 'Serviciu',
+             'Organizationala'  => 'Organizationala',
+             'Diverse'  => 'Diverse',
+        ]);
+    } 
+    public static function validare_pt_dezvoltare(){
+         return collect([
+             'In asteptare'  => 'In asteptare',
+             'Da'  => 'Da',
+             'Nu'  => 'Nu',
+        ]);
+    } 
+    public static function prioritate_de_dezvoltare(){
+         return collect([
+             'In asteptare'  => 'In asteptare',
+             'Extreb de urgent'  => 'Extreb de urgent',
+             'Foarte urgent'  => 'Foarte urgent',
+             'Urgent'  => 'Urgent',
+             'Urgenta medie'  => 'Urgenta medie',
+             'Urgenta mica'  => 'Urgenta mica',
+        ]);
+    }
+
+    public static function stadiul_inceperii(){
+         return collect([
+             'Inceput'  => 'Inceput',
+             'Neinceput'  => 'Neinceput',
+         ]);
+    }  
 
 }
 

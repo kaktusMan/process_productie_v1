@@ -840,3 +840,13 @@ legend.scheduler-border {
     color: #8a6d3b!important;
     cursor: copy;
 }
+
+.table > thead > tr > th {
+     vertical-align: middle !important;
+}
+
+.table > tfoot > tr > th {
+     vertical-align: middle !important;
+}
+
+
