@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="{{ asset("assets/css/plugins/jquery.dataTables.min.css") }}" />
     <link rel="stylesheet" href="{{ asset("assets/css/plugins/fixedColumns.bootstrap.css") }}" />
     <link rel="stylesheet" href="{{ asset("assets/css/plugins/dataTables.bootstrap.css") }}" />
-    <link rel="stylesheet" href="{{ asset("assets/css/plugins/keyTable.dataTables.min.css") }}" />
 
 
     @yield('head_scripts')
@@ -184,7 +183,6 @@
     <script src="{{ asset("assets/js/plugins/dataTables/dataTables.bootstrap.js") }}" type="text/javascript"></script>
     <script src="{{ asset("assets/js/plugins/dataTables/dataTables.fixedColumns.min.js") }}" type="text/javascript"></script>
     <script src="{{ asset("assets/js/plugins/dataTables/jquery.dataTables.columnFilter.js") }}" type="text/javascript"></script>
-    <script src="{{ asset("assets/js/plugins/dataTables/dataTables.keyTable.min.js") }}" type="text/javascript"></script>    
  
 
     @yield('footer_scripts')

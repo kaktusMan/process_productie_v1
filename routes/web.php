@@ -549,6 +549,11 @@ Route::group([
         Route::get('{concept}', 'RegistrulConcepteController@edit')->name('edit');
         Route::post('{concept}', 'RegistrulConcepteController@update')->name('update');
         Route::post('{concept}/stergere', 'RegistrulConcepteController@delete')->name('delete');
+
+        Route::get('/detalii/{concept}', 'RegistrulConcepteController@detaliiConcept')->name('detalii');
+        Route::get('/detalii/edit/{concept}', 'RegistrulConcepteController@createDetalii')->name('edit-detalii');
+        Route::post('/detalii/{concept}', 'RegistrulConcepteController@storeDetalii')->name('store-detalii');
+
 });
 
 Route::group([
@@ -562,6 +567,12 @@ Route::group([
         Route::get('{proiect}', 'RegistrulProiecteController@edit')->name('edit');
         Route::post('{proiect}', 'RegistrulProiecteController@update')->name('update');
         Route::post('{proiect}/stergere', 'RegistrulProiecteController@delete')->name('delete');
+
+        Route::get('/detalii/{proiect}', 'RegistrulProiecteController@detaliiProiect')->name('detalii');
+        Route::get('/detalii/edit/{proiect}', 'RegistrulProiecteController@createDetalii')->name('edit-detalii');
+        Route::post('/detalii/{proiect}', 'RegistrulProiecteController@storeDetalii')->name('store-detalii');
+
+         Route::post('init_proiect', 'InstalatiiProductieController@ActualizeazaInstalatiiProductie')->name('init_proiect');
 });
 
 

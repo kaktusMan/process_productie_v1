@@ -22,8 +22,7 @@ class CreateRegistrulProiecteTable extends Migration
             $t->string('board');
             $t->string('executiv');
             $t->string('p_m');
-            $t->string('tip_poriect');
-            $t->string('link_access');
+            $t->string('tip_proiect'); 
             $t->string('validare');
             $t->string('prioritate');
             $t->string('stadiu');
@@ -38,6 +37,10 @@ class CreateRegistrulProiecteTable extends Migration
             $t->dateTime('intr_in_prod_completa_estimata');
             $t->dateTime('intr_in_prod_completa_reala');
             $t->double('buget_estimat');
+
+            $t->string('data_initierii'); 
+
+
             $t->timestemps();
             $t->softDeletes();
         });

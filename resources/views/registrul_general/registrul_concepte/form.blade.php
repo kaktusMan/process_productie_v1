@@ -132,7 +132,7 @@
 
         <div class="form-group {{ $errors->has('detalii') ? ' has-error' : '' }}">
             <label>Detalii despre concept</label>
-            <input type="text" class="form-control validate[required]" name="detalii" id="detalii" value="{{ old('detalii') ? old('detalii') : $concept->detalii }}" placeholder="detalii concept">
+            <textarea class="form-control" rows="4" class="form-control validate[required]" name="detalii" id="detalii" value="{{ old('detalii') ? old('detalii') : $concept->detalii }}" placeholder="detalii concept">{{ old('detalii') ? old('detalii') : $concept->detalii }}</textarea>
             @if ($errors->has('detalii'))
             <span class="help-block">
                 <strong>{{ $errors->first('detalii') }}</strong>

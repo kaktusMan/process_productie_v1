@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-12">
             <form action="{{ $form_route }}" class="validationEngine" method="POST">
-                @include('registrul_general.registrul_proiecte.form', ['proiect' => $proiect])
+                @include('registrul_general.registrul_concepte.detalii.form', ['concept' => $concept])
             </form>
         </div>
     </div>

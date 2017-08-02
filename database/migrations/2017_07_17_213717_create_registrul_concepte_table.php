@@ -23,8 +23,17 @@ class CreateRegistrulConcepteTable extends Migration
             $t->string('tip_inovare');
             $t->string('status');
             $t->string('tip_prioritate');
-            $t->steing('stadiu');
-            $t->steing('detalii');
+            $t->string('stadiu');
+            $t->string('detalii');
+            
+            $t->string('ideea_de_baza')->nullable();
+            $t->string('avantajele_aduse')->nullable();
+            $t->string('impact')->nullable();
+            $t->string('particularitati_concept')->nullable();
+            $t->string('infrastructura')->nullable();
+            $t->float('estimare_buget')->nullable();
+            $t->string('potentialii_clienti')->nullable();
+
             $t->timestemps();
             $t->softDeletes();
 

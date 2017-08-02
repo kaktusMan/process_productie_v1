@@ -1,7 +1,7 @@
 @extends('layouts.plane')
 
 @section('title')
-  Registrul concepte  
+  Registrul de concepte bazate pe ideile propuse spre dezvoltare 
 @stop
 
 @section('content')
@@ -49,6 +49,7 @@
                             <th class="text-center">Codul conceptului</th>
                             <th class="text-center">Dezvoltatorul conceptului</th>
                             <th class="text-center">Tipul de inovare conceptului</th>
+                            <th class="text-center">Link de acces</th>
                             <th class="text-center">Actiuni</th>
                           </tr>
                         </thead>
@@ -60,6 +61,7 @@
                             <th class="text-center">Codul conceptului</th>
                             <th class="text-center">Dezvoltatorul conceptului</th>
                             <th class="text-center">Tipul de inovare conceptului</th>
+                            <th class="text-center">Link de acces</th>
                             <th class="text-center">Actiuni</th>
                           </tr>
                         </tfoot>
@@ -72,6 +74,10 @@
                               <td class="text-center">{{ $concept->cod_concept }}</td>
                               <td class="text-center">{{ $concept->promotor_concept }}</td>
                               <td class="text-center">{{ $concept->tip_inovare }}</td>
+                              <td class="text-center">
+                                <a href="{{ route('registrul-concepte::detalii',['id' =>$concept->id]) }}" alt="Editează" title="Adauga detalii"></i>Apasa aici!</a> 
+                              </td>
+
                               <td class="center action-buttons">
                                 <a href="{{ route('registrul-concepte::edit',['id' =>$concept->id]) }}" alt="Editează" title="Editează"><i class="fa fa-pencil-square-o" title="Editeaza"></i></a>
                                 <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $concept->id }}"><i class="fa fa-trash-o"></i></a>                           

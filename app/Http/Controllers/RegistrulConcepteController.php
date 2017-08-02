@@ -103,6 +103,44 @@ class RegistrulConcepteController extends Controller
         }
     }
 
+
+
+    public function detaliiConcept(Request $request, Concept $concept){
+        return view('registrul_general.registrul_concepte.detalii.index', [
+            'concept' => $concept
+        ]);
+    }
+
+    public function createDetalii(Request $request, Concept $concept){
+
+        if (is_null($concept)) { return redirect(route('registrul-concepte::list'))->with('alert-danger', 'Conceptul nu exista'); }
+        return view('registrul_general.registrul_concepte.detalii.add_edit', [
+            'concept' => $concept, 
+            'segmente_de_asociere' => Tools::segmente_de_asociere(),
+            'tipuri_inovare' => Tools::tipuri_inovare(),
+            'validare_pt_dezvoltare' => Tools::validare_pt_dezvoltare(),
+            'prioritate_de_dezvoltare' => Tools::prioritate_de_dezvoltare(),
+            'stadiul_inceperii' => Tools::stadiul_inceperii(),
+            'form_title' => 'Prezentarea unui concept bazat pe o idee propusa spre dezvoltare',
+            'form_route' => route('registrul-concepte::store-detalii', ['id' => $concept->id])
+        ]);
+
+    }
+
+    public function storeDetalii(Request $request,  Concept $concept)
+    {    
+        $concept->ideea_de_baza = $request->input('ideea_de_baza');
+        $concept->avantajele_aduse = $request->input('avantajele_aduse');
+        $concept->impact = $request->input('impact');
+        $concept->particularitati_concept = $request->input('particularitati_concept');
+        $concept->infrastructura = $request->input('infrastructura');
+        $concept->estimare_buget = $request->input('estimare_buget');
+        $concept->potentialii_clienti = $request->input('potentialii_clienti');
+        $concept->update();
+
+        return redirect()->route('registrul-concepte::detalii', ['id' => $concept->id])->with('alert-success', 'Detalii concept salvate cu succes');
+    }
+
     public function delete(Concept $concept) 
     {       
         if (is_null($concept)) { return redirect()->route('registrul-concepte::list')->with('alert-danger', 'Conceptul nu exista'); }

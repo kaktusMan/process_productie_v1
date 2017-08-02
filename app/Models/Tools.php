@@ -121,7 +121,7 @@ class Tools extends Model
     public static function prioritate_de_dezvoltare(){
          return collect([
              'In asteptare'  => 'In asteptare',
-             'Extreb de urgent'  => 'Extreb de urgent',
+             'Extrem de urgent'  => 'Extrem de urgent',
              'Foarte urgent'  => 'Foarte urgent',
              'Urgent'  => 'Urgent',
              'Urgenta medie'  => 'Urgenta medie',
