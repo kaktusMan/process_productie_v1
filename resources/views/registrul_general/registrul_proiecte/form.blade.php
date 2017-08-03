@@ -250,6 +250,6 @@
         <button type="submit" class="btn btn-primary btn-lg button-width">
             <i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Salveaza
         </button> 
-        <a href="{{route('registrul-proiecte::list') }}" class="btn btn-warning btn-lg button-widtht"><i class="fa fa-angle-left"></i> &nbsp;Înapoi</a>
+        <a href="{{route('proiecte::list') }}" class="btn btn-warning btn-lg button-widtht"><i class="fa fa-angle-left"></i> &nbsp;Înapoi</a>
     </div>
 </div> 

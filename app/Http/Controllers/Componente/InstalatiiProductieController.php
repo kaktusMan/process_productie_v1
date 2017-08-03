@@ -11,7 +11,6 @@ use App\Models\Componente\Instalatie;
 use App\Models\Componente\FluxAferentPp;
 use App\Models\Componente\ProcesProductie;
 
-
 class InstalatiiProductieController extends Controller
 {
     
@@ -21,29 +20,10 @@ class InstalatiiProductieController extends Controller
             'instalatii' => Instalatie::with(['fl_aferente', 'fl_aferente.fl_prp'])->get()
 
         ]);  //tipuriFl
-
     }
-
-
-
-
-    // public function AdaugaInstalatiiProductie()
-    // {
-    //     $pk = Input::get('pk');
-    //     $name = Input::get('name');
-    //     $value = Input::get('value');
-    //     $table = Input::get('table');
-        
-    //     // return $name;
-
-    //     $instalatie = new Instalatie;
-    //     $instalatie->$name = $value;
-    //     $instalatie->save(); 
-    // }
 
     public function ActualizeazaInstalatiiProductie()
     {   
-        // return  32;
 
         $pk = Input::get('pk');
         $name = Input::get('name');
@@ -51,7 +31,7 @@ class InstalatiiProductieController extends Controller
 
         Instalatie::where('id', $pk)->update([$name => $value]);
 
-    }
+    } 
 
     public function ActualizeazaFluxAferent()
     {       

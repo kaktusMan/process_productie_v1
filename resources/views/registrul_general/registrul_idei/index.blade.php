@@ -1,29 +1,14 @@
 @extends('layouts.plane')
 
 @section('title')
-  Registrul idei  
+<h2 class="page-header">Registrul de idei cu potential valoros <a href="{{route('registrul-general::list') }}" class="pull-right btn btn-default btn-ms button-widtht"><i class="fa fa-angle-left"></i> &nbsp;Înapoi</a></h2>
+   
 @stop
 
 @section('content')
     
     <div class="row">
         <div class="col-lg-12">
-              <div class="panel panel-primary">
-                <div class="panel-heading">Zona de cautare
-                    <a href="#" class="pull-right btn-primary" id="btn_show_hide" title="Afiseaza / Ascunde zona de cautare">
-                        <i class="fa fa-list"></i>
-                    </a>  
-                </div>
-                <div id="div_cautare" class="panel-body" style="display:none">
-                    <table width="100%">
-                        <tr>
-                            <td width="25%">
-                                <label class="control-label">Cod idee</label></td>
-                            <td width="75%"><p id="_col_nume"></p></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
             <div class="row">
               <div class="col-lg-12">
                 <!-- begin .flash-message -->
@@ -33,7 +18,7 @@
             </div>        
             <div class="panel panel-default">
               <div class="panel-heading">
-                  Lista concepte
+                  Lista de idei
                   <div class="pull-right">   
                     <a href="{{ route('registrul-idei::create') }}"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare</a>                   
                   </div>

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\OptionsArray;
 
-class Proiect extends Model
+class InitProiect extends Model
 {
 	use SoftDeletes;
 	use OptionsArray;
 
-	protected $table = 'registrul_proiecte';
+	protected $table = 'initiere_proiecte';
 
 } 

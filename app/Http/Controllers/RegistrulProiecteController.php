@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Validator;
+use Input;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Tools;
 use App\Models\Proiect;
+use App\Models\InitProiect;
 
 class RegistrulProiecteController extends Controller
 {   
@@ -26,7 +29,7 @@ class RegistrulProiecteController extends Controller
             'prioritate_de_dezvoltare' => Tools::prioritate_de_dezvoltare(),
             'stadiul_inceperii' => Tools::stadiul_inceperii(),
             'form_title' => 'Creare proiect',
-            'form_route' => route('registrul-proiecte::store')
+            'form_route' => route('proiecte::store')
         ]);
     }
  
@@ -62,17 +65,17 @@ class RegistrulProiecteController extends Controller
 
         if ($proiect->save()) 
         {   
-            return redirect()->route('registrul-proiecte::list')->with('alert-success', 'Idee salvata cu succes');
+            return redirect()->route('proiecte::list')->with('alert-success', 'Idee salvata cu succes');
         } 
         else
         {
-            return redirect()->route('registrul-proiecte::list')->with('alert-danger', 'Eroare salvare idee');
+            return redirect()->route('proiecte::list')->with('alert-danger', 'Eroare salvare idee');
         }
     }
  
     public function edit(Proiect $proiect) 
     {   
-        if (is_null($proiect)) { return redirect(route('registrul-proiecte::list'))->with('alert-danger', 'Ideea nu exista'); }
+        if (is_null($proiect)) { return redirect(route('proiecte::list'))->with('alert-danger', 'Ideea nu exista'); }
 
         return view('registrul_general.registrul_proiecte.add_edit', [
             'proiect' => $proiect, 
@@ -82,7 +85,7 @@ class RegistrulProiecteController extends Controller
             'prioritate_de_dezvoltare' => Tools::prioritate_de_dezvoltare(),
             'stadiul_inceperii' => Tools::stadiul_inceperii(),
             'form_title' => 'Editare idee',
-            'form_route' => route('registrul-proiecte::update', ['id' => $proiect->id])
+            'form_route' => route('proiecte::update', ['id' => $proiect->id])
         ]);
     }
  
@@ -91,7 +94,7 @@ class RegistrulProiecteController extends Controller
     	$validation = $this->validateRequest($request, $proiect);
         if ($validation) { return $validation; }
 
-        if (is_null($proiect)) { return redirect(route('registrul-proiecte::list'))->with('alert-danger', 'Ideea nu exista'); }
+        if (is_null($proiect)) { return redirect(route('proiecte::list'))->with('alert-danger', 'Ideea nu exista'); }
 
         $proiect->data_adaugarii = $request->input('data_adaugarii');
         $proiect->nume = $request->input('nume');
@@ -118,25 +121,25 @@ class RegistrulProiecteController extends Controller
 
         if ($proiect->save()) 
         {   
-            return redirect()->route('registrul-proiecte::list')->with('alert-success', 'Ideea salvata cu succes');
+            return redirect()->route('proiecte::list')->with('alert-success', 'Ideea salvata cu succes');
         } 
         else
         {
-            return redirect()->route('registrul-proiecte::list')->with('alert-danger', 'Eroare salvare idee');
+            return redirect()->route('proiecte::list')->with('alert-danger', 'Eroare salvare idee');
         }
     }
 
     public function delete(Proiect $proiect) 
     {       
-        if (is_null($proiect)) { return redirect()->route('registrul-proiecte::list')->with('alert-danger', 'Ideea nu exista'); }
+        if (is_null($proiect)) { return redirect()->route('proiecte::list')->with('alert-danger', 'Ideea nu exista'); }
 
         if ($proiect->delete()) 
         {
-            return redirect()->route('registrul-proiecte::list')->with('alert-success', 'Ideea eliminata cu succes');
+            return redirect()->route('proiecte::list')->with('alert-success', 'Ideea eliminata cu succes');
         } 
         else
         {
-            return redirect()->route('registrul-proiecte::list')->with('alert-danger', 'Eroare eliminare idee');
+            return redirect()->route('proiecte::list')->with('alert-danger', 'Eroare eliminare idee');
         }
     }
 
@@ -151,7 +154,7 @@ class RegistrulProiecteController extends Controller
 
     public function createDetalii(Request $request, Proiect $proiect){
 
-        if (is_null($proiect)) { return redirect(route('registrul-proiecte::list'))->with('alert-danger', 'Conceptul nu exista'); }
+        if (is_null($proiect)) { return redirect(route('proiecte::list'))->with('alert-danger', 'Conceptul nu exista'); }
         return view('registrul_general.registrul_proiecte.detalii.add_edit', [
             'proiect' => $proiect, 
             'segmente_de_asociere' => Tools::segmente_de_asociere(),
@@ -160,9 +163,35 @@ class RegistrulProiecteController extends Controller
             'prioritate_de_dezvoltare' => Tools::prioritate_de_dezvoltare(),
             'stadiul_inceperii' => Tools::stadiul_inceperii(),
             'form_title' => 'Prezentarea unui concept bazat pe o idee propusa spre dezvoltare',
-            'form_route' => route('registrul-proiecte::store-detalii', ['id' => $concept->id])
+            'form_route' => route('proiecte::store-detalii', ['id' => $proiect->id])
         ]);
 
+    }
+
+    public function initProjectDateGenerale()
+    {   
+
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        
+        if(InitProiect::find($pk)){
+            InitProiect::where('id', $pk)->update([$name => $value]);
+        }else{
+            $init_pr = new InitProiect();
+            $init_pr->proiect_id = $pk;
+            $init_pr->name = $value;
+            $init_pr->save();
+        }
+    }
+
+    public function setDataInitierii()
+    {   
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        
+        Proiect::where('id', $pk)->update(['data_initierii' => $value]);
     }
 
     public function storeDetalii(Request $request,  Proiect $proiect)
@@ -176,7 +205,7 @@ class RegistrulProiecteController extends Controller
         // $concept->potentialii_clienti = $request->input('potentialii_clienti');
         // $concept->update();
 
-        return redirect()->route('registrul-proiecte::detalii', ['id' => $proiect->id])->with('alert-success', 'Detalii concept salvate cu succes');
+        return redirect()->route('proiecte::detalii', ['id' => $proiect->id])->with('alert-success', 'Detalii concept salvate cu succes');
     }
 
 
@@ -218,13 +247,13 @@ class RegistrulProiecteController extends Controller
         {
             if (!empty(($proiect))) 
             {
-                return redirect(route('registrul-proiecte::edit', ['id' => $proiect->id]))
+                return redirect(route('proiecte::edit', ['id' => $proiect->id]))
                         ->withErrors($validator->errors())
                         ->withInput();
             } 
             else 
             {
-                return redirect(route('registrul-proiecte::create'))
+                return redirect(route('proiecte::create'))
                         ->withErrors($validator->errors())
                         ->withInput();
             }

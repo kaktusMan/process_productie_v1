@@ -1,29 +1,13 @@
 @extends('layouts.plane')
 
 @section('title')
-  Registrul de concepte bazate pe ideile propuse spre dezvoltare 
+ <h2 class="page-header">Registrul de concepte bazate pe ideile propuse spre dezvoltare <a href="{{route('registrul-general::list') }}" class="pull-right btn btn-default btn-ms button-widtht"><i class="fa fa-angle-left"></i> &nbsp;Înapoi</a></h2> 
 @stop
 
 @section('content')
     
     <div class="row">
-        <div class="col-lg-12">
-              <div class="panel panel-primary">
-                <div class="panel-heading">Zona de cautare
-                    <a href="#" class="pull-right btn-primary" id="btn_show_hide" title="Afiseaza / Ascunde zona de cautare">
-                        <i class="fa fa-list"></i>
-                    </a>  
-                </div>
-                <div id="div_cautare" class="panel-body" style="display:none">
-                    <table width="100%">
-                        <tr>
-                            <td width="25%">
-                                <label class="control-label">Cod concept</label></td>
-                            <td width="75%"><p id="_col_nume"></p></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+        <div class="col-lg-12"> 
             <div class="row">
               <div class="col-lg-12">
                 <!-- begin .flash-message -->
@@ -33,7 +17,7 @@
             </div>        
             <div class="panel panel-default">
               <div class="panel-heading">
-                  Lista concepte
+                  Lista de concepte
                   <div class="pull-right">   
                     <a href="{{ route('registrul-concepte::create') }}"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare</a>                   
                   </div>
@@ -104,7 +88,7 @@
 
              $('#registrul_concepte').dataTable({
                 "aoColumnDefs": [
-                    { 'bSortable': false, 'aTargets': [ 0 ] }
+                    { 'bSortable': false, 'aTargets': [ 7 ] }
                 ],
                 "language": {                
                     "url": '{{ URL::to("assets/js/plugins/dataTables/lang_json/romanian.json") }}'}

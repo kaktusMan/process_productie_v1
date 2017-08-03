@@ -20,20 +20,13 @@
                           <tr>        
                             <th class="text-center">Nr.</th>
                             <th class="text-center">Tipul de registru</th>
-                            <th class="text-center">Link de <br>Acces</th>
+                            <th class="text-center">Link de Acces</th>
                           </tr>
-                        </thead>
-                        {{-- <tfoot>
-                          <tr>          
-                            <th class="text-center">Nr</th>
-                            <th class="text-center">Tipul de registru</th>
-                            <th class="text-center">Link de <br>Acces</th>
-                          </tr>
-                        </tfoot> --}}
+                        </thead> 
                         <tbody>                             
                             <tr>         
                               <td class="text-center">1</td>
-                              <td class="text-center">Registrul de idei cu potential valoros</td>
+                              <td class="text-center" >Registrul de idei cu potential valoros</td>
                               <td class="center">
                                 <a href="{{route('registrul-idei::list')}}" alt="idei" title="Registrul de idei.">Apasa aici!</a>
                               </td>                             
@@ -49,7 +42,7 @@
                               <td class="text-center">3</td>
                               <td class="text-center">Registrul de proiecte de investitii inovatoare sau strategice</td>
                               <td class="center">
-                                <a href="{{route('registrul-proiecte::list')}}" alt="proiecte" title="Registrul de proiecte.">Apasa aici!</a>
+                                <a href="{{route('proiecte::list')}}" alt="proiecte" title="Registrul de proiecte.">Apasa aici!</a>
                               </td>                             
                             </tr>
                         </tbody>

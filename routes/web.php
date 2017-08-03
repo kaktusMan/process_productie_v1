@@ -373,14 +373,15 @@ Route::group([
 	        Route::post('x_editable_inst', 'InstalatiiProductieController@ActualizeazaInstalatiiProductie')->name('x_editable_inst');
 	        Route::post('x_editable_fl', 'InstalatiiProductieController@ActualizeazaFluxAferent')->name('x_editable_fl');
 	        Route::post('x_editable_pp', 'InstalatiiProductieController@ActualizeazaProcesProductie')->name('x_editable_pp');
+
+
 	        // adaugare componente
 			
 			Route::get('/', 'InstalatiiProductieController@index')->name('list');
 	        Route::get('creare', 'InstalatiiProductieController@create')->name('create');
 	        Route::post('/', 'InstalatiiProductieController@store')->name('store');
 	        Route::get('{instalatie}', 'InstalatiiProductieController@edit')->name('edit');
-	        Route::post('{instalatie}', 'InstalatiiProductieController@update')->name('update');
-	        // Route::post('{instalatie}/stergere', 'InstalatiiProductieController@delete')->name('delete');
+	        Route::post('{instalatie}', 'InstalatiiProductieController@update')->name('update'); 
 
 
 
@@ -558,9 +559,14 @@ Route::group([
 
 Route::group([
 	'prefix' => 'registrul_proiecte',
-	'as' => 'registrul-proiecte::',
+	'as' => 'proiecte::',
 
 	], function () {
+		
+        Route::post('x_edit_data_initierii', 'RegistrulProiecteController@setDataInitierii')->name('x_edit_data_initierii');
+
+        Route::post('x_edit_init_proiect', 'RegistrulProiecteController@initProjectDateGenerale')->name('x_edit_init_proiect');
+
 		Route::get('/', 'RegistrulProiecteController@index')->name('list'); 
 		Route::get('creare', 'RegistrulProiecteController@create')->name('create');
         Route::post('/', 'RegistrulProiecteController@store')->name('store');
@@ -571,10 +577,7 @@ Route::group([
         Route::get('/detalii/{proiect}', 'RegistrulProiecteController@detaliiProiect')->name('detalii');
         Route::get('/detalii/edit/{proiect}', 'RegistrulProiecteController@createDetalii')->name('edit-detalii');
         Route::post('/detalii/{proiect}', 'RegistrulProiecteController@storeDetalii')->name('store-detalii');
-
-         Route::post('init_proiect', 'InstalatiiProductieController@ActualizeazaInstalatiiProductie')->name('init_proiect');
-});
-
+}); 
 
 
 

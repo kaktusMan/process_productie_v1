@@ -4,7 +4,6 @@
 	.editableform .form-control{
 		width: 900px !important;
 	} 
-
 </style>
 <div class="row">
         <div class="col-lg-12">
@@ -17,10 +16,7 @@
             </div>        
             <div class="panel panel-default">
               <div class="panel-heading">
-                  Lista proiecte
-                  <div class="pull-right">   
-                    <a href="{{ route('registrul-proiecte::create') }}"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare</a>                   
-                  </div>
+               		Initierea proiectului
                </div>
                <div class="panel-body">
                    <div class="table-responsive">
@@ -28,29 +24,30 @@
                        	<tr>
 		                	<th style="vertical-align: inherit;width: 20%;">Data initierii 	proiectului:</th>
 		                	<td class="text-center">
-                              <span style="width: 500px" class="xedit-nume"
-                                      id="nume"
+                              <span style="width: 500px" class="xedit-data_initierii"
+                                      id="data_initierii"
                                       data-type="date"
-                                      data-viewformat="dd.mm.yyy"
-                                      data-pk="1"
-                                      data-name="nume"
-                                      data-url="{{ route('registrul-proiecte::init_proiect') }}">gfg                                      
+                                      data-viewformat="yyyy-mm-dd"
+                                      data-pk="{{$proiect->id}}"
+                                      data-name="data_initierii"
+                                      data-url="{{ route('proiecte::x_edit_data_initierii') }}">{{$proiect->data_initierii}}                                      
                                   </span>
                               </td>
 			           	</tr>
 			            <tr>
-			                <th style="vertical-align: inherit;" rowspan="45">Date generale care au determinat nevoia proiectului:</th>
-			                <td style="display: none;"></td>
-			               	
-			            </tr><td class="text-center">
-                              	  <span  class="xedit-test"
-                                      id="test" 
-                                      data-pk="1"
-                                      data-name="test"
-                                      data-url="{{ route('registrul-proiecte::init_proiect') }}">gfg                                      
+			                <th class="text-center" style="vertical-align: inherit;" rowspan="45">Date generale care au determinat nevoia proiectului:</th>
+			                <td class="text-center">
+                              	  <span  class="xedit-name"
+                                      id="name" 
+                                      data-pk="{{$proiect->id}}"
+                                      data-name="name"
+                                      data-url="{{ route('proiecte::x_edit_init_proiect') }}">111                                      
                                   </span>
-                                  <a href="#"><i class="glyphicon glyphicon-plus flux" title="Create proces de productie."></i></a>
-                              </td><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr>
+                                  <a href="#"><i class="glyphicon glyphicon-plus flux" title="Adauga o noua data generala"></i></a>
+                              </td>
+			               	
+			            </tr>
+			            <tr><td></td> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr>
 			            
 			            <tr>
 			                <th>Obiectivele proiectului:</th>
@@ -77,26 +74,39 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
+<div id="_token" class="hidden" data-token="{!! csrf_token() !!}"></div>
 
 
 @section('footer_scripts') 
-    <script>
-        $(document).ready(function() {  
+<script>
+$(document).ready(function() {  
+	console.log({{$proiect->id}});
+	$.fn.editable.defaults.params = function (params) {
+          params._token = $("#_token").data("token");
+          return params;
+    };
 
-    $('span.xedit-nume,span.xedit-test').css('cursor','pointer').editable({              
-        placement: 'top',
+    $.ajaxSetup({
+          headers: {
+              'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+          }
+    });
 
-      });
-        $(".flux").on('click', function(){
-              var row_id = $(this).closest('[data-id]').data('id');
-              var row_number = $(this).closest('tr').index();
+    $('span.xedit-data_initierii,span.xedit-name').css('cursor','pointer').editable({              
+        placement: 'bottom',
+     });
 
-              $('<tr data-id='+row_id+' class="flux" data-flux="1"><td class="text-center details-control-flux"></td></tr>').insertAfter($(this).closest('tr'));
+    $(".flux").on('click', function(){
+    	 
+          var row_id = $(this).closest('[data-id]').data('id');
+          var row_number = $(this).closest('tr').index();
 
-  });
-  });
+          $('<tr><td class="text-center details-control-flux"> <span  class="xedit-name"id="name" data-pk="{{$proiect->id}}"data-name="name"data-url="{{ route('proiecte::x_edit_init_proiect') }}"111</span></td></tr>').insertAfter($(this).closest('tr'));
+           $('span.xedit-name').css('cursor','pointer').editable({              
+        placement: 'bottom',
+     });
+	});
 
-
-
-        </script>
+});
+</script>
 @stop 
