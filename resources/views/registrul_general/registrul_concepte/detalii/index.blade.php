@@ -1,7 +1,7 @@
 @extends('layouts.plane')
 
 @section('title')
-  Registrul concepte  
+ <h2 class="page-header">Registrul concepte <a href="{{route('registrul-general::list') }}" class="pull-right btn btn-default btn-ms button-widtht"><i class="fa fa-angle-left"></i> &nbsp;Înapoi</a></h2>
 @stop
 
 @section('content')
