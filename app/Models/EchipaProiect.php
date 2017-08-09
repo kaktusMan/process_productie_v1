@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\OptionsArray;
 
-class InitProiect extends Model
+class EchipaProiect extends Model
 {
 	use SoftDeletes;
 	use OptionsArray;
 
-	protected $table = 'initiere_proiecte';
+	protected $table = 'echipa_proiect';
 
 	public function proiect(){
 		return $this->belongsTo('App\Models\Proiect', 'proiect_id');

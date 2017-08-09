@@ -15,7 +15,7 @@ class CreateRegistrulConcepteTable extends Migration
     {
         Schema::create('registrul_concepte', function(Blueprint $t){
             $t->increments('id');
-            $t->dateTime('data_introducerii')
+            $t->string('data_introducerii');
             $t->string('segment_asociat');
             $t->string('cod_concept');
             $t->string('formare_concept');
@@ -34,7 +34,7 @@ class CreateRegistrulConcepteTable extends Migration
             $t->float('estimare_buget')->nullable();
             $t->string('potentialii_clienti')->nullable();
 
-            $t->timestemps();
+            $t->timestamps();
             $t->softDeletes();
 
         });

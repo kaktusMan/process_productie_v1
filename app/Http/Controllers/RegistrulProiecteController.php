@@ -10,12 +10,26 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\Tools;
 use App\Models\Proiect;
 use App\Models\InitProiect;
+use App\Models\ObiectivProiect;
+use App\Models\ConstrangereProiect;
+use App\Models\ModFinantare;
+
+use App\Models\SolutieProiect;
+use App\Models\JustificareSolutieProiect;
+use App\Models\IndicatorMonitorizare;
+use App\Models\DepartamentSuportProiect;
+use App\Models\EchipaProiect;
+use App\Models\LivrabilaProiect;
+use App\Models\ProcesAferentProiectului;
+
+
+
 
 class RegistrulProiecteController extends Controller
 {   
-    public function index(){ 
+    public function index(){  
         return view('registrul_general.registrul_proiecte.index', [
-            'proiecte' => Proiect::all()
+            'proiecte' => Proiect::with('dateGenerale')->with('obiective')->with('constringeri')->with('finantari')->with('solutii')->with('justificariSolutii')->with('indicatoriMonitorizare')->with('departamenteSuport')->with('echipaProiect')->with('livrabileProiect')->with('proceseAferenteProiectului')->get()
         ]);
     }
 
@@ -65,17 +79,17 @@ class RegistrulProiecteController extends Controller
 
         if ($proiect->save()) 
         {   
-            return redirect()->route('proiecte::list')->with('alert-success', 'Idee salvata cu succes');
+            return redirect()->route('proiecte::list')->with('alert-success', 'Proiect salvat cu succes');
         } 
         else
         {
-            return redirect()->route('proiecte::list')->with('alert-danger', 'Eroare salvare idee');
+            return redirect()->route('proiecte::list')->with('alert-danger', 'Eroare salvare proiect');
         }
     }
  
     public function edit(Proiect $proiect) 
     {   
-        if (is_null($proiect)) { return redirect(route('proiecte::list'))->with('alert-danger', 'Ideea nu exista'); }
+        if (is_null($proiect)) { return redirect(route('proiecte::list'))->with('alert-danger', 'Proiectul nu exista'); }
 
         return view('registrul_general.registrul_proiecte.add_edit', [
             'proiect' => $proiect, 
@@ -84,7 +98,7 @@ class RegistrulProiecteController extends Controller
             'validare_pt_dezvoltare' => Tools::validare_pt_dezvoltare(),
             'prioritate_de_dezvoltare' => Tools::prioritate_de_dezvoltare(),
             'stadiul_inceperii' => Tools::stadiul_inceperii(),
-            'form_title' => 'Editare idee',
+            'form_title' => 'Editare proiect',
             'form_route' => route('proiecte::update', ['id' => $proiect->id])
         ]);
     }
@@ -94,7 +108,7 @@ class RegistrulProiecteController extends Controller
     	$validation = $this->validateRequest($request, $proiect);
         if ($validation) { return $validation; }
 
-        if (is_null($proiect)) { return redirect(route('proiecte::list'))->with('alert-danger', 'Ideea nu exista'); }
+        if (is_null($proiect)) { return redirect(route('proiecte::list'))->with('alert-danger', 'Proiectul nu exista'); }
 
         $proiect->data_adaugarii = $request->input('data_adaugarii');
         $proiect->nume = $request->input('nume');
@@ -121,25 +135,25 @@ class RegistrulProiecteController extends Controller
 
         if ($proiect->save()) 
         {   
-            return redirect()->route('proiecte::list')->with('alert-success', 'Ideea salvata cu succes');
+            return redirect()->route('proiecte::list')->with('alert-success', 'Proiect salvat cu succes');
         } 
         else
         {
-            return redirect()->route('proiecte::list')->with('alert-danger', 'Eroare salvare idee');
+            return redirect()->route('proiecte::list')->with('alert-danger', 'Eroare salvare proiect');
         }
     }
 
     public function delete(Proiect $proiect) 
     {       
-        if (is_null($proiect)) { return redirect()->route('proiecte::list')->with('alert-danger', 'Ideea nu exista'); }
+        if (is_null($proiect)) { return redirect()->route('proiecte::list')->with('alert-danger', 'Proiectul nu exista'); }
 
         if ($proiect->delete()) 
         {
-            return redirect()->route('proiecte::list')->with('alert-success', 'Ideea eliminata cu succes');
+            return redirect()->route('proiecte::list')->with('alert-success', 'Proiect eliminat cu succes');
         } 
         else
         {
-            return redirect()->route('proiecte::list')->with('alert-danger', 'Eroare eliminare idee');
+            return redirect()->route('proiecte::list')->with('alert-danger', 'Eroare eliminare proiect');
         }
     }
 
@@ -154,7 +168,7 @@ class RegistrulProiecteController extends Controller
 
     public function createDetalii(Request $request, Proiect $proiect){
 
-        if (is_null($proiect)) { return redirect(route('proiecte::list'))->with('alert-danger', 'Conceptul nu exista'); }
+        if (is_null($proiect)) { return redirect(route('proiecte::list'))->with('alert-danger', 'Proiectul nu exista'); }
         return view('registrul_general.registrul_proiecte.detalii.add_edit', [
             'proiect' => $proiect, 
             'segmente_de_asociere' => Tools::segmente_de_asociere(),
@@ -170,21 +184,70 @@ class RegistrulProiecteController extends Controller
 
     public function initProjectDateGenerale()
     {   
-
         $pk = Input::get('pk');
         $name = Input::get('name');
         $value = Input::get('value');
-        
-        if(InitProiect::find($pk)){
-            InitProiect::where('id', $pk)->update([$name => $value]);
+            
+
+        if(InitProiect::where('id', $name)->first()){
+            InitProiect::where('id', $name)->update(['nume' => $value]);
         }else{
             $init_pr = new InitProiect();
             $init_pr->proiect_id = $pk;
-            $init_pr->name = $value;
+            $init_pr->nume = $value;
             $init_pr->save();
         }
     }
 
+    public function initProjectObiective(){
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+            
+
+        if(ObiectivProiect::where('id', $name)->first()){
+            ObiectivProiect::where('id', $name)->update(['nume' => $value]);
+        }else{
+            $init_pr = new ObiectivProiect();
+            $init_pr->proiect_id = $pk;
+            $init_pr->nume = $value;
+            $init_pr->save();
+        }   
+    }
+
+    public function initProjectConstrangeri(){
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+            
+
+        if(ConstrangereProiect::where('id', $name)->first()){
+            ConstrangereProiect::where('id', $name)->update(['nume' => $value]);
+        }else{
+            $init_pr = new ConstrangereProiect();
+            $init_pr->proiect_id = $pk;
+            $init_pr->nume = $value;
+            $init_pr->save();
+        }   
+    }
+
+    public function initProjectFinantari(){
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+            
+
+        if(ModFinantare::where('id', $name)->first()){
+            ModFinantare::where('id', $name)->update(['nume' => $value]);
+        }else{
+            $init_pr = new ModFinantare();
+            $init_pr->proiect_id = $pk;
+            $init_pr->nume = $value;
+            $init_pr->save();
+        }   
+    }
+    
+    
     public function setDataInitierii()
     {   
         $pk = Input::get('pk');
@@ -194,25 +257,142 @@ class RegistrulProiecteController extends Controller
         Proiect::where('id', $pk)->update(['data_initierii' => $value]);
     }
 
-    public function storeDetalii(Request $request,  Proiect $proiect)
-    {    
-        // $concept->ideea_de_baza = $request->input('ideea_de_baza');
-        // $concept->avantajele_aduse = $request->input('avantajele_aduse');
-        // $concept->impact = $request->input('impact');
-        // $concept->particularitati_concept = $request->input('particularitati_concept');
-        // $concept->infrastructura = $request->input('infrastructura');
-        // $concept->estimare_buget = $request->input('estimare_buget');
-        // $concept->potentialii_clienti = $request->input('potentialii_clienti');
-        // $concept->update();
+    public function initProjectScop()
+    {   
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        
+        Proiect::where('id', $pk)->update(['scop_proiect' => $value]);
+    }
+    
 
-        return redirect()->route('proiecte::detalii', ['id' => $proiect->id])->with('alert-success', 'Detalii concept salvate cu succes');
+    // desing solutii proiect
+     public function initProjectSolutii(){
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+            
+
+        if(SolutieProiect::where('id', $name)->first()){
+            SolutieProiect::where('id', $name)->update(['nume' => $value]);
+        }else{
+            $init_pr = new SolutieProiect();
+            $init_pr->proiect_id = $pk;
+            $init_pr->nume = $value;
+            $init_pr->save();
+        }   
     }
 
+     public function initProjectJustificariSolutii(){
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+            
+
+        if(JustificareSolutieProiect::where('id', $name)->first()){
+            JustificareSolutieProiect::where('id', $name)->update(['nume' => $value]);
+        }else{
+            $init_pr = new JustificareSolutieProiect();
+            $init_pr->proiect_id = $pk;
+            $init_pr->nume = $value;
+            $init_pr->save();
+        }   
+    } 
+
+    public function indicatoriMonitorizare(){
+
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        $id = Input::get('proiect_id');
 
 
 
+        if (IndicatorMonitorizare::where('str_indicator', $pk)->first()) {
+            IndicatorMonitorizare::where('str_indicator', $pk)->update([$name => $value]);
+        }else{
+            $proces = new IndicatorMonitorizare;
+            $proces->str_indicator = $pk;
+            $proces->$name = $value;
+            $proces->proiect_id = $id;
+            $proces->save(); 
+        } 
+    }
 
+    public function departamenteSuport(){
 
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        $id = Input::get('proiect_id');
+
+        if (DepartamentSuportProiect::where('str_indicator', $pk)->first()) {
+            DepartamentSuportProiect::where('str_indicator', $pk)->update([$name => $value]);
+        }else{
+            $proces = new DepartamentSuportProiect;
+            $proces->str_indicator = $pk;
+            $proces->$name = $value;
+            $proces->proiect_id = $id;
+            $proces->save(); 
+        } 
+    }
+
+    public function echipaProiect(){
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+            
+
+        if(EchipaProiect::where('id', $name)->first()){
+            EchipaProiect::where('id', $name)->update(['nume' => $value]);
+        }else{
+            $init_pr = new EchipaProiect();
+            $init_pr->proiect_id = $pk;
+            $init_pr->nume = $value;
+            $init_pr->save();
+        }   
+    }
+
+     public function livrabileProiect(){
+
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        $id = Input::get('proiect_id');
+
+        if (LivrabilaProiect::where('str_indicator', $pk)->first()) {
+            LivrabilaProiect::where('str_indicator', $pk)->update([$name => $value]);
+        }else{
+            $proces = new LivrabilaProiect;
+            $proces->str_indicator = $pk;
+            $proces->$name = $value;
+            $proces->proiect_id = $id;
+            $proces->save(); 
+        } 
+    }
+
+    public function proceseAferenteProiectului(){
+
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        $id = Input::get('proiect_id');
+
+        if (ProcesAferentProiectului::where('str_indicator', $pk)->first()) {
+            ProcesAferentProiectului::where('str_indicator', $pk)->update([$name => $value]);
+        }else{
+            $proces = new ProcesAferentProiectului;
+            $proces->str_indicator = $pk;
+            $proces->$name = $value;
+            $proces->proiect_id = $id;
+            $proces->save(); 
+        } 
+    }
+    
+    
+
+    
 
     protected function validateRequest($request, $proiect = null) 
     {	

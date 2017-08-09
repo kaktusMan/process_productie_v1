@@ -17,15 +17,14 @@
   <div class="col-lg-12">
     <ul class="nav nav-tabs">
       <li class="active">
-        <a  href="#1" data-toggle="tab">Initierea proiectului</a>
-      </li>
-      <li><a href="#2" data-toggle="tab">Design-ul solutiilor</a>
-      </li>
+        <a  href="#1" data-toggle="tab">Initierea proiectului</a></li>
+      <li><a href="#2" data-toggle="tab">Design-ul solutiilor</a></li>
       <li><a href="#3" data-toggle="tab">Indicatori de monitorizare</a>
       <li><a href="#4" data-toggle="tab">Departamente suport necesare</a>
       <li><a href="#5" data-toggle="tab">Planificarea proiectului</a>
-      <li><a href="#6" data-toggle="tab">Planificarea proiectului</a>
-      <li><a href="#7" data-toggle="tab">Implementarea proiectului</a>
+      <li><a href="#6" data-toggle="tab">Implementarea proiectului</a>
+
+
       </li>
     </ul>
     <div class="tab-content ">
@@ -43,6 +42,15 @@
         <div class="tab-pane" id="3">
               @include('registrul_general.registrul_proiecte.detalii.indicatori_monitorizare')
         </div>
+        <div class="tab-pane" id="4">
+              @include('registrul_general.registrul_proiecte.detalii.departamente_suport')
+        </div>
+        <div class="tab-pane" id="5">
+              @include('registrul_general.registrul_proiecte.detalii.planificare_proiect')
+        </div>
+         <div class="tab-pane" id="6">
+              @include('registrul_general.registrul_proiecte.detalii.implementare_proiect')
+        </div> 
       </div>
   </div>
   </div>

@@ -15,7 +15,7 @@ class CreateRegistrulProiecteTable extends Migration
     {
         Schema::create('registrul_proiecte', function(Blueprint $t){
             $t->increments('id');
-            $t->dateTime('data_adaugarii');
+            $t->string('data_adaugarii');
             $t->string('nume');
             $t->string('cod');
             $t->string('segment_adresare');
@@ -29,19 +29,19 @@ class CreateRegistrulProiecteTable extends Migration
             $t->string('detalii');
             $t->string('business_unit');
             $t->string('societate_implementatoare');
-            $t->dateTime('termen_inceput');
-            $t->dateTime('testare_estimata');
-            $t->dateTime('testare_reala');
-            $t->dateTime('intr_in_prod_partiala_estimata');
-            $t->dateTime('intr_in_prod_partiala_reala');
-            $t->dateTime('intr_in_prod_completa_estimata');
-            $t->dateTime('intr_in_prod_completa_reala');
+            $t->string('termen_inceput');
+            $t->string('testare_estimata');
+            $t->string('testare_reala');
+            $t->string('intr_in_prod_partiala_estimata');
+            $t->string('intr_in_prod_partiala_reala');
+            $t->string('intr_in_prod_completa_estimata');
+            $t->string('intr_in_prod_completa_reala');
             $t->double('buget_estimat');
 
-            $t->string('data_initierii'); 
+            $t->string('data_initierii')->nullable(); 
+            $t->string('scop_proiect')->nullable(); 
 
-
-            $t->timestemps();
+            $t->timestamps();
             $t->softDeletes();
         });
     }

@@ -18,7 +18,7 @@
             </div>        
             <div class="panel panel-default">
               <div class="panel-heading">
-                  Lista proiecte
+                  Lista de proiecte
                   <div class="pull-right">   
                     <a href="{{ route('proiecte::create') }}"><i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i>&nbsp; Creare</a>                   
                   </div>
@@ -147,7 +147,7 @@
                       rightColumns: 1
                   },
                 "aoColumnDefs": [
-                    { 'bSortable': false, 'aTargets': [ 0 ] }
+                    { 'bSortable': false, 'aTargets': [ 24 ] }
                 ],
                 "language": {                
                     "url": '{{ URL::to("assets/js/plugins/dataTables/lang_json/romanian.json") }}'

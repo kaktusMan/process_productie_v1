@@ -11,7 +11,7 @@ class CreateRegistrulIdeiTable extends Migration
     {
         Schema::create('registrul_idei', function (Blueprint $t) {
             $t->increments('id');
-            $t->dateTime('data_introducerii')
+            $t->string('data_introducerii');
             $t->string('segment_asociat');
             $t->string('cod_idee');
             $t->string('formare_idee');
@@ -19,8 +19,8 @@ class CreateRegistrulIdeiTable extends Migration
             $t->string('tip_inovare');
             $t->string('status');
             $t->string('tip_prioritate');
-            $t->steing('stadiu');
-            $t->steing('detalii');
+            $t->string('stadiu');
+            $t->string('detalii');
             $t->timestamps();
             $t->softDeletes();   
         });

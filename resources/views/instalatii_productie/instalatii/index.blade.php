@@ -223,7 +223,7 @@
 
             $("#dataTables-instalatii").on('click', '.action-buttons a i.instalatii', function(){
              // alert(1230);
-              $count = {{$instalatie->id}};
+              $count = {{@$instalatie->id ? : 0}};
               $count1 = $count + $count1;
 
               var row_id = $(this).closest('[data-id]').data('id');
@@ -255,7 +255,7 @@
 
              $("#dataTables-instalatii").on('click', '.action-buttons a i.flux', function(){
 
-              $count = {{$flux->id}};
+              $count = {{@$flux->id ? : 0}};
               $count1 = $count + $count1;
 
               var row_id = $(this).closest('[data-id]').data('id');

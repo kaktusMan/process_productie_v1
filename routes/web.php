@@ -564,8 +564,28 @@ Route::group([
 	], function () {
 		
         Route::post('x_edit_data_initierii', 'RegistrulProiecteController@setDataInitierii')->name('x_edit_data_initierii');
-
         Route::post('x_edit_init_proiect', 'RegistrulProiecteController@initProjectDateGenerale')->name('x_edit_init_proiect');
+        Route::post('x_edit_init_proiect_obiective', 'RegistrulProiecteController@initProjectObiective')->name('x_edit_init_proiect_obiective');
+        Route::post('x_edit_init_proiect_constringeri', 'RegistrulProiecteController@initProjectConstrangeri')->name('x_edit_init_proiect_constringeri');
+
+        Route::post('x_edit_init_proiect_finantari', 'RegistrulProiecteController@initProjectFinantari')->name('x_edit_init_proiect_finantari');
+        Route::post('x_edit_init_proiect_scop_proiect', 'RegistrulProiecteController@initProjectScop')->name('x_edit_init_proiect_scop_proiect');
+        
+        // desing solutii
+        Route::post('x_edit_init_proiect_solutii', 'RegistrulProiecteController@initProjectSolutii')->name('x_edit_init_proiect_solutii');
+        Route::post('x_edit_init_proiect_justificari_solutii', 'RegistrulProiecteController@initProjectJustificariSolutii')->name('x_edit_init_proiect_justificari_solutii');
+
+        Route::post('x_edit_init_proiect_indicatori_monitorizare', 'RegistrulProiecteController@indicatoriMonitorizare')->name('x_edit_init_proiect_indicatori_monitorizare');
+
+        Route::post('x_edit_init_proiect_departamente_suport', 'RegistrulProiecteController@departamenteSuport')->name('x_edit_init_proiect_departamente_suport');
+
+        Route::post('x_edit_init_proiect_echipa', 'RegistrulProiecteController@echipaProiect')->name('x_edit_init_proiect_echipa');
+        
+        Route::post('x_edit_init_proiect_livrabile_proiect', 'RegistrulProiecteController@livrabileProiect')->name('x_edit_init_proiect_livrabile_proiect');
+
+        Route::post('x_edit_init_proiect_procese_aferente', 'RegistrulProiecteController@proceseAferenteProiectului')->name('x_edit_init_proiect_procese_aferente');
+        
+        
 
 		Route::get('/', 'RegistrulProiecteController@index')->name('list'); 
 		Route::get('creare', 'RegistrulProiecteController@create')->name('create');

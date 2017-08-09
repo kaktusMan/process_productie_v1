@@ -1,8 +1,3 @@
-<style>
-	.editableform .form-control{
-		width: 500px !important;
-	} 
-</style>
 <div class="row">
         <div class="col-lg-12">
             <div class="row">
@@ -14,120 +9,92 @@
             </div>        
             <div class="panel panel-default">
               <div class="panel-heading">
-               		Initierea proiectului
+               		Implementarea proiectului:
                </div>
                <div class="panel-body">
                   <div class="table-responsive">
-                    <table class="table table-bordered " id="registrul_proiecte_indicatori">
-                     	<tr>
-              	        <th style="vertical-align: inherit;width: 25%;">Data initierii 	proiectului:</th>
-		                	    <td class="text-center">
-                            <span style="width: 500px" class="xedit-data_initierii"
-                              id="data_initierii"
-                              data-type="date"
-                              data-viewformat="yyyy-mm-dd"
-                              data-pk="{{$proiect->id}}"
-                              data-name="data_initierii"
-                              data-url="{{ route('proiecte::x_edit_data_initierii') }}">{{$proiect->data_initierii}}    
-                            </span>
-                          </td>
-			           	    </tr>
-			                <tr>
-			                  <th  style="vertical-align: inherit;" rowspan="45">Date generale care au determinat nevoia proiectului:</th>
-			                  <td class="text-center"> 
-			                     <a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus date_generale" title="Adauga o noua data generala">COMPONENTA</i></a>
-                        </td>
-			                </tr>
-			                @foreach(@$proiect->dateGenerale as $data_generala)
-			                  <tr>
-				                  <td class="text-center">
-				            	      <span class="xedit-date_generale"
-                              id="name" 
-                              data-type="textarea"
-                              data-pk="{{$proiect->id}}"
-                              data-name="{{$data_generala->id}}"
-                              data-url="{{ route('proiecte::x_edit_init_proiect') }}">{{$data_generala->nume}}
-                            </span>
-	                       	</td> 
-                       	</tr>
-                      @endforeach
-                      <tr> <td style="display: none;">1</td></tr><td style="display: none;">2</td><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr>
-			                 
-                      <tr>
-                        <th  style="vertical-align: inherit;" rowspan="45">Obiectivele proiectului:</th>
-                        <td class="text-center"> 
-                          <a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus obiective" title="Adauga un nou obiectiv">COMPONENTA</i></a>
-                        </td>
-                      </tr>
-                      @foreach(@$proiect->obiective as $obiectiv)
-                        <tr>
-                          <td class="text-center">
-                            <span class="xedit-obiective"
-                              id="name" 
-                              data-type="textarea"
-                              data-pk="{{$proiect->id}}"
-                              data-name="{{$obiectiv->id}}"
-                              data-url="{{ route('proiecte::x_edit_init_proiect_obiective') }}">{{$obiectiv->nume}}
-                            </span>
-                          </td> 
-                        </tr>
-                      @endforeach
-                      <tr> <td style="display: none;">1</td></tr><td style="display: none;">2</td><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr>
-			              
-			               <tr>
-                        <th  style="vertical-align: inherit;" rowspan="45">Constrangerile proiectului:</th>
-                        <td class="text-center"> 
-                          <a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus constringeri" title="Adauga o noua constrangere">COMPONENTA</i></a>
-                        </td>
-                      </tr>
-                      @foreach(@$proiect->constringeri as $constringere)
-                        <tr>
-                          <td class="text-center">
-                            <span class="xedit-constringeri"
-                              id="name" 
-                              data-type="textarea"
-                              data-pk="{{$proiect->id}}"
-                              data-name="{{$constringere->id}}"
-                              data-url="{{ route('proiecte::x_edit_init_proiect_constringeri') }}">{{$constringere->nume}}
-                            </span>
-                          </td> 
-                        </tr>
-                      @endforeach
-                      <tr> <td style="display: none;">1</td></tr><td style="display: none;">2</td><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr>
+                    <table class="table table-bordered " id="implementarea_proiectelor">
+                    <tr>
+                    	<th style="vertical-align: inherit; text-align: center;" >"PACHETUL DE LUCRU (WORK PACKAGE - WP)"</th>
+                    	<th style="vertical-align: inherit; text-align: center;" >ACTIUNEA</th>
+                    	<th style="vertical-align: inherit; text-align: center;" >RESPONSABIL</th>
+                    	<th style="vertical-align: inherit; text-align: center;" >TERMEN LIMITA</th>
+                    	<th style="vertical-align: inherit; text-align: center;" >STADIU</th>
+                    	<th style="vertical-align: inherit; text-align: center;" >OBSERVATII</th>
+                    </tr>
 
-			            <tr>
-			                <th>Scopul proiectului:</th>
-			                <td class="text-center">
-                            <span class="xedit-scop_proiect"
-                              id="name" 
-                              data-type="textarea"
-                              data-pk="{{$proiect->id}}"
-                              data-name="scop_proiect"
-                              data-url="{{ route('proiecte::x_edit_init_proiect_scop_proiect') }}">{{$proiect->scop_proiect}}
-                            </span>
-                          </td>
-			            </tr> 
-                   <tr>
-                        <th  style="vertical-align: inherit;" rowspan="45">Modalitatea de finantare a proiectului:</th>
-                        <td class="text-center"> 
-                          <a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus finantari" title="Adauga un nou mod de finantare">COMPONENTA</i></a>
-                        </td>
-                      </tr>
-                      @foreach(@$proiect->finantari as $finantare)
-                        <tr>
-                          <td class="text-center">
-                            <span class="xedit-finantari"
-                              id="name" 
-                              data-type="textarea"
-                              data-pk="{{$proiect->id}}"
-                              data-name="{{$finantare->id}}"
-                              data-url="{{ route('proiecte::x_edit_init_proiect_finantari') }}">{{$finantare->nume}}
-                            </span>
-                          </td> 
-                        </tr>
-                      @endforeach
+                     		<tr>
+                     			<td class="text-center" colspan="6"> 
+			                     <a href="#" style="color: red; font-size: 18px; " ><i style="font-weight: 700;" class="glyphicon glyphicon-plus date_generale" title="Adauga un nou pachet de lucru">COMPONENTA</i></a>
+			                     </td>
+                     		</tr>
+
+
+			                <tr>
+			                 <th  style="vertical-align: inherit;" rowspan="45">
+				            	      <span class="xedit-date_generale"
+			                              id="name" 
+			                              data-type="textarea"
+			                              data-pk="{{$proiect->id}}"
+			                              data-name="{{$proiect->id}}"
+			                              data-url="{{ route('proiecte::x_edit_init_proiect') }}">{{$proiect->nume}}
+			                            </span>
+			                 </th>
+			                 <td class="text-center" colspan="5"> 
+			                     <a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus date_generale" title="Adauga o noua data generala">COMPONENTA</i></a>
+	                        </td>
+			                </tr>
+			                {{-- @foreach(@$proiect->dateGenerale as $proiect) --}}
+			                  <tr width="100%">
+				                 <td class="text-center">
+				            	      <span class="xedit-date_generale"
+			                              id="name" 
+			                              data-type="textarea"
+			                              data-pk="{{$proiect->id}}"
+			                              data-name="{{$proiect->id}}"
+			                              data-url="{{ route('proiecte::x_edit_init_proiect') }}">{{$proiect->nume}}
+			                            </span>
+	                       		</td> 
+	                       		<td class="text-center">
+				            	      <span class="xedit-date_generale"
+			                              id="name" 
+			                              data-type="textarea"
+			                              data-pk="{{$proiect->id}}"
+			                              data-name="{{$proiect->id}}"
+			                              data-url="{{ route('proiecte::x_edit_init_proiect') }}">{{$proiect->nume}}
+			                            </span>
+	                       		</td> 
+	                       		<td class="text-center">
+				            	      <span class="xedit-date_generale"
+			                              id="name" 
+			                              data-type="textarea"
+			                              data-pk="{{$proiect->id}}"
+			                              data-name="{{$proiect->id}}"
+			                              data-url="{{ route('proiecte::x_edit_init_proiect') }}">{{$proiect->nume}}
+			                            </span>
+	                       		</td>  
+	                       		<td class="text-center">
+				            	      <span class="xedit-date_generale"
+			                              id="name" 
+			                              data-type="textarea"
+			                              data-pk="{{$proiect->id}}"
+			                              data-name="{{$proiect->id}}"
+			                              data-url="{{ route('proiecte::x_edit_init_proiect') }}">{{$proiect->nume}}
+			                            </span>
+	                       		</td> 
+	                       		<td class="text-center">
+				            	      <span class="xedit-date_generale"
+			                              id="name" 
+			                              data-type="textarea"
+			                              data-pk="{{$proiect->id}}"
+			                              data-name="{{$proiect->id}}"
+			                              data-url="{{ route('proiecte::x_edit_init_proiect') }}">{{$proiect->nume}}
+			                            </span>
+	                       		</td> 
+                       	</tr>
+                      {{-- @endforeach --}}
                       <tr> <td style="display: none;">1</td></tr><td style="display: none;">2</td><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr>
-   
+                     
                       </table>
                    </div>
                    <!-- /.table-responsive -->
