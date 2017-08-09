@@ -87,9 +87,9 @@
                         <tbody>                             
                           @foreach ($proiecte as $proiect)
                             <tr data-id="{{ $proiect->id }}"> 
-                              <td class="text-center">{{ $proiect->id }}</td>
-                              <td class="text-center">{{ $proiect->data_adaugarii }}</td>
-                              <td class="text-center">{{ $proiect->nume }}</td>
+                              <td class="text-center" style="vertical-align: inherit;">{{ $proiect->id }}</td>
+                              <td class="text-center" style="vertical-align: inherit;">{{ $proiect->data_adaugarii }}</td>
+                              <td class="text-center" style="vertical-align: inherit;">{{ $proiect->nume }}</td>
                               <td class="text-center">{{ $proiect->cod }}</td>
                               <td class="text-center">{{ $proiect->segment_adresare }}</td>
                               <td class="text-center">{{ $proiect->board }}</td>
@@ -114,7 +114,7 @@
                               <td class="text-center">{{ $proiect->intr_in_prod_completa_reala }}</td>
                               <td class="text-center">{{ $proiect->buget_estimat }}</td>
 
-                              <td class="center action-buttons">
+                              <td class="center action-buttons" style="vertical-align: inherit;">
                                 <a href="{{ route('proiecte::edit',['id' =>$proiect->id]) }}" alt="Editează" title="Editează"><i class="fa fa-pencil-square-o" title="Editeaza"></i></a>
                                 <a href="#" alt="Sterge" title="Sterge" data-toggle="modal" data-target=".delete-modal-{{ $proiect->id }}"><i class="fa fa-trash-o"></i></a>                           
                                         @include('partials.delete_modal', ['id' => $proiect->id, 'item' => $proiect->cod_proiect, 'form_route'=> 'proiecte::delete']) 
