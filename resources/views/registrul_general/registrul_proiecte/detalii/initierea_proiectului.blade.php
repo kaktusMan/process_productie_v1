@@ -154,7 +154,7 @@ $(document).ready(function() {
           }
     });
 
-    pachete_lucru_detalii();
+    pachete_lucru_detalii('abc');
 
 
     $('span.xedit-data_initierii,span.xedit-date_generale, span.xedit-obiective,span.xedit-constringeri,span.xedit-scop_proiect, span.xedit-finantari,span.xedit-solutii,span.xedit-justificari_solutii,span.xedit-indicatori_monitorizare,span.xedit-departamente_suport, span.xedit-echipa, span.xedit-livrabile_proiect, span.xedit-procese_aferente, span.xedit-pachete_lucru,span.xedit-pachete_lucru_detalii ').css('cursor','pointer').editable({              
@@ -379,15 +379,14 @@ $(document).ready(function() {
               $count = {{$proiect->id}};
               $count1 = $count + $count1;
 
-              $row_id = $(this).closest('[data-id]').data('id');
+               $row_id = $(this).closest('[data-id]').data('id');
               $row_number = $(this).closest('tr').index();
-
               $test = makeid();
-              console.log($test);
 
-              $('<tr data-id='+$row_id+' class="pachete_lucru" data-pachete_lucru="'+$test+'"><td class="text-center" rowspan="45"><a class="pachete_lucru" href="#" data-name="nume" data-pk="{{$proiect->id}}"></a></td><td class="text-center" colspan="5"><a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus pachete_lucru_detalii" title="Adauga o noua data generala">COMPONENTA</i></a></td></tr><tr> <td style="display: none;">1</td></tr><td style="display: none;">2</td><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr>').insertAfter($(this).closest('tr'));
 
-              pachete_lucru_detalii();
+              $('<tr data-id='+$row_id+' class="pachete_lucru" data-pachete_lucru="'+$test+'"><td rowspan="45"><a class="pachete_lucru" href="#" data-name="nume" data-pk="'+$test+'"></a></td><td class="text-center" colspan="5"><a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus pachete_lucru_detalii" title="Adauga o noua data generala">COMPONENTA</i></a></td></tr><tr> <td style="display: none;">1</td></tr><td style="display: none;">2</td><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr>').insertAfter($(this).closest('tr'));
+
+              pachete_lucru_detalii($test);
 
               $('#pachet_lucru a.pachete_lucru').editable({
                 type: 'text',
@@ -403,18 +402,39 @@ $(document).ready(function() {
 
             });
 
-        function pachete_lucru_detalii(){
+        function pachete_lucru_detalii($test123){
+          
            $(".pachete_lucru_detalii").on('click', function(){
+              // console.log($test123);
+                
+                 var url_delete = '{{ route('proiecte::pachete_de_lucru') }}'; 
 
-              $count = {{$proiect->id}};
+                 if ($test123 != 'abc') {
+                    $.ajax({
+                      type: "POST",
+                      url : url_delete,
+                      data : {
+                         "_token": $('meta[name="_token"]').attr('content'),
+                          "data": $test123
+                      },
+                      success : function(data){     
+                        console.log(data)
+                          $(this).closest('tr').attr("data-id", data);
+                      }
+                  });
+                 }else{
+                    $row_id = $(this).closest('[data-id]').data('id');
+                 }  
+
+
+
+                $count = {{$proiect->id}};
                 $count1 = $count + $count1;
 
-                $row_id = $(this).closest('[data-id]').data('id');
-                console.log($row_id);
                 $row_number = $(this).closest('tr').index();
 
+                // $(this).closest('tr').css('background-color', 'red');
                 $test = makeid();
-                console.log($test);
 
                 $('<tr data-id='+$row_id+' class="pachete_lucru_detalii" data-pachete_lucru_detalii="'+$test+'"><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="text" data-name="actiune" data-pk="'+$test+'"></a></td><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="text" data-name="responsabil" data-pk="'+$test+'"></a></td><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="date" data-viewformat="yyyy-mm-dd" data-name="termen_limita" data-pk="'+$test+'"></a></td><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="select" data-name="stadiu" data-pk="'+$test+'"></a></td><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="text" data-name="observatii" data-pk="'+$test+'"></a></td></tr>').insertAfter($(this).closest('tr'));
 

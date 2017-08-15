@@ -398,20 +398,23 @@ class RegistrulProiecteController extends Controller
         $pk = Input::get('pk');
         $name = Input::get('name');
         $value = Input::get('value');
-            
+
+        $id = Input::get('proiect_id');
+
 
         if(PachetDeLucru::where('id', $name)->first()){
             PachetDeLucru::where('id', $name)->update(['nume' => $value]);
         }else{
             $init_pr = new PachetDeLucru();
-            $init_pr->proiect_id = $pk;
+            $init_pr->proiect_id = $id;
+            
+            $init_pr->str_indicator = $pk;
+
+
             $init_pr->nume = $value;
             $init_pr->save();
         }   
     }
-
-
-    
 
     public function pacheteDeLucruDetalii(){
         $pk = Input::get('pk');
@@ -429,7 +432,11 @@ class RegistrulProiecteController extends Controller
             $proces->save(); 
         } 
     }
+    public function getPachet(Request $request){
+        $response = PachetDeLucru::where('str_indicator', $request->data)->first();
+        return  $response->id;
 
+    }
     
 
     protected function validateRequest($request, $proiect = null) 

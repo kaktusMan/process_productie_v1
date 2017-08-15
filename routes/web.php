@@ -589,6 +589,8 @@ Route::group([
 
         Route::post('x_edit_init_pachete_de_lucru_detalii', 'RegistrulProiecteController@pacheteDeLucruDetalii')->name('x_edit_init_pachete_de_lucru_detalii');
 
+        Route::post('pachete_de_lucru', 'RegistrulProiecteController@getPachet')->name('pachete_de_lucru');
+
         
         
 
