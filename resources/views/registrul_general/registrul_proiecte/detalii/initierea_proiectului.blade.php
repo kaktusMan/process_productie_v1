@@ -421,7 +421,7 @@ $(document).ready(function() {
 
 
                 $('#pachet_lucru a.pachete_lucru_detalii').editable({
-                 source: ['Finalizat','Neincaput','InLucru'],
+                 source: ['Finalizat','Neinceput','InLucru'],
                   id: $row_id, 
                   url: '{{ route('proiecte::x_edit_init_pachete_de_lucru_detalii') }}',
                   params: function(params) {   
@@ -444,7 +444,7 @@ $(document).ready(function() {
          $('span.xedit-pachete_lucru_detalii').css('cursor','pointer').editable({
             type: 'select',
             placement: 'top',
-            source: ['Finalizat','Neincaput','InLucru']
+            source: ['Finalizat','Neinceput','InLucru']
         });
 
 

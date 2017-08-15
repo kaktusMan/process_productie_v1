@@ -76,7 +76,7 @@
   	                       		<td class="text-center">
   				            	      <span class="xedit-pachete_lucru_detalii"
   			                              data-type="select"
-                                     data-source= ["Finalizat","Neincaput","Inlucru"]
+                                     data-source= ["Finalizat","Neinceput","Inlucru"]
   			                              data-pk="{{$pachet->str_indicator}}"
                                       data-id="{{$pachet->id}}"
                                       data-name="stadiu"
