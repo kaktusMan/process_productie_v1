@@ -421,7 +421,7 @@ class RegistrulProiecteController extends Controller
         $name = Input::get('name');
         $value = Input::get('value');
         $id = Input::get('pachet_de_lucru_id');
-        return $id;
+     
         if (PachetDeLucruDetalii::where('str_indicator', $pk)->first()) {
             PachetDeLucruDetalii::where('str_indicator', $pk)->update([$name => $value]);
         }else{
