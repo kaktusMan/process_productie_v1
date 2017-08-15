@@ -385,9 +385,9 @@ $(document).ready(function() {
               $test = makeid();
               console.log($test);
 
-              $('<tr data-id='+$row_id+' class="pachete_lucru" data-pachete_lucru="'+$test+'"><td class="text-center"><a class="pachete_lucru" href="#" data-name="nume" data-pk="{{$proiect->id}}"></a></td><td class="text-center" colspan="5"><a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus pachete_lucru_detalii" title="Adauga o noua data generala">COMPONENTA</i></a></td></tr>').insertAfter($(this).closest('tr'));
+              $('<tr data-id='+$row_id+' class="pachete_lucru" data-pachete_lucru="'+$test+'"><td class="text-center" rowspan="45"><a class="pachete_lucru" href="#" data-name="nume" data-pk="{{$proiect->id}}"></a></td><td class="text-center" colspan="5"><a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus pachete_lucru_detalii" title="Adauga o noua data generala">COMPONENTA</i></a></td></tr><tr> <td style="display: none;">1</td></tr><td style="display: none;">2</td><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr> </tr><tr>').insertAfter($(this).closest('tr'));
 
-              // pachete_lucru_detalii();
+              pachete_lucru_detalii();
 
               $('#pachet_lucru a.pachete_lucru').editable({
                 type: 'text',
