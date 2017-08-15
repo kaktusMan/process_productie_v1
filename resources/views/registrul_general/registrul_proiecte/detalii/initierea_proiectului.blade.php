@@ -417,15 +417,17 @@ $(document).ready(function() {
                          "_token": $('meta[name="_token"]').attr('content'),
                           "data": $test123
                       },
-                      success : function(data){     
-                        console.log(data)
-                          $(this).closest('tr').attr("data-id", data);
+                      success : function(data){  
+                        $row_id = data;
+
                       }
                   });
-                 }else{
-                    $row_id = $(this).closest('[data-id]').data('id');
-                 }  
 
+                 }else{
+
+                    $row_id = $(this).closest('[data-id]').data('id');
+                    
+                 }  
 
 
                 $count = {{$proiect->id}};
