@@ -154,7 +154,10 @@ $(document).ready(function() {
           }
     });
 
-    $('span.xedit-data_initierii,span.xedit-date_generale, span.xedit-obiective,span.xedit-constringeri,span.xedit-scop_proiect, span.xedit-finantari,span.xedit-solutii,span.xedit-justificari_solutii,span.xedit-indicatori_monitorizare,span.xedit-departamente_suport, span.xedit-echipa, span.xedit-livrabile_proiect, span.xedit-procese_aferente').css('cursor','pointer').editable({              
+    pachete_lucru_detalii();
+
+
+    $('span.xedit-data_initierii,span.xedit-date_generale, span.xedit-obiective,span.xedit-constringeri,span.xedit-scop_proiect, span.xedit-finantari,span.xedit-solutii,span.xedit-justificari_solutii,span.xedit-indicatori_monitorizare,span.xedit-departamente_suport, span.xedit-echipa, span.xedit-livrabile_proiect, span.xedit-procese_aferente, span.xedit-pachete_lucru,span.xedit-pachete_lucru_detalii ').css('cursor','pointer').editable({              
         placement: 'bottom',
      });
 
@@ -371,13 +374,77 @@ $(document).ready(function() {
 
             });
 
-            
+        $(".pachete_lucru").on('click', function(){
+             // alert(1230);
+              $count = {{$proiect->id}};
+              $count1 = $count + $count1;
 
+              $row_id = $(this).closest('[data-id]').data('id');
+              $row_number = $(this).closest('tr').index();
+
+              $test = makeid();
+              console.log($test);
+
+              $('<tr data-id='+$row_id+' class="pachete_lucru" data-pachete_lucru="'+$test+'"><td class="text-center"><a class="pachete_lucru" href="#" data-name="nume" data-pk="{{$proiect->id}}"></a></td><td class="text-center" colspan="5"><a href="#" style="color: green; font-size: 18px;"><i class="glyphicon glyphicon-plus pachete_lucru_detalii" title="Adauga o noua data generala">COMPONENTA</i></a></td></tr>').insertAfter($(this).closest('tr'));
+
+              // pachete_lucru_detalii();
+
+              $('#pachet_lucru a.pachete_lucru').editable({
+                type: 'text',
+                id: $count1, 
+                url: '{{ route('proiecte::x_edit_init_pachete_de_lucru') }}',
+                params: function(params) {   
+                  // date[]
+                  params['proiect_id'] = $count;
+
+                  return params;                  
+                }
+              });  
+
+            });
+
+        function pachete_lucru_detalii(){
+           $(".pachete_lucru_detalii").on('click', function(){
+
+              $count = {{$proiect->id}};
+                $count1 = $count + $count1;
+
+                $row_id = $(this).closest('[data-id]').data('id');
+                console.log($row_id);
+                $row_number = $(this).closest('tr').index();
+
+                $test = makeid();
+                console.log($test);
+
+                $('<tr data-id='+$row_id+' class="pachete_lucru_detalii" data-pachete_lucru_detalii="'+$test+'"><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="text" data-name="actiune" data-pk="'+$test+'"></a></td><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="text" data-name="responsabil" data-pk="'+$test+'"></a></td><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="date" data-viewformat="yyyy-mm-dd" data-name="termen_limita" data-pk="'+$test+'"></a></td><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="select" data-name="stadiu" data-pk="'+$test+'"></a></td><td class="text-center"><a class="pachete_lucru_detalii" href="#" data-type="text" data-name="observatii" data-pk="'+$test+'"></a></td></tr>').insertAfter($(this).closest('tr'));
+
+
+
+                $('#pachet_lucru a.pachete_lucru_detalii').editable({
+                 source: ['Finalizat','Neincaput','InLucru'],
+                  id: $row_id, 
+                  url: '{{ route('proiecte::x_edit_init_pachete_de_lucru_detalii') }}',
+                  params: function(params) {   
+                    // date[]
+                    params['pachet_de_lucru_id'] = $row_id;
+
+                    return params;                  
+                  }
+                }); 
+
+           });  
+        }
             
         $('span.xedit-procese_aferente').css('cursor','pointer').editable({
             type: 'select',
             placement: 'top',
             source: ['Aproba','Realizatorul','Consultant', 'Informat']
+        });
+
+         $('span.xedit-pachete_lucru_detalii').css('cursor','pointer').editable({
+            type: 'select',
+            placement: 'top',
+            source: ['Finalizat','Neincaput','InLucru']
         });
 
 

@@ -585,6 +585,11 @@ Route::group([
 
         Route::post('x_edit_init_proiect_procese_aferente', 'RegistrulProiecteController@proceseAferenteProiectului')->name('x_edit_init_proiect_procese_aferente');
         
+        Route::post('x_edit_init_pachete_de_lucru', 'RegistrulProiecteController@pacheteDeLucru')->name('x_edit_init_pachete_de_lucru');
+
+        Route::post('x_edit_init_pachete_de_lucru_detalii', 'RegistrulProiecteController@pacheteDeLucruDetalii')->name('x_edit_init_pachete_de_lucru_detalii');
+
+        
         
 
 		Route::get('/', 'RegistrulProiecteController@index')->name('list'); 

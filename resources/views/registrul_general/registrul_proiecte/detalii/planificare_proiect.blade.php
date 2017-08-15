@@ -85,7 +85,7 @@
 
                   <table class="table table-bordered " id="procese_aferente">
                    <tr class="text-center">
-                      <td style="border-left: 1px solid white;` border-top: 1px solid white;"></td>
+                      <td style="border-left: 1px solid white; border-top: 1px solid white;"></td>
                       <td>Procese aferente proiectului</td>
                       <td>Responsabil Board</td>
                       <td>Manger Proiect</td>

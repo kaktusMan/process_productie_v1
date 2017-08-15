@@ -22,14 +22,17 @@ use App\Models\EchipaProiect;
 use App\Models\LivrabilaProiect;
 use App\Models\ProcesAferentProiectului;
 
+use App\Models\PachetDeLucru;
+use App\Models\PachetDeLucruDetalii;
+
 
 
 
 class RegistrulProiecteController extends Controller
 {   
-    public function index(){  
+    public function index(){ 
         return view('registrul_general.registrul_proiecte.index', [
-            'proiecte' => Proiect::with('dateGenerale')->with('obiective')->with('constringeri')->with('finantari')->with('solutii')->with('justificariSolutii')->with('indicatoriMonitorizare')->with('departamenteSuport')->with('echipaProiect')->with('livrabileProiect')->with('proceseAferenteProiectului')->get()
+            'proiecte' => Proiect::with('dateGenerale')->with('obiective')->with('constringeri')->with('finantari')->with('solutii')->with('justificariSolutii')->with('indicatoriMonitorizare')->with('departamenteSuport')->with('echipaProiect')->with('livrabileProiect')->with('proceseAferenteProiectului')->with(['pacheteDeLucru.detaliiPachet'])->get()
         ]);
     }
 
@@ -373,7 +376,6 @@ class RegistrulProiecteController extends Controller
     }
 
     public function proceseAferenteProiectului(){
-
         $pk = Input::get('pk');
         $name = Input::get('name');
         $value = Input::get('value');
@@ -391,6 +393,42 @@ class RegistrulProiecteController extends Controller
     }
     
     
+
+    public function pacheteDeLucru(){
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+            
+
+        if(PachetDeLucru::where('id', $name)->first()){
+            PachetDeLucru::where('id', $name)->update(['nume' => $value]);
+        }else{
+            $init_pr = new PachetDeLucru();
+            $init_pr->proiect_id = $pk;
+            $init_pr->nume = $value;
+            $init_pr->save();
+        }   
+    }
+
+
+    
+
+    public function pacheteDeLucruDetalii(){
+        $pk = Input::get('pk');
+        $name = Input::get('name');
+        $value = Input::get('value');
+        $id = Input::get('pachet_de_lucru_id');
+
+        if (PachetDeLucruDetalii::where('str_indicator', $pk)->first()) {
+            PachetDeLucruDetalii::where('str_indicator', $pk)->update([$name => $value]);
+        }else{
+            $proces = new PachetDeLucruDetalii;
+            $proces->str_indicator = $pk;
+            $proces->$name = $value;
+            $proces->pachet_de_lucru_id = $id;
+            $proces->save(); 
+        } 
+    }
 
     
 
