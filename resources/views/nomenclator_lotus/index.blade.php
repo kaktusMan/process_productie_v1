@@ -165,7 +165,7 @@
 
             $("#nomenclator__lotus").on('click', '.action-buttons a i.grup', function(){
              // alert(1230);
-              $count = {{$grup->id}};
+              $count = {{@$grup->id ? : 0}};
               $count1 = $count + $count1;
 
               var row_id = $(this).closest('[data-id]').data('id');
@@ -199,7 +199,7 @@
 
              $("#nomenclator__lotus").on('click', '.action-buttons a i.familie', function(){
 
-              $count = {{$familie->id}};
+              $count = {{@$familie->id ? : 0}};
               $count1 = $count + $count1;
 
               var row_id = $(this).closest('[data-id]').data('familie');
