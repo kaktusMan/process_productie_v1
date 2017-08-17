@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-12">
             <form action="{{ $form_route }}" class="validationEngine" method="POST">
-                @include('instalatii_productie.instalatii.form', ['grup' => $grup])
+                @include('nomenclator_lotus.form', ['grup' => $grup])
             </form>
         </div>
     </div>

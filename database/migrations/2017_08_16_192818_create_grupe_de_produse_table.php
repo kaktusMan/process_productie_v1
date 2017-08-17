@@ -4,16 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePacheteLucruTable extends Migration
+class CreateGrupeDeProduseTable extends Migration
 {
-
     public function up()
     {
-        Schema::create('pachete_lucru', function(Blueprint $t){
+        Schema::create('grupe_de_produse', function(Blueprint $t){
             $t->increments('id');
-            $t->integer('proiect_id')->nullable();
             $t->string('nume')->nullable();
-            $t->string('str_indicator')->nullable();
             $t->timestamps();
             $t->softDeletes();
         });
@@ -26,9 +23,8 @@ class CreatePacheteLucruTable extends Migration
      */
     public function down()
     {
-        Schema::table('pachete_lucru', function (Blueprint $t) {
+        Schema::table('grupe_de_produse', function (Blueprint $t) {
             $t->drop();
         });
     }
 }
-

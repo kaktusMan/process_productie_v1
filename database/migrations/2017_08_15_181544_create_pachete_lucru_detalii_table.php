@@ -18,7 +18,6 @@ class CreatePacheteLucruDetaliiTable extends Migration
             $t->string('stadiu')->nullable();
             $t->string('observatii')->nullable();
             $t->string('str_indicator')->nullable();
-            
             $t->timestamps();
             $t->softDeletes();
         });

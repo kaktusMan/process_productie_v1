@@ -606,5 +606,33 @@ Route::group([
         Route::post('/detalii/{proiect}', 'RegistrulProiecteController@storeDetalii')->name('store-detalii');
 }); 
 
+Route::group([
+	'prefix' => 'nomenclator_lotus',
+	'as' => 'nomenclator-lotus::',
 
+	], function () {
 
+		Route::post('x_editable_grup', 'NomenclatorLotusController@ActualizeazaGrupuri')->name('x_editable_grup');
+        Route::post('x_editable_familie', 'NomenclatorLotusController@ActualizeazaFamilii')->name('x_editable_familie');
+        Route::post('x_editable_model', 'NomenclatorLotusController@ActualizeazaModele')->name('x_editable_model');
+
+		Route::get('/', 'NomenclatorLotusController@index')->name('list'); 
+		Route::get('creare', 'NomenclatorLotusController@create')->name('create');
+        Route::post('/', 'NomenclatorLotusController@store')->name('store');
+  //       Route::get('{concept}', 'NomenclatorLotusController@edit')->name('edit');
+  //       Route::post('{concept}', 'NomenclatorLotusController@update')->name('update');
+  //       Route::post('{concept}/stergere', 'NomenclatorLotusController@delete')->name('delete'); 
+});
+
+Route::post('/stergere-grup', [
+	'as' => 'lotus-grup::delete',
+	'uses' => 'NomenclatorLotusController@deleteGrup'
+]);
+Route::post('/stergere-familie', [
+	'as' => 'lotus-familie::delete',
+	'uses' => 'NomenclatorLotusController@deleteFamilie'
+]);
+Route::post('/stergere-model', [
+	'as' => 'lotus-model::delete',
+	'uses' => 'NomenclatorLotusController@deleteModel'
+]);

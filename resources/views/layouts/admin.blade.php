@@ -144,6 +144,7 @@
                             </ul>
                         </li>
                         <li><a href="{{route('registrul-general::list')}}"  ><i class="fa fa-database" aria-hidden="true"></i> Registrul general</a></li>
+                        <li><a href="{{route('nomenclator-lotus::list')}}"  ><i class="fa fa-fire" aria-hidden="true"></i> Nomenclator lotus</a></li>
 
                 </ul>
             </div>
